@@ -1,0 +1,59 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+p {
+    color: red;
+}
+.hallo-2 {
+    color: blueviolet;
+}
+#hallo-3 {
+    color: green;
+}
+
+p,
+span {
+    font-weight: 800;
+}
+
+.font-text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: rgb(255, 0, 0); /* rgb regibt sich au die Hauptfarben "red, grean, blue" */
+    color: #00ff00; /* hexadezimal: die ersten ziffern sind für RED die neächsten zwei Ziffern sind für GREAN und die letzten zwei Ziffern sind für BLUE */
+    /* color: hsl(120, 100%, 50%);  hsl = hue, saturation, lightness */
+    /* ff = 255, 00 = 0, 0f = 15 */
+    text-align: center;
+}
+
+.bg-image {
+    background-color: #00ff00;
+}
+
+.container {
+    display: flex;
+    direction: row;
+}
+
+.box-model {
+    width: 150px;
+    height: 105px;
+    background-color: red;
+    padding: 10px; /* der abstand wird innerhalb der div vom rand gewährleistet besser gesagt der Rand wird nach außen gedrückt*/
+    border: 5px solid blue; /* der rand der div */
+    margin: 20px; /* der abstand wird außerhalb der div vom rand gewährleistet (Abstand von anderen elementen schaffen) */
+    /* WICHTIG: wenn zwei elemente untereinander stehen wird der margin kolabieren bzw. in sich zusammenbrechen, wiederum wenn die Elemente auf der gleiche Line stehen nicht kolabiert */
+    /* mit box-sizing: border-box; bleibt der kolabieren das gleiche, aber es gibt keinen OVERFLOW es hällt sich an die width. */
+}
+
+.test {
+    width: 150px;
+    height: 115px;
+    background-color: red;
+    margin: 100px;
+    padding: 100px;
+    border: 5px solid blue;
+    text-align: center;
+}
