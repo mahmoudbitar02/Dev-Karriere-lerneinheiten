@@ -1,0 +1,181 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Courier New", Courier, monospace;
+    background: linear-gradient(135deg, #83a8df, #c3cfe2);
+    height: 100vh;
+}
+
+nav {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(230, 237, 243);
+    padding: 1rem 2rem;
+    width: 100%;
+    border-bottom: 2px solid #333;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    z-index: 100;
+}
+.nav-icon {
+    text-decoration: none;
+    color: #333;
+    font-weight: 800;
+}
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 10rem;
+    font-weight: 800;
+}
+.nav-list-item {
+    background-color: #83a8df;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-list-item:hover {
+    background-color: #c3cfe2;
+    transition: 0.3s;
+    transform: scale(1.1);
+}
+
+.welcome-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    padding: 2rem;
+}
+
+.welcome-title {
+    max-width: 600px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.welcome-description {
+    margin-top: 0.4rem;
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+.welcome-image {
+    max-width: fit-content;
+    border: 2px solid #333;
+    padding: 0.5rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+    background: linear-gradient(10deg, #c3cfe2, #83a8df);
+    transition: all 0.3s ease;
+}
+.welcome-image:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    padding: 2rem;
+    text-align: center;
+}
+
+.about-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.about-description {
+    background-color: #83a8df;
+    max-width: 60%;
+    padding: 1rem;
+    border-radius: 50px;
+    font-size: 1rem;
+}
+.about-name {
+    font-weight: 800;
+    color: black;
+    transition: all 0.3s ease;
+}
+
+.about-name:hover {
+    background-color: #c3cfe2;
+    padding: 0.1rem;
+    border-radius: 50px;
+    color: #555;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.skills {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 50vh;
+}
+
+.skill-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+.skill-list {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
+}
+
+.skill-list-item {
+    background-color: #83a8df;
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.skill-list-item:hover {
+    background-color: #c3cfe2;
+    transform: translatey(-10px);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50vh;
+}
+
+.contact-email,
+.contact-number {
+    background-color: #83a8df;
+    padding: 1.5rem 2rem;
+    margin: 1rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+.contact-email:hover,
+.contact-number:hover {
+    background-color: #c3cfe2;
+    transform: translatey(-10px);
+    cursor: pointer;
+    transition: 0.3s;
+}

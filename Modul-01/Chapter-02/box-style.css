@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.main {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-border {
+    background-color: red;
+    width: 150px;
+    height: 150px;
+    border: 2px solid blue;
+    margin: 10px 0 10px 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.main1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.with-out-box-border {
+    background-color: red;
+    width: 150px;
+    height: 150px;
+    border: 2px solid blue;
+    margin: 10px 0 10px 10px;
+    padding: 10px;
+    align-items: center;
+}
