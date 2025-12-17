@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.parent {
+    background-color: red;
+    height: 70vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.child {
+    padding: 20px;
+    background-color: yellow;
+    height: 100px;
+}
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 800px) {
+    .parent {
+        background-color: blue;
+        grid-template-columns: 1fr;
+    }
+}

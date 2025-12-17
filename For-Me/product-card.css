@@ -11,16 +11,57 @@ nav {
     transform: translateX(-50%);
     width: 90%;
     max-width: 1100px;
-
-    background: aqua;
-    padding: 14px 30px;
-
+    background: #fff;
+    padding: 10px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     border-radius: 100px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+}
 
-    z-index: 1000;
+.nav-image img {
+    width: 100px;
+    height: 40px;
+    object-fit: fill;
+}
+
+.nav-items {
+    width: 50%;
+}
+
+.nav-items ul {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    list-style: none;
+}
+.nav-items ul li {
+    padding: 0.5rem 2rem;
+    border: #f3f4f6 2px solid;
+    border-radius: 20px;
+    background-color: antiquewhite;
+    transition: all 0.3s ease;
+}
+
+/* dos not work */
+.nav-items ul li:hover {
+    background-color: rgb(110, 87, 87);
+    transform: translateX(-10px);
+    transition: 0.3s;
+}
+
+.nav-items ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+}
+
+.product-card {
+    margin-top: 120px;
+}
+.product-image img {
+    width: 150px;
+    height: 150px;
 }
