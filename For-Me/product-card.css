@@ -3,16 +3,19 @@
     padding: 0;
     box-sizing: border-box;
 }
+body {
+    background-color: rgb(233, 233, 134);
+}
 
 nav {
     position: fixed;
-    top: 15px;
+    top: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
-    max-width: 1100px;
+    max-width: 1200px;
     background: #fff;
-    padding: 10px 5%;
+    padding: 0 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -22,9 +25,7 @@ nav {
 }
 
 .nav-image img {
-    width: 100px;
-    height: 40px;
-    object-fit: fill;
+    height: 60px;
 }
 
 .nav-items {
@@ -37,18 +38,20 @@ nav {
     width: 100%;
     list-style: none;
 }
-.nav-items ul li {
+
+.nav-item {
     padding: 0.5rem 2rem;
     border: #f3f4f6 2px solid;
     border-radius: 20px;
     background-color: antiquewhite;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-/* dos not work */
-.nav-items ul li:hover {
+.nav-item:hover {
     background-color: rgb(110, 87, 87);
     transform: translateX(-10px);
+    color: #fff;
     transition: 0.3s;
 }
 
@@ -58,10 +61,121 @@ nav {
     font-size: 1rem;
 }
 
-.product-card {
+.product-section {
     margin-top: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100vw;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.product-card {
+    padding: 1rem 1rem 2rem 1rem;
+    border-radius: 10px;
+    background-color: #f3f4f6;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    box-shadow: rgba(0, 0, 0, 0.15) 5px 1.95px 2.6px;
+}
+
+.product-image {
+    margin-bottom: 0.5rem;
 }
 .product-image img {
-    width: 150px;
+    min-width: 150px;
+    width: 100%;
     height: 150px;
+    border-radius: 50px;
+}
+
+.product-content {
+    font-size: 1rem;
+    font-family: "Courier New", Courier, monospace;
+    letter-spacing: -1.5px;
+    word-spacing: -0.3rem;
+    line-height: 2rem;
+}
+
+.product-title {
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.product-info {
+    background-color: bisque;
+    border-radius: 20px;
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+.product-info:hover {
+    transform: scale(1.2);
+    transition: 0.3s;
+}
+.pricing {
+    text-align: center;
+    background-color: #e4e6ea;
+    border-radius: 84% 16% 84% 16% / 0% 100% 0% 100%;
+    transition: all 0.3s ease;
+}
+
+.price,
+.old-price {
+    font-size: 1.1rem;
+    color: black;
+    display: inline;
+    margin-right: 1rem;
+}
+.old-price {
+    text-decoration: line-through;
+    margin-right: 0;
+}
+
+.pricing:hover {
+    transform: translateX(-10px);
+    transition: 0.3s;
+}
+
+.card-btn {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border-radius: 30px;
+    border: 1.5px solid;
+    color: chocolate;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.card-btn:hover {
+    background-color: chocolate;
+    color: white;
+    transform: translateY(7px);
+}
+
+@media only screen and (max-width: 800px) {
+    nav {
+        display: flex;
+        justify-content: start;
+        flex-direction: column;
+    }
+    .product-section {
+        margin-top: 175px;
+    }
+    .nav-items {
+        width: 100%;
+    }
+    .nav-item {
+        padding: 0.5rem 1rem;
+        margin-bottom: 10px;
+    }
 }
