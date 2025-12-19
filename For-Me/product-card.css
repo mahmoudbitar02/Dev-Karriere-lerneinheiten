@@ -125,6 +125,7 @@ nav {
     background-color: #e4e6ea;
     border-radius: 84% 16% 84% 16% / 0% 100% 0% 100%;
     transition: all 0.3s ease;
+    cursor: default;
 }
 
 .price,
@@ -139,10 +140,10 @@ nav {
     margin-right: 0;
 }
 
-.pricing:hover {
+/* .pricing:hover {
     transform: translateX(-10px);
     transition: 0.3s;
-}
+} */
 
 .card-btn {
     width: 100%;
