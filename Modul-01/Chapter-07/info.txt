@@ -1,0 +1,4 @@
+TRICK: 
+    if a reposetory was deleted on Githab, and stil local. the best way to push this repo is:
+        - at the first we add this comand: (rm -rf .git )=> This delete the settig to the old repo from the .git folder
+        - then (create new repo on github and push normaly the code to the new repo)
