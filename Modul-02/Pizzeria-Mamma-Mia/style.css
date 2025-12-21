@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Italiana&family=Italianno&display=swap");
+
+* {
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #ff3030;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.hero {
+  /* background-image: url("hero.jpg"); */
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)), url("hero.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.hero h1 {
+  font-family: "Italianno", cursive;
+  color: #fff;
+  font-size: 4rem;
+  line-height: 3.7rem;
+  letter-spacing: 0.2rem;
+  font-weight: 900;
+  margin: 0;
+  text-align: center;
+}
+
+.hero p {
+  color: #dedede;
+  font-size: 1rem;
+  font-weight: 900;
+  margin-top: 0;
+  text-align: center;
+}
+
+.hero a {
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: #fff;
+  background-color: var(--primary-color);
+  padding: 0.8rem 2rem;
+  border: var(--primary-color) 1px solid;
+  margin-top: 3rem;
+  transition: all 0.15s ease-in;
+  cursor: pointer;
+}
+
+.hero a:hover {
+  background-color: transparent;
+  color: var(--primary-color);
+}
+
+/* Media Query */
+
+@media only screen and (min-width: 600px) {
+  .hero h1 {
+    font-size: 7rem;
+    line-height: 6rem;
+  }
+  .hero p {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+  }
+  .hero a {
+    padding: 1rem 2.5rem;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .hero h1 {
+    font-size: 8rem;
+    line-height: 7rem;
+  }
+  .hero p {
+    margin-top: 1rem;
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,118 @@
+Modul 2 - Die erste eigene Website
+
+Das wirst du lernen
+
+
+
+
+
+Wie du selbst eine eigene Website entwickeln kannst
+
+
+
+VS Code professionell nutzen
+
+
+
+Git und GitHub verwenden
+
+
+
+Eigene Projekte kostenlos auf GitHub Pages hosten
+
+
+
+Grundlegende und fortgeschrittenere Konzepte in HTML und CSS
+
+
+
+
+
+Responsive Design mit Media Queries
+
+
+
+CSS Variablen
+
+
+
+Flexbox
+
+
+
+Relative Einheiten
+
+
+
+Design Grundlagen
+
+
+
+Semantisches HTML & sinnvolle Klassennamen
+
+
+
+Kostenlos lizenzfreie Bilder für deine Projekte beziehen
+
+
+
+…und Vieles mehr!
+
+
+
+Die optimale Vorgehensweise
+
+
+
+
+
+Vorbereitende Lektionen durcharbeiten
+
+
+
+Erste Aufgabe selbstständig zu lösen versuchen
+
+
+
+
+
+Lektion vollständig anschauen
+
+
+
+Alle Hinweise und Tipps aus der Lektion befolgen
+
+
+
+Fragen stellen und Hilfe holen
+
+
+
+Wenn alles andere nicht hilft: Lösungsvorschlag (folgende Lektionen) anschauen, 
+aber selbst nachvollziehen!
+
+
+
+Lösungsvorschlag anschauen
+
+
+
+
+
+Es ist okay, wenn du eine andere Lösung hast, die zum selben Ergebnis führt!
+
+
+
+
+
+Lass dir in diesem Fall unbedingt Feedback zu deinem Code geben
+
+
+
+Nächste Aufgabe
+
+
+
+
+
+Ab Schritt 2 wiederholen
