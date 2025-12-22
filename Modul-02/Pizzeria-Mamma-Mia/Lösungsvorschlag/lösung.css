@@ -10,10 +10,33 @@ body {
   background-color: #1a1a1a;
   color: #fff;
   font-family: "Inter" sans-serif;
+  --primary-color: #ff3030;
+}
+
+.nav {
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  font-size: 0.8rem;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-item:hover {
+  color: var(--primary-color);
 }
 
 .hero {
-  height: 100vh;
+  height: calc(100vh - 5rem);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,19 +62,24 @@ body {
 .hero-action {
   margin-top: 4rem;
   padding: 1rem 2rem;
-  border: 1px solid #ff3030;
+  border: 1px solid var(--primary-color);
   color: #fff;
   text-decoration: none;
-  background-color: #ff3030;
+  background-color: var(--primary-color);
   transition: all 0.2s ease-in-out;
 }
 
 .hero-action:hover {
   background-color: transparent;
-  color: #ff3030;
+  color: var(--primary-color);
 }
 
 @media only screen and (min-width: 600px) {
+  .nav {
+    gap: 2rem;
+    font-size: 1rem;
+  }
+
   .title {
     font-size: 4rem;
     line-height: 4rem;
@@ -67,6 +95,10 @@ body {
 }
 
 @media only screen and (min-width: 1000px) {
+  .nav {
+    gap: 4rem;
+  }
+
   .title {
     font-size: 6rem;
     line-height: 6.5rem;

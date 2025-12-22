@@ -33,12 +33,13 @@ body {
   gap: 1rem;
 }
 
+/* Font size bei item und nicht bei navbar (perant) ist das problem? */
 .navbar-item {
   text-decoration: none;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   color: #fff;
-  padding: 0 1rem;
+  text-transform: uppercase;
   transition: all 0.3s ease-in;
 }
 
@@ -95,8 +96,11 @@ body {
 }
 
 /* Media Query */
-
 @media only screen and (min-width: 600px) {
+  .navbar-item {
+    font-size: 1.1rem;
+  }
+
   .hero-title {
     font-size: 6rem;
     line-height: 6rem;
@@ -109,14 +113,14 @@ body {
   .hero-action {
     padding: 1rem 2.5rem;
   }
-
-  .navbar-item {
-    text-transform: uppercase;
-    font-size: 1.1rem;
-  }
 }
 
 @media only screen and (min-width: 1000px) {
+  /* hier wurde navbar-item mit padding auseinander gezogen und nicht mit gap direkt in der navbar class */
+  .navbar-item {
+    padding: 0 2rem;
+  }
+
   .hero-title {
     font-size: 8rem;
     line-height: 7rem;
@@ -124,9 +128,5 @@ body {
 
   .hero-subtitle {
     margin-top: 1rem;
-  }
-
-  .navbar-item {
-    padding: 0 2rem;
   }
 }
