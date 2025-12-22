@@ -95,6 +95,34 @@ body {
   color: var(--primary-color);
 }
 
+/* About  */
+
+.container {
+  max-width: 80%;
+  margin: 0 auto;
+}
+.about-info {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.about-title {
+  margin: 2rem 0;
+  border-bottom: #ff3030 1px solid;
+  width: fit-content;
+  text-transform: uppercase;
+}
+
+.about-subtitle {
+  text-align: start;
+}
+
+.about-action {
+  margin: 0;
+}
+
 /* Media Query */
 @media only screen and (min-width: 600px) {
   .navbar-item {
