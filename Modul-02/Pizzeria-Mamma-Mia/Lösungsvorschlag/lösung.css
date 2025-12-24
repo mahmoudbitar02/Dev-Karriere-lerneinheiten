@@ -128,6 +128,38 @@ body {
   gap: 0.5rem;
 }
 
+.info-wrapper {
+  margin: 3rem 0;
+  padding: 2rem 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/info.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.hours {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.info .heading {
+  margin: 0 auto;
+}
+
+.hours-entry {
+  display: flex;
+  justify-content: space-between;
+  width: 15rem;
+}
+
+.days {
+  color: var(--text-color);
+}
+
 @media only screen and (min-width: 600px) {
   .nav {
     gap: 2rem;
@@ -175,6 +207,21 @@ body {
   .about-images,
   .about-images-small {
     gap: 1rem;
+  }
+
+  .info-wrapper {
+    margin: 8rem 0;
+    padding: 6rem 0;
+  }
+
+  .hours {
+    margin-top: 2rem;
+  }
+
+  .hours-entry {
+    width: 20rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
   }
 }
 
