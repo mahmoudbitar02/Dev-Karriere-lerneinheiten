@@ -11,6 +11,7 @@ body {
   color: #fff;
   font-family: "Inter" sans-serif;
   --primary-color: #ff3030;
+  --text-color: #ddd;
 }
 
 .nav {
@@ -56,11 +57,20 @@ body {
 }
 
 .subtitle {
-  color: #ddd;
+  color: var(--text-color);
 }
 
 .hero-action {
   margin-top: 4rem;
+}
+
+.container {
+  max-width: 85%;
+  margin: 0 auto;
+}
+
+.button {
+  display: inline-block;
   padding: 1rem 2rem;
   border: 1px solid var(--primary-color);
   color: #fff;
@@ -69,9 +79,53 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
-.hero-action:hover {
+.button:hover {
   background-color: transparent;
   color: var(--primary-color);
+}
+
+.heading {
+  margin: 2rem 0 1rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  border-bottom: 1px solid var(--primary-color);
+  width: fit-content;
+}
+
+.about {
+  display: grid;
+  gap: 2rem;
+}
+
+.about-text {
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.about-action {
+  margin-top: 2rem;
+}
+
+.about-images {
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  object-fit: cover;
+}
+
+.about-image {
+  width: 100%;
+  height: 100%;
+}
+
+.about-image-large {
+  min-width: 50%;
+}
+
+.about-images-small {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 @media only screen and (min-width: 600px) {
@@ -89,8 +143,12 @@ body {
     font-size: 1.5rem;
   }
 
-  .hero-action {
+  .button {
     padding: 1.2rem 2.5rem;
+  }
+
+  .about-text {
+    font-size: 1rem;
   }
 }
 
@@ -102,5 +160,26 @@ body {
   .title {
     font-size: 6rem;
     line-height: 6.5rem;
+  }
+
+  .heading {
+    font-size: 2rem;
+  }
+
+  .about {
+    grid-template-columns: 1fr 1fr;
+    margin-top: 6rem;
+    align-items: center;
+  }
+
+  .about-images,
+  .about-images-small {
+    gap: 1rem;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .container {
+    max-width: 1200px;
   }
 }
