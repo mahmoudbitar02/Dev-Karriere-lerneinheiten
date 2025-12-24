@@ -225,6 +225,7 @@ footer {
 .copy-right {
   padding-bottom: 2rem;
   font-size: 0.8rem;
+  color: var(--text-color);
 }
 
 .footer-items {
