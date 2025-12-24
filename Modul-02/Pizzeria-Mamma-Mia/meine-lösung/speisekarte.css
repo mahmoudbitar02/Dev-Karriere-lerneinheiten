@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lobster&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #1a1a1a;
+
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  --primary-color: #ab1010;
+  --text-color: #ddd;
+}
+
+.nav {
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  font-size: 0.8rem;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  transition: color 0.2s ease-in-out;
+}
+
+section {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+}
+
+.container {
+  width: 85%;
+  margin: 2rem auto;
+}
+
+.nav-item:hover {
+  color: var(--primary-color);
+}
+
+.speisekarte {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.title {
+  text-align: center;
+  padding: 3rem;
+}
+
+.card {
+  max-width: 15rem;
+  margin: 2rem auto 0 auto;
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #303030;
+  border-radius: 5rem;
+}
+
+.card-item {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4rem;
+}
+
+.speisekarte-title {
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  background-color: var(--primary-color);
+  padding: 1rem;
+  border-radius: 2rem;
+  text-align: center;
+}
+
+.price {
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
+@media only screen and (min-width: 600px) {
+  .speisekarte {
+    flex-direction: row;
+    gap: 1rem;
+  }
+}
