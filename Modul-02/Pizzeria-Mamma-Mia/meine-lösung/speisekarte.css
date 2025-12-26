@@ -7,15 +7,16 @@
 }
 
 body {
-  background-color: #1a1a1a;
+  background-color: #413c3cd6;
 
   color: #fff;
   font-family: "Inter", sans-serif;
-  --primary-color: #ab1010;
+  --primary-color: #1c985e;
   --text-color: #ddd;
 }
 
-.nav {
+/* 
+.navbar {
   height: 5rem;
   display: flex;
   justify-content: center;
@@ -23,26 +24,27 @@ body {
   text-align: center;
   gap: 1rem;
   font-size: 0.8rem;
-}
+} */
 
-.nav-item {
+/* .navbar-item {
   text-decoration: none;
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   transition: color 0.2s ease-in-out;
+} */
+
+.card-section {
+  background: linear-gradient(0deg, rgba(8, 8, 8, 0.073), rgba(8, 8, 8, 0.073));
+  padding-bottom: 2rem;
 }
 
-section {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
-}
-
-.container {
+.card-container {
   width: 85%;
-  margin: 2rem auto;
+  margin: 2rem auto 0 auto;
 }
 
-.nav-item:hover {
+.navbar-item .nav-card-item:hover {
   color: var(--primary-color);
 }
 
@@ -55,12 +57,14 @@ section {
 }
 
 .title {
+  text-transform: capitalize;
   text-align: center;
   padding: 3rem;
 }
 
 .card {
   max-width: 15rem;
+  height: fit-content;
   margin: 2rem auto 0 auto;
   padding: 2rem 1rem;
   display: flex;
@@ -70,6 +74,12 @@ section {
   flex-direction: column;
   border: 1px solid #303030;
   border-radius: 5rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.1);
 }
 
 .card-item {
@@ -97,5 +107,27 @@ section {
   .speisekarte {
     flex-direction: row;
     gap: 1rem;
+  }
+
+  .card {
+    max-width: 16rem;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .title {
+    font-size: 3rem;
+  }
+  .card {
+    max-width: 18rem;
+  }
+
+  .speisekarte-title {
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+  }
+
+  .price {
+    margin-top: 1.2rem;
   }
 }
