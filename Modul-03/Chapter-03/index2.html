@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .red {
+        background-color: red;
+      }
+    </style>
+
+    <script>
+      var red = false;
+      function toggleRed() {
+        var element = document.getElementById("red");
+        if (red) {
+          // klasse weg
+          element.classList.remove("red");
+        } else {
+          element.classList.add("red");
+        }
+        red = !red;
+      }
+
+      function toggleredTwo() {
+        var elemet = document.getElementById("red");
+        elemet.classList.toggle("red");
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="toggleredTwo()" id="red">rot</button>
+  </body>
+</html>
