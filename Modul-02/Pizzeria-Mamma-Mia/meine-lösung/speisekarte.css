@@ -34,6 +34,30 @@ body {
   transition: color 0.2s ease-in-out;
 } */
 
+.back {
+  position: relative;
+  margin-left: 2rem;
+}
+
+.back a {
+  text-decoration: none;
+  position: absolute;
+  padding: 1.5rem 3rem;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text-color);
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border-radius: 2rem;
+}
+
+.back a:hover {
+  background-color: var(--text-color);
+  color: var(--primary-color);
+}
+
 .card-section {
   background: linear-gradient(0deg, rgba(8, 8, 8, 0.073), rgba(8, 8, 8, 0.073));
   padding-bottom: 2rem;
