@@ -5,16 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
+    <style>
+      .red {
+        color: red;
+      }
+    </style>
+
     <script>
       var total = 0;
-      maxTotal = 1000;
-      minTotal = -100;
+      const maxTotal = 1000;
+      const minTotal = -100;
+
       function geldAuszahlen() {
         total -= 100;
         if (total < minTotal) {
           total = minTotal;
 
-          alert("nur 100 €");
+          alert("du darfst nicht mehr abheben");
           return;
         }
         kontoAnzeigen();
@@ -24,7 +31,7 @@
         total += 100;
         if (total > maxTotal) {
           total = maxTotal;
-          alert("max 1.000€");
+          alert("du darfst bis max 1.000€ abheben");
           return;
         }
         kontoAnzeigen();
@@ -32,13 +39,19 @@
 
       function kontoAnzeigen() {
         var element = document.getElementById("kontostand");
-        element.innerHTML = `Kontostand: ${total}€`;
+        element.innerHTML = total + "€";
+
+        if (total < 0) {
+          element.classList.add("red");
+        } else {
+          element.classList.remove("red");
+        }
       }
     </script>
   </head>
   <body>
     <button onclick="geldAuszahlen()">100€ Auszahlen</button>
-    <span id="kontostand">Kontostand: 0€</span>
+    <span>Kontostand: <span id="kontostand">0€</span></span>
     <button onclick="geldEinzahlen()">100€ Einzahlen</button>
   </body>
 </html>
