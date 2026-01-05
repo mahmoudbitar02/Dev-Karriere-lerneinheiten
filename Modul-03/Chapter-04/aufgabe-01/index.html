@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function startSchleife() {
+        const start = Number(document.getElementById("start").value);
+        const end = Number(document.getElementById("end").value);
+        let geradeCounter = 0;
+        let ungeradeCounter = 0;
+
+        if (start > end) {
+          console.log("die Startzahl darf nicht größer als die Endzahl sein");
+        } else {
+          for (let i = start; i <= end; i++) {
+            const rest = i % 2;
+            if (rest === 0) {
+              geradeCounter++;
+              console.log("Die Zahl " + i + " ist gerade");
+            } else {
+              ungeradeCounter++;
+              console.log("Die Zahl " + i + " ist ungerade");
+            }
+          }
+          console.log("zwischen " + start + " und " + end + " gibt es " + geradeCounter + " gerade" + " und " + ungeradeCounter + " ungerade Zahlen");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <form>
+      Startzahl:
+      <input type="number" name="number" id="start" />
+      Endzahl:
+      <input type="number" name="number" id="end" />
+    </form>
+    <button onclick="startSchleife()">start</button>
+  </body>
+</html>

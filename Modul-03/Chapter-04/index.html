@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function countNumbers() {
+        const start = document.getElementById("start").value;
+        const end = document.getElementById("end").value;
+        console.log(start, end);
+
+        for (let i = start; i <= end; i++) {
+          showLog(i);
+        }
+
+        let x = start;
+
+        while (x <= end) {
+          showLog(x);
+          x++;
+        }
+
+        let z = start;
+        do {
+          console.log("Do while");
+          showLog(z);
+          z++;
+        } while (z <= end);
+      }
+
+      function showLog(z) {
+        const rest = z % 2;
+        if (rest === 0) {
+          console.log("Die Zahl " + z + " ist gerade");
+        } else {
+          console.log("Die Zahl " + z + " ist ungerade");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    startzahl: <input type="number" id="start" /> Endzahl: <input type="number" id="end" />
+    <br />
+    <button onclick="countNumbers()">start</button>
+  </body>
+</html>
