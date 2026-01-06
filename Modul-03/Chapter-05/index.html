@@ -14,25 +14,25 @@
           <p class="current-input" id="current">0</p>
         </article>
         <article class="digits">
-          <button class="button" id="7" onclick="addNumber(7)">7</button>
-          <button class="button" id="8" onclick="addNumber(8)">8</button>
-          <button class="button" id="9" onclick="addNumber(9)">9</button>
-          <button class="button" id="dividing" onclick="addNumber('/')">/</button>
+          <button class="button number" id="7" onclick="addValue('7')">7</button>
+          <button class="button number" id="8" onclick="addValue('8')">8</button>
+          <button class="button number" id="9" onclick="addValue('9')">9</button>
+          <button class="button operator" id="dividing" onclick="addValue('/')">/</button>
 
-          <button class="button" id="4" onclick="addNumber(4)">4</button>
-          <button class="button" id="5" onclick="addNumber(5)">5</button>
-          <button class="button" id="6" onclick="addNumber(6)">6</button>
-          <button class="button" id="multi" onclick="addNumber('*')">*</button>
+          <button class="button number" id="4" onclick="addValue('4')">4</button>
+          <button class="button number" id="5" onclick="addValue('5')">5</button>
+          <button class="button number" id="6" onclick="addValue('6')">6</button>
+          <button class="button operator" id="multi" onclick="addValue('*')">*</button>
 
-          <button class="button" id="1" onclick="addNumber(1)">1</button>
-          <button class="button" id="2" onclick="addNumber(2)">2</button>
-          <button class="button" id="3" onclick="addNumber(3)">3</button>
-          <button class="button" id="minus" onclick="addNumber('-')">-</button>
+          <button class="button number" id="1" onclick="addValue('1')">1</button>
+          <button class="button number" id="2" onclick="addValue('2')">2</button>
+          <button class="button number" id="3" onclick="addValue('3')">3</button>
+          <button class="button operator" id="minus" onclick="addValue('-')">-</button>
 
-          <button class="button" id="clear" onclick="addNumber('CE')">CE</button>
-          <button class="button" id="0" onclick="addNumber(0)">0</button>
-          <button class="button" id="ist-gleich" onclick="addNumber('=')">=</button>
-          <button class="button" id="plus" onclick="addNumber('+')">+</button>
+          <button class="button clear" id="clear" onclick="clear()">CE</button>
+          <button class="button number" id="0" onclick="addValue('0')">0</button>
+          <button class="button equal" id="equal" onclick="calculat()">=</button>
+          <button class="button operator" id="plus" onclick="addValue('+')">+</button>
         </article>
       </section>
 
