@@ -237,6 +237,10 @@ footer {
   gap: 1rem;
 }
 
+.figure {
+  width: 50%;
+}
+
 /* Media Query */
 @media only screen and (min-width: 600px) {
   .navbar-item,
@@ -257,7 +261,7 @@ footer {
   .hero-action,
   .button,
   .inverted-button {
-    padding: 1rem 2.5rem;
+    padding: 1rem;
   }
 
   .contact {
@@ -321,9 +325,6 @@ footer {
 
   .button-action {
     flex-direction: row;
-  }
-  .contact-image {
-    width: 70%;
   }
 
   .footer-items {
