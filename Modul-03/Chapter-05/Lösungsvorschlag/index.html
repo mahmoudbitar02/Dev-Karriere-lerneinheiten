@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taschenrechner</title>
+
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      #zwischenstand {
+        font-size: 1.5rem;
+        text-align: right;
+      }
+
+      #eingabe {
+        font-size: 2.5rem;
+        text-align: right;
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(4, auto);
+        gap: 0.2rem;
+      }
+
+      .grid-item {
+        font-size: 2rem;
+        height: 5rem;
+        border-radius: 5px;
+        border: solid 1px #bbb;
+      }
+      #list {
+        width: 15rem;
+        font-size: 2rem;
+        padding: 1rem;
+        border-left: solid 1px #ddd;
+        height: 100vh;
+        text-align: right;
+      }
+
+      .wrapper {
+        display: flex;
+      }
+
+      .calculator {
+        flex: 1;
+        padding-right: 1rem;
+      }
+    </style>
+
+    <script>
+      let currentInput = 0;
+      let previousInput = 0;
+
+      // Zahl ins Eingabefeld eingeben
+      function number(zahl) {
+        // 1 --> 1*10 = 10+1 --> 11
+        console.log(currentInput);
+        currentInput = currentInput * 10 + zahl;
+        console.log(currentInput);
+        updateCurrentInput();
+      }
+
+      //Zahlen sollen addiert werden
+      function add() {
+        previousInput = currentInput;
+        currentInput = 0;
+        updatePreviousInput();
+        updateCurrentInput();
+
+        /**
+            1. Input Zahl (1)
+            2. Add
+            3. Gebe Zahl ein (2)
+            4. Subtract (Operator)
+            5. 1+2 ausführen und als Ergebnis gespeichert (3)
+            6. Gebe Zahl ein (1)
+            7. Multiply (Operator)
+            8. 3-1 ausgeführt (2)
+            9. Gebe Zahl ein (2)
+            10. Operator
+            11. 2*2 ausgeführt
+
+        **/
+      }
+
+      // Zahlen sollen subtrahiert werden
+      function subtract() {}
+
+      // zahlen sollen multiplziert werden
+      function multiply() {}
+
+      // zahlen sollen geteilt werden
+      function divide() {}
+
+      // zahlen sollen ausgegeben werden
+      function enter() {}
+
+      // Alles zurücksetzen
+      function clearCalculator() {}
+
+      function updateCurrentInput() {
+        document.getElementById("eingabe").innerHTML = currentInput;
+      }
+
+      function updatePreviousInput() {
+        document.getElementById("zwischenstand").innerHTML = previousInput + "+";
+      }
+    </script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="calculator">
+        <div id="zwischenstand">0</div>
+        <div id="eingabe">0</div>
+        <div class="grid-container">
+          <button class="grid-item" onclick="number(7)">7</button>
+          <button class="grid-item" onclick="number(8)">8</button>
+          <button class="grid-item" onclick="number(9)">9</button>
+          <button class="grid-item">/</button>
+
+          <button class="grid-item" onclick="number(4)">4</button>
+          <button class="grid-item" onclick="number(5)">5</button>
+          <button class="grid-item" onclick="number(6)">6</button>
+          <button class="grid-item">*</button>
+
+          <button class="grid-item" onclick="number(1)">1</button>
+          <button class="grid-item" onclick="number(2)">2</button>
+          <button class="grid-item" onclick="number(3)">3</button>
+          <button class="grid-item">-</button>
+
+          <button class="grid-item">CE</button>
+          <button class="grid-item" onclick="number(0)">0</button>
+          <button class="grid-item">=</button>
+          <button class="grid-item" onclick="add()">+</button>
+        </div>
+      </div>
+      <div id="list"></div>
+    </div>
+  </body>
+</html>

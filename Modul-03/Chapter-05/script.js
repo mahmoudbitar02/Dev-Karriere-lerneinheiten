@@ -1,24 +1,40 @@
-let currentValue = "0";
+let currentValue = "";
 let currentOperator = "";
 let prevValue = 0;
+let calcValue = "";
 
 const current = document.getElementById("current");
 const calc = document.getElementById("calc");
 
 function addValue(number) {
-  currentValue = number;
-  current.innerHTML = currentValue;
+  currentValue += number;
+  updateCurrentInput();
 }
 
-function addOperator(operator) {
-  if (currentValue === "") return;
-
-  prevValue = calc.innerHTML;
-
-  calc.innerHTML = parseInt(prevValue) + parseInt(currentValue) + operator;
-
-  current.innerHTML = "0";
+//Zahlen sollen addiert werden
+function add(add) {
+  calcValue += add;
 }
+
+// Zahlen sollen subtrahiert werden
+function subtract() {}
+
+// zahlen sollen multiplziert werden
+function multiply() {}
+
+// zahlen sollen geteilt werden
+function divide() {}
+
+// function addOperator(operator) {
+//   if (currentValue === "") return;
+
+//   currentOperator = operator;
+//   console.log(currentOperator);
+//   calc.innerHTML = currentValue + currentOperator;
+//   current.innerHTML = "0";
+
+//   currentValue = "";
+// }
 
 // function addOperator(operator) {
 //   if (currentValue === "") return;
@@ -66,4 +82,12 @@ function clearValue() {
   calc.innerHTML = "0";
 
   console.log("trest");
+}
+
+function updateCurrentInput() {
+  current.innerHTML = currentValue;
+}
+
+function updateCalcInput() {
+  calc.innerHTML = calcValue;
 }
