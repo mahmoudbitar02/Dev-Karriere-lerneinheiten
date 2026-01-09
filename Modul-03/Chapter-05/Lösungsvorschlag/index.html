@@ -53,6 +53,7 @@
     <script>
       let currentInput = 0;
       let previousInput = 0;
+      let operator = "+";
 
       // Zahl ins Eingabefeld eingeben
       function number(zahl) {
@@ -65,7 +66,8 @@
 
       //Zahlen sollen addiert werden
       function add() {
-        previousInput = currentInput;
+        performOperator();
+        operator = "+";
         currentInput = 0;
         updatePreviousInput();
         updateCurrentInput();
@@ -97,6 +99,15 @@
 
       // zahlen sollen ausgegeben werden
       function enter() {}
+
+      function performOperator() {
+        let currentResult = 0;
+        if (operator === "+") {
+          currentResult = previousInput + currentInput;
+        }
+
+        previousInput = currentResult;
+      }
 
       // Alles zurücksetzen
       function clearCalculator() {}
