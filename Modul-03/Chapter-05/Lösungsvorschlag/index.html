@@ -8,15 +8,18 @@
     <style>
       body {
         font-family: Arial, Helvetica, sans-serif;
+        overflow: hidden;
       }
       #zwischenstand {
         font-size: 1.5rem;
         text-align: right;
+        height: 2rem;
       }
 
       #eingabe {
         font-size: 2.5rem;
         text-align: right;
+        height: 2rem;
       }
 
       .grid-container {
@@ -38,6 +41,7 @@
         border-left: solid 1px #ddd;
         height: 100vh;
         text-align: right;
+        overflow-y: auto;
       }
 
       .wrapper {
@@ -54,20 +58,29 @@
       let currentInput = 0;
       let previousInput = 0;
       let operator = "+";
+      let liste = "";
 
       // Zahl ins Eingabefeld eingeben
       function number(zahl) {
+        if (operator === "=") {
+          previousInput = 0;
+          currentInput = 0;
+          operator = "+";
+          updatePreviousInput("");
+          updateCurrentInput(currentInput);
+        }
         // 1 --> 1*10 = 10+1 --> 11
         console.log(currentInput);
         currentInput = currentInput * 10 + zahl;
         console.log(currentInput);
-        updateCurrentInput();
+        updateCurrentInput(currentInput);
       }
 
       //Zahlen sollen addiert werden
       function add() {
         performOperator();
         operator = "+";
+        updatePreviousInput(previousInput + operator);
 
         /**
             1. Input Zahl (1)
@@ -89,25 +102,30 @@
       function subtract() {
         performOperator();
         operator = "-";
-        updatePreviousInput();
+        updatePreviousInput(previousInput + operator);
       }
 
       // zahlen sollen multiplziert werden
       function multiply() {
         performOperator();
         operator = "*";
-        updatePreviousInput();
+        updatePreviousInput(previousInput + operator);
       }
 
       // zahlen sollen geteilt werden
       function divide() {
         performOperator();
         operator = "/";
-        updatePreviousInput();
+        updatePreviousInput(previousInput + operator);
       }
 
       // zahlen sollen ausgegeben werden
-      function enter() {}
+      function enter() {
+        performOperator();
+        operator = "=";
+        updatePreviousInput(previousInput + operator);
+        updateCurrentInput(previousInput);
+      }
 
       function performOperator() {
         let currentResult = 0;
@@ -121,29 +139,48 @@
           currentResult = previousInput / currentInput;
         }
 
+        // previousInput + currentInput = currentResult
+        if (operator !== "=") {
+          let listString = "<p>" + previousInput + operator + currentInput + "=" + currentResult + "</p>";
+          liste = listString + liste;
+          updateList();
+        }
+
         previousInput = currentResult;
 
         currentInput = 0;
-        updateCurrentInput();
+        updateCurrentInput(currentInput);
       }
 
       // Alles zurücksetzen
-      function clearCalculator() {}
-
-      function updateCurrentInput() {
-        document.getElementById("eingabe").innerHTML = currentInput;
+      function clearCalculator() {
+        currentInput = 0;
+        previousInput = 0;
+        operator = "+";
+        liste = "";
+        updateCurrentInput(currentInput);
+        updatePreviousInput(previousInput);
+        updateList;
       }
 
-      function updatePreviousInput() {
-        document.getElementById("zwischenstand").innerHTML = previousInput + operator;
+      function updateCurrentInput(text) {
+        document.getElementById("eingabe").innerHTML = text;
+      }
+
+      function updatePreviousInput(text) {
+        document.getElementById("zwischenstand").innerHTML = text;
+      }
+
+      function updateList() {
+        document.getElementById("list").innerHTML = liste;
       }
     </script>
   </head>
   <body>
     <div class="wrapper">
       <div class="calculator">
-        <div id="zwischenstand">0</div>
-        <div id="eingabe">0</div>
+        <div id="zwischenstand"></div>
+        <div id="eingabe"></div>
         <div class="grid-container">
           <button class="grid-item" onclick="number(7)">7</button>
           <button class="grid-item" onclick="number(8)">8</button>
@@ -160,9 +197,9 @@
           <button class="grid-item" onclick="number(3)">3</button>
           <button class="grid-item" onclick="subtract()">-</button>
 
-          <button class="grid-item">CE</button>
+          <button class="grid-item" onclick="clearCalculator()">CE</button>
           <button class="grid-item" onclick="number(0)">0</button>
-          <button class="grid-item">=</button>
+          <button class="grid-item" onclick="enter()">=</button>
           <button class="grid-item" onclick="add()">+</button>
         </div>
       </div>

@@ -1,6 +1,7 @@
 let currentValue = "";
 let currentOperator = "+";
 let prevValue = "0";
+let hasClickennumber = false;
 
 const current = document.getElementById("current");
 const calc = document.getElementById("calc");
@@ -8,6 +9,7 @@ const verlauf = document.getElementById("calc-history");
 
 function addValue(number) {
   currentValue += number;
+  hasClickennumber = true;
   updateCurrentInput();
 }
 
@@ -66,10 +68,10 @@ function divide() {
 }
 
 function performOperator() {
+  if (!hasClickennumber) return;
   let result = 0;
   if (currentOperator === "+") {
     result = Number(prevValue) + Number(currentValue);
-    verlaufHistory(result);
 
     console.log(result);
   } else if (currentOperator === "-") {
@@ -84,8 +86,10 @@ function performOperator() {
       result = Number(prevValue) / Number(currentValue);
     }
   }
+  verlaufHistory(result);
 
   prevValue = result;
+  hasClickennumber = false;
 }
 
 function updateCurrentInput() {
@@ -97,10 +101,9 @@ function updateCalcInput() {
 }
 
 function verlaufHistory(result) {
-  el = document.createElement("p");
+  const el = document.createElement("p");
   el.innerHTML = prevValue + currentOperator + currentValue + " = " + result;
-  test = verlauf.appendChild(el);
-  console.log(test);
+  verlauf.prepend(el);
 }
 
 // function addOperator(operator) {
@@ -158,6 +161,7 @@ function clearValue() {
   currentOperator = "";
   current.innerHTML = "0";
   calc.innerHTML = "0";
+  verlauf.innerHTML = "";
 
   console.log("trest");
 }
