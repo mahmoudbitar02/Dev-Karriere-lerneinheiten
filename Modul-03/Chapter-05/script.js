@@ -8,19 +8,26 @@ const calc = document.getElementById("calc");
 const verlauf = document.getElementById("calc-history");
 
 function addValue(number) {
-  currentValue += number;
+  if (currentOperator === "=") {
+    prevValue = "0";
+    currentValue = "0";
+    console.log(currentOperator);
+
+    currentOperator = "+";
+    updateCalcInput("0");
+    updateCurrentInput(currentValue);
+    console.log(currentOperator);
+  }
+  currentValue = number;
   hasClickennumber = true;
-  updateCurrentInput();
+  updateCurrentInput(currentValue);
 }
 
 //Zahlen sollen addiert werden
 function add() {
   performOperator();
   currentOperator = "+";
-  updateCalcInput();
-  currentValue = "0";
-
-  updateCurrentInput();
+  updateCalcInput(prevValue + currentOperator);
 
   /**
     1. Input Zahl (1)
@@ -43,8 +50,8 @@ function subtract() {
   performOperator();
   currentOperator = "-";
   currentValue = "0";
-  updateCalcInput();
-  updateCurrentInput();
+  updateCalcInput(prevValue + currentOperator);
+  updateCurrentInput(currentValue);
 }
 
 // zahlen sollen multiplziert werden
@@ -53,9 +60,9 @@ function multiply() {
   currentOperator = "*";
   currentValue = "0";
 
-  updateCurrentInput();
+  updateCurrentInput(currentValue);
 
-  updateCalcInput();
+  updateCalcInput(prevValue + currentOperator);
 }
 
 // zahlen sollen geteilt werden
@@ -63,12 +70,13 @@ function divide() {
   performOperator();
   currentOperator = "/";
   currentValue = "0";
-  updateCurrentInput();
-  updateCalcInput();
+  updateCurrentInput(currentValue);
+  updateCalcInput(prevValue + currentOperator);
 }
 
 function performOperator() {
   if (!hasClickennumber) return;
+
   let result = 0;
   if (currentOperator === "+") {
     result = Number(prevValue) + Number(currentValue);
@@ -89,21 +97,42 @@ function performOperator() {
   verlaufHistory(result);
 
   prevValue = result;
+  currentValue = "0";
   hasClickennumber = false;
+  updateCurrentInput(currentValue);
 }
 
-function updateCurrentInput() {
-  current.innerHTML = currentValue;
+function updateCurrentInput(text) {
+  current.innerHTML = text;
 }
 
-function updateCalcInput() {
-  calc.innerHTML = prevValue + currentOperator;
+function updateCalcInput(text) {
+  calc.innerHTML = text;
 }
 
 function verlaufHistory(result) {
   const el = document.createElement("p");
   el.innerHTML = prevValue + currentOperator + currentValue + " = " + result;
   verlauf.prepend(el);
+}
+
+function calculat() {
+  performOperator();
+  currentOperator = "=";
+  updateCalcInput(prevValue + currentOperator);
+  updateCurrentInput(prevValue);
+  console.log("calculate operator -->" + currentOperator);
+}
+
+function clearValue() {
+  currentValue = "0";
+  prevValue = "0";
+  currentOperator = "+";
+  verlauf.innerHTML = "";
+  updateCurrentInput(currentValue);
+  updateCalcInput(prevValue);
+
+  console.log("trest");
 }
 
 // function addOperator(operator) {
@@ -127,41 +156,30 @@ function verlaufHistory(result) {
 //   test.innerHTML = prevValue + currentOperator + currentValue;
 // }
 
-function calculat() {
-  switch (currentOperator) {
-    case "+":
-      calc.innerHTML = parseInt(prevValue) + parseInt(currentValue);
-      break;
+// function calculat() {
+//   switch (currentOperator) {
+//     case "+":
+//       calc.innerHTML = parseInt(prevValue) + parseInt(currentValue);
+//       break;
 
-    case "-":
-      calc.innerHTML = parseInt(prevValue) - parseInt(currentValue);
-      break;
+//     case "-":
+//       calc.innerHTML = parseInt(prevValue) - parseInt(currentValue);
+//       break;
 
-    case "*":
-      calc.innerHTML = parseInt(prevValue) * parseInt(currentValue);
-      break;
+//     case "*":
+//       calc.innerHTML = parseInt(prevValue) * parseInt(currentValue);
+//       break;
 
-    case "/":
-      if (currentValue === "0") {
-        alert("can't devidy by zero");
-        return;
-      }
-      calc.innerHTML = parseInt(prevValue) / parseInt(currentValue);
-      break;
+//     case "/":
+//       if (currentValue === "0") {
+//         alert("can't devidy by zero");
+//         return;
+//       }
+//       calc.innerHTML = parseInt(prevValue) / parseInt(currentValue);
+//       break;
 
-    default:
-      break;
-  }
-  console.log("trest");
-}
-
-function clearValue() {
-  currentValue = "";
-  prevValue = "";
-  currentOperator = "";
-  current.innerHTML = "0";
-  calc.innerHTML = "0";
-  verlauf.innerHTML = "";
-
-  console.log("trest");
-}
+//     default:
+//       break;
+//   }
+//   console.log("trest");
+// }
