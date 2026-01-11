@@ -4,6 +4,7 @@ let prevValue = "0";
 
 const current = document.getElementById("current");
 const calc = document.getElementById("calc");
+const verlauf = document.getElementById("calc-history");
 
 function addValue(number) {
   currentValue += number;
@@ -14,8 +15,8 @@ function addValue(number) {
 function add() {
   performOperator();
   currentOperator = "+";
-  currentValue = "0";
   updateCalcInput();
+  currentValue = "0";
 
   updateCurrentInput();
 
@@ -45,18 +46,43 @@ function subtract() {
 }
 
 // zahlen sollen multiplziert werden
-function multiply() {}
+function multiply() {
+  performOperator();
+  currentOperator = "*";
+  currentValue = "0";
+
+  updateCurrentInput();
+
+  updateCalcInput();
+}
 
 // zahlen sollen geteilt werden
-function divide() {}
+function divide() {
+  performOperator();
+  currentOperator = "/";
+  currentValue = "0";
+  updateCurrentInput();
+  updateCalcInput();
+}
 
 function performOperator() {
   let result = 0;
   if (currentOperator === "+") {
     result = Number(prevValue) + Number(currentValue);
+    verlaufHistory(result);
+
     console.log(result);
   } else if (currentOperator === "-") {
     result = Number(prevValue) - Number(currentValue);
+  } else if (currentOperator === "*") {
+    result = Number(prevValue) * Number(currentValue);
+  } else if (currentOperator === "/") {
+    if (currentValue === "00") {
+      alert("cannot devide by zero");
+      return;
+    } else {
+      result = Number(prevValue) / Number(currentValue);
+    }
   }
 
   prevValue = result;
@@ -68,6 +94,13 @@ function updateCurrentInput() {
 
 function updateCalcInput() {
   calc.innerHTML = prevValue + currentOperator;
+}
+
+function verlaufHistory(result) {
+  el = document.createElement("p");
+  el.innerHTML = prevValue + currentOperator + currentValue + " = " + result;
+  test = verlauf.appendChild(el);
+  console.log(test);
 }
 
 // function addOperator(operator) {
