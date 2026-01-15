@@ -23,6 +23,7 @@ body {
   align-items: end;
   flex-direction: column;
   border-right: 1px solid #63408b;
+  text-align: right;
 }
 
 .inputs {
@@ -63,7 +64,16 @@ body {
 }
 
 .right-side {
+  margin-top: 5rem;
+  height: 30rem;
+  overflow-y: scroll;
   width: 20rem;
-  padding: 4rem 3rem;
+  padding: 0 3rem;
   text-align: end;
+}
+
+.list {
+  color: #000;
+  line-height: 2.5rem;
+  font-size: 1.5rem;
 }
