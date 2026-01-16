@@ -1,0 +1,16 @@
+bei JS:
+    - Schlecht:
+        let x = 0
+        const valueInfoTargetButton=""
+        function info()
+
+    - gut:
+        let clickCounter = 0
+        const calculateButtonEl= ""
+        function displayMovieInfo() {}
+
+    - Funktionsnamen: verb + Nomen -> Imperativ
+        function renderButtons(){}
+        function getData(){}
+
+    - IMMER VERSTÄNDLICH --> Readability
