@@ -32,7 +32,27 @@
 
       // ----------------------
       // TODO 7: ForEach
+      function ausgabe(element) {
+        console.log(element);
+      }
+      liste.forEach(ausgabe);
+
+      liste.forEach((item) => {
+        console.log(item);
+      });
+
+      for (let i = 0; 1 < liste.length; i++) {
+        console.log(liste[i]);
+      }
+
+      for (let element of liste) {
+        consol.log(element);
+      }
       // TODO 8: Filter
+      const filteredListe = liste.filter((element) => {
+        return element < 5;
+      });
+      console.log(filteredListe);
 
       // ----------------------
       // TODO 9: Map
