@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script>
+      const liste = [5, 9, 3, 4];
+      console.log(liste);
+
+      // TODO 1: Find
+      const findNeun = liste.find((zahl) => {
+        return zahl === 9;
+      });
+      console.log(findNeun);
+      // Todo 2: FindIndex
+      const findNeunIndex = liste.findIndex((zahl) => {
+        return zahl === 9;
+      });
+      console.log(findNeunIndex);
+      // TODO 3: Sort
+
+      const sortedArray = liste.sort();
+      console.log(sortedArray);
+
+      const sortedArrayNumber = liste.sort((a, b) => {
+        if (a < b) return 1;
+        else return -1;
+      });
+      console.log(sortedArrayNumber);
+
+      const sortedNumber = liste.sort((a, b) => a - b);
+      console.log(sortedNumber);
+
+      // TEST:
+      const strings = ["Banane", "Äpfel", "Mango", "Kiwi"];
+      const sortedStrings = strings.sort((a, b) => {
+        return a.localeCompare(b, "de"); // "de" für Deutsch, "en" für Englisch usw. localeCompare benutzt man um strings richtig zu sortieren
+      });
+      console.log(sortedStrings);
+    </script>
+  </head>
+  <body></body>
+</html>
