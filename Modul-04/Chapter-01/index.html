@@ -56,7 +56,74 @@
 
       // ----------------------
       // TODO 9: Map
+      const mappedListe = liste.map((element) => {
+        return element * 2;
+      });
+      console.log(mappedListe);
       // TODO 10: Reduce
+      const reducedListe = ["test", " ", "string"];
+      const reducedValue = liste.reduce((previousValue, currentValue) => {
+        return previousValue + currentValue;
+      });
+      console.log(reducedValue);
+
+      //aufgabe 1
+      const animals = ["cat", "dog", "cat", "bird", "dog", "cat"];
+
+      const animalCount = animals.reduce((acc, animal) => {
+        acc[animal] = (acc[animal] || 0) + 1; // Wenn das Tier schon im Akkumulator ist, erhöhe den Zähler, sonst setze ihn auf 1, in diesem Beispiel acc[animal] = (acc[animal] || 0) + 1 bedeutet, dass wenn acc["cat"] schon existiert, wird der Wert um 1 erhöht, sonst wird er auf 0 gesetzt und dann um 1 erhöht.
+        return acc;
+      }, {});
+      console.log(animalCount);
+
+      // aufgabe 2
+      const words = ["cat", "dog", "bird", "elephant", "dog", "cat"];
+      const lengthWord = words.reduce((acc, word) => {
+        const length = word.length;
+        acc[length] = (acc[length] || 0) + 1;
+        return acc;
+      }, {});
+      console.log(lengthWord);
+
+      // aufgabe 3
+      const expenses = [
+        { category: "food", amount: 10 },
+        { category: "transport", amount: 5 },
+        { category: "food", amount: 15 },
+        { category: "entertainment", amount: 20 },
+        { category: "transport", amount: 10 },
+      ];
+
+      const totalByCategory = expenses.reduce((acc, expense) => {
+        const category = expense.category;
+        const amount = expense.amount;
+        acc[category] = (acc[category] || 0) + amount;
+        return acc;
+      }, {});
+      console.log(totalByCategory);
+      // or:
+      const totalByCategory2 = expenses.reduce((acc, { category, amount }) => {
+        acc[category] = (acc[category] || 0) + amount;
+        return acc;
+      }, {});
+      console.log(totalByCategory2);
+
+      //aufgabe 4
+      const users = [
+        { name: "Ali", role: "admin" },
+        { name: "Sara", role: "user" },
+        { name: "Omar", role: "admin" },
+        { name: "Lina", role: "user" },
+        { name: "Zayn", role: "user" },
+      ];
+
+      const roleCount = users.reduce((acc, user) => {
+        const role = user.role;
+        acc[orle] = acc[role] || [];
+        acc[role].push(user);
+      }, {});
+
+      console.log(roleCount);
     </script>
   </head>
   <body></body>
