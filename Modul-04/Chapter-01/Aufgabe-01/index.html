@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="article">
+        <label for="add-number">Inhalt Einfügen</label>
+        <input type="text" id="add-number" />
+        <button onclick="addNumber()" id="add-button">Einfügen</button>
+      </div>
+
+      <div class="article">
+        <label for="delete-number">ID Löschen</label>
+        <input type="number" id="delete-number" />
+        <button onclick="deleteIdNumber()" id="add-button">Löschen</button>
+      </div>
+
+      <div class="article">
+        <label for="delete-content">Content Löschen</label>
+        <input type="text" id="delete-content" />
+        <button onclick="deleteContent()" id="add-button">Löschen</button>
+      </div>
+
+      <div>
+        <button onclick="showArray()">Anzeigen</button>
+      </div>
+
+      <div>
+        <button onclick="multiplyArray()">Multiplizieren</button>
+      </div>
+
+      <div>
+        <button onclick="sumArray()">Summe</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
