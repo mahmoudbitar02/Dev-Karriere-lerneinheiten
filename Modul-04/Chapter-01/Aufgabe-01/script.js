@@ -28,10 +28,11 @@ function addNumber() {
 }
 
 function deleteIdNumber() {
-  const index = document.getElementById("delete-number").value;
+  const input = document.getElementById("delete-number").value;
+  const index = input - 1;
 
   if (index < 0 || index >= arr.length) {
-    console.log("Die Position muss kleiner als " + arr.length + " sein.");
+    console.log("Die Position muss kleiner als " + (arr.length + 1) + " sein.");
     return;
   }
   arr.splice(index, 1);

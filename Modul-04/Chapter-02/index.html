@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script>
+      // TODO 1: Object erstellen
+      // TODO 2: Object auf Konsole ausgeben
+      const person = {
+        firstName: "Max",
+        lastName: "Mustermann",
+        age: 30,
+        eyeColor: "blue",
+      };
+
+      const car = {
+        ps: 100,
+        color: "blue",
+        company: "VW",
+        model: "Golf",
+        productionYear: 2008,
+        kilometers: 80000,
+        owner: [person, person],
+      };
+
+      console.log(car);
+
+      //------------------------------------
+      // TODO 3: Attribute auf Konsole ausgeben
+      console.log("Auto Modell: " + car.model);
+      console.log("Auto Farbe: " + car.color);
+      console.log(car.owner[0].firstName);
+      car.ps = 120;
+      console.log("Neue PS: " + car.ps);
+      // TODO 4: Neue Attribute einfügen
+      car.seats = 5;
+      console.log("Anzahl Sitze: " + car.seats);
+      //------------------------------------
+      //TODO 5: Objekt per For auslesen
+      for (let key in car) {
+        // mit car[key] auf den Wert zugreifen
+        console.log(key + ": " + car[key]);
+      }
+
+      for (const [key, value] of Object.entries(car)) {
+        console.log(key + ": " + value);
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
