@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // TODO 2: Array mit startwerten definieren
+      let liste = [5, 9, 8, 3];
+
+      // TODO 3: Funktion zum Einfügen
+      function add() {
+        const value = Number(document.getElementById("content").value);
+        liste.puch(value);
+        printAll();
+      }
+
+      // TODO 7: Löschen By Id mit Abfrage ob der Wert kleiner als die Länge des Arrays ist
+      function deleteByPosition() {
+        const position = Number(document.getElementById("deletePosition").value);
+        if (position < liste.length) {
+          liste.splice(position, 1);
+          printAll();
+        } else {
+          console.log("Die Position muss kleiner als " + liste.length + " sein.");
+        }
+      }
+
+      // TODO 9: Löschen anhand von content (filtern)
+      function deleteByContent() {
+        const content = Number(document.getElementById("deleteContent").value);
+        const newListe = liste.filter((element) => {
+          return element !== content;
+        });
+        liste = newListe;
+        printAll();
+      }
+
+      // TODO 5: Funktion zum Ausgeben
+      function printAll() {
+        console.log(liste);
+        liste.forEach((element) => {
+          console.log(element);
+        });
+      }
+
+      // TODO 12+14: Elemente multiplizieren und extra einen string anhängen
+      function multiply() {
+        const newListe = liste.map((element) => {
+          return element * 2;
+        });
+        liste = newListe;
+        printAll();
+      }
+
+      // TODO 13+15: Summe erstellen + extra Konkatenieren
+      function sum() {
+        const sum = liste.reduce((previousValue, currentValue) => {
+          return previousValue + currentValue;
+        }, 0);
+        console.log(sum);
+      }
+
+      // TODO 16: Print All überall einfügen
+    </script>
+  </head>
+  <body>
+    <!-- TODO 1: Button und Input zum Einfügen -->
+    Element einfügen <input type="number" id="content" /> <button onclick="add()">Einfügen</button> <br />
+
+    <!-- TODO 6: Input und Button zum Löschen by ID -->
+    Position llöschen <input type="number" id="deletePosition" /> <button onclick="deleteByPosition()">Löschen</button><br />
+
+    <!-- TODO 8: Input und ID zum Löschen von Content -->
+    Inhalt löschen <input type="number" id="deleteContent" /> <button onclick="deleteByContent()">Löschen</button><br />
+
+    <!-- TODO 4: Button zum Ausgeben -->
+    <button onclick="printAll()">Anzeigen</button><br />
+
+    <!-- TODO 10&11: Button zum Multiplizieren und Summe -->
+
+    <button onclick="multiply()">Multiplizieren</button><br />
+    <button onclick="sum()">Summe</button><br />
+  </body>
+</html>
