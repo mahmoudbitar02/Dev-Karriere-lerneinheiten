@@ -4,6 +4,7 @@ function showArray() {
   console.log(arr);
   arr.forEach((number) => {
     console.log(number);
+    // arr.splice(4, 0, 1);
   });
 }
 
@@ -32,7 +33,7 @@ function deleteIdNumber() {
   const index = input - 1;
 
   if (index < 0 || index >= arr.length) {
-    console.log("Die Position muss kleiner als " + (arr.length + 1) + " sein.");
+    console.log("Die Position muss kleiner als " + (arr.length + 1) + " und größer als 0 sein.");
     return;
   }
   arr.splice(index, 1);
