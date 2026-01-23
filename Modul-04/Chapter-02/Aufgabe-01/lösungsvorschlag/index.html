@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // TODO 11: Array erzeugen
+      const students = [];
+
+      // TODO 12: Erzeugen Funktion
+      function createStudent() {
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+        const age = document.getElementById("age").value;
+        const schoolClass = document.getElementById("schoolClass").value;
+        const english = document.getElementById("english").value;
+        const german = document.getElementById("german").value;
+        const math = document.getElementById("math").value;
+
+        const student = {
+          firstName: firstName,
+          lastName: lastName,
+          age: age,
+          class: schoolClass,
+          score: {
+            english: english,
+            german: german,
+            math: math,
+          },
+        };
+        console.log(student);
+        students.push(student);
+        printAll();
+      }
+      // TODO 14: Alle anzeigen beim Erzeigen
+
+      // TODO 13: Print Methode
+      function printAll() {
+        console.log(students);
+      }
+    </script>
+  </head>
+  <body>
+    <!-- TODO 1: Titel -->
+    <h3>Schüler eintragen</h3>
+    <!-- TODO 2: Vorname -->
+    Vorname: <input type="text" id="firstName" /> <br />
+    <!-- TODO 3: Nachname  -->
+    Nachname: <input type="text" id="lastName" /> <br />
+    <!-- TODO 4: Alter -->
+    Alter: <input type="text" id="age" /> <br />
+    <!-- TODO 5: Klasse -->
+    Klasse:
+    <select name="class" id="schoolClass">
+      <option value="1">1.</option>
+      <option value="2">2.</option>
+      <option value="3">3.</option>
+      <option value="4">4.</option>
+    </select>
+    <br />
+    <!-- TODO 6: Englisch -->
+    Englisch: <input type="text" id="english" /> <br />
+    <!-- TODO 7: Deutsch -->
+    Deutsch: <input type="text" id="german" /> <br />
+    <!-- TODO 8: Mathe -->
+    Mathe: <input type="text" id="math" /> <br />
+
+    <!-- TODO 9: Erzeugen button -->
+    <button onclick="createStudent()">Einfügen</button><br />
+    <!-- TODO 10: Anzeigen button -->
+    <button onclick="printAll()">Anzeigen</button>
+  </body>
+</html>

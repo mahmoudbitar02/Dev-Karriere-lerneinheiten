@@ -15,13 +15,25 @@ function createObject() {
   const index = schülerListe.findIndex((schülerInListe) => {
     return schülerInListe.vorname === schüler.vorname && schülerInListe.nachname === schüler.nachname;
   });
-
   if (index !== -1) {
     // index !== -1 --> Schüler bereits vorhanden
     schülerListe[index] = schüler; // Aktualisiere den vorhandenen Schüler
     schowObject();
     return;
   }
+  if (
+    schüler.vorname === "" ||
+    schüler.nachname === "" ||
+    schüler.alter === "" ||
+    schüler.klasse === "" ||
+    schüler.score.englisch === "" ||
+    schüler.score.mathe === "" ||
+    schüler.score.deutsch === ""
+  ) {
+    alert("Bitte füllen Sie alle Felder aus.");
+    return;
+  }
+
   schülerListe.push(schüler);
   schowObject();
 
