@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Schüler eintragen</h1>
+      <div class="article">
+        <label for="vorname">Vorname: </label>
+        <input type="text" id="vorname" />
+      </div>
+
+      <div class="article">
+        <label for="nachname">Nachname: </label>
+        <input type="text" id="nachname" />
+      </div>
+
+      <div class="article">
+        <label for="alter">Alter: </label>
+        <input type="text" id="alter" />
+      </div>
+
+      <div class="article">
+        <label for="klasse">Klasse:</label>
+        <select name="klasse" id="klasse">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+
+      <div class="article">
+        <label for="englisch">Englisch: </label>
+        <input type="text" id="englisch" />
+      </div>
+
+      <div class="article">
+        <label for="deutsch">Deutsch: </label>
+        <input type="text" id="deutsch" />
+      </div>
+
+      <div class="article">
+        <label for="mathe">Mathe: </label>
+        <input type="text" id="mathe" />
+      </div>
+
+      <button onclick="createObject()">Erstellen</button>
+      <button onclick="schowObject()">Anzeigen</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
