@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .card {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        background-color: rgb(183, 183, 178);
+        padding: 1rem;
+        margin-top: 1rem;
+        border: 2px solid #313030ec;
+        line-height: 2rem;
+        font-size: 1.4rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button onclick="createStudent()">ADD</button>
+      <div class="card">
+        <p>Vorname: <span>Mahmoud</span></p>
+        <p>Nachname: <span>Bitar</span></p>
+        <p>Alter: <span>28</span></p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
