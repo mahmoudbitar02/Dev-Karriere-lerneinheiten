@@ -27,20 +27,21 @@ const students = [
 ];
 
 function createStudent() {
-  const randmoStudent = students[Math.floor(Math.random() * students.length)];
-  console.log(randmoStudent);
+  const randomStudent = students[Math.floor(Math.random() * students.length)];
+  console.log(randomStudent);
 
   const card = document.createElement("div");
   card.classList.add("card");
 
-  for (const key in randmoStudent) {
+  for (const key in randomStudent) {
     // create p-tag and add the text
     const paragraph = document.createElement("p");
     const paragraphText = document.createTextNode(key); // key --> properates from the "students" object
     paragraph.appendChild(paragraphText);
 
+    // create span-tag and add the text
     const span = document.createElement("span");
-    const spanText = document.createTextNode(`: ${randmoStudent[key]}`); // randmoStudent[key] --> the value from the
+    const spanText = document.createTextNode(`: ${randomStudent[key]}`); // randmoStudent[key] --> the value from the
     span.appendChild(spanText);
 
     paragraph.appendChild(span);

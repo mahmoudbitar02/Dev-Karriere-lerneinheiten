@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- TODO 9: Klasse definieren -->
+    <style>
+      .student {
+        border: solid 1px #656565;
+      }
+    </style>
+    <script>
+      // TODO 2: Array von firstName und lastName und age
+      const firstName = ["Mahmoud", "Hans", "Torsten", "Nizar"];
+      const lastName = ["Müller", "schmidt", "schneider"];
+      const age = [6, 7, 8, 9];
+
+      // TODO 3: Random student function
+      function addStudent() {
+        // TODO 4: Random Studenst firstName,lastName und age
+        const randomFirstName = firstName[Math.floor(Math.random() * firstName.length)];
+        const randomLastName = lastName[Math.floor(Math.random() * lastName.length)];
+        const randomAge = age[Math.floor(Math.random() * age.length)];
+
+        console.log(randomFirstName, randomLastName, randomAge);
+
+        //  const student = {
+        //    firstName: randomFirstName,
+        //    lastName: randomLastName,
+        //    age: randomAge,
+        //  };
+
+        // TODO 5: StudentDiv mit Klasse, id und Style
+        const studentDiv = document.createElement("div");
+        studentDiv.classList.add("student");
+        studentDiv.id = Math.random();
+        studentDiv.style.backgroundColor = "#ddd";
+
+        // TODO 6: Paragraph firstName, lastName,age
+        const firstNameParagraph = document.createElement("p");
+        const lastNameParagraph = document.createElement("p");
+        const ageParagraph = document.createElement("p");
+
+        // TODO 7: Text element
+        const firstNameText = document.createTextNode(`Vorname: ${randomFirstName}`);
+        const lastNameText = document.createTextNode(`Norname: ${randomLastName}`);
+        const ageText = document.createTextNode(`Alter: ${randomAge}`);
+
+        // TODO 8: Append All
+        firstNameParagraph.appendChild(firstNameText);
+        lastNameParagraph.appendChild(lastNameText);
+        ageParagraph.appendChild(ageText);
+
+        studentDiv.appendChild(firstNameParagraph);
+        studentDiv.appendChild(lastNameParagraph);
+        studentDiv.appendChild(ageParagraph);
+
+        console.log(studentDiv);
+
+        document.getElementById("wrapper").appendChild(studentDiv);
+      }
+    </script>
+  </head>
+  <body>
+    <!-- TODO 1 Button und Wrapper Element -->
+    <button onclick="addStudent()">Add</button>
+    <div id="wrapper"></div>
+  </body>
+</html>
