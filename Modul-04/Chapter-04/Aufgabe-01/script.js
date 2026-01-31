@@ -33,38 +33,41 @@ document.addEventListener("DOMContentLoaded", loadFromLocalStorage);
 // create random student
 function createStudent() {
   const randomStudent = students[Math.floor(Math.random() * students.length)];
-  testArray.push(randomStudent);
+  const newStudent = { ...randomStudent, id: Math.random() };
+  testArray.push(newStudent);
   console.log("the test array has: " + testArray.length);
+  console.log(newStudent.id);
 
-  createDiv(randomStudent);
+  createDiv(newStudent);
   saveToLocalStorage(testArray);
 }
 
 // create button
-function createButton(card) {
+function createButton(card, newStudent) {
   const deleteButton = document.createElement("button");
   deleteButton.classList.add("deletebtn");
   const deleteButtonText = document.createTextNode("löschen");
   id = deleteButton.id = `student-${Math.random()}`;
   deleteButton.appendChild(deleteButtonText);
   deleteButton.addEventListener("click", () => {
-    deleteContent(card, id);
+    deleteContent(card, newStudent);
   });
   card.appendChild(deleteButton);
 }
 
-function deleteContent(card) {
-  deleteFromLocalStorage(card.id);
+function deleteContent(card, newStudent) {
+  deleteFromLocalStorage(newStudent);
 
   card.remove();
   console.log("from delete " + card.id);
 }
 
 // create p-tag and span-tag
-function createParagAndSpan(card, randomStudent) {
-  for (const key in randomStudent) {
-    console.log(key);
+function createParagAndSpan(card, newStudent) {
+  for (const key in newStudent) {
+    console.log("the key is " + key);
 
+    if (key === "id") continue;
     // create p-tag
     const paragraph = document.createElement("p");
     paragraph.id = Math.random();
@@ -74,7 +77,7 @@ function createParagAndSpan(card, randomStudent) {
 
     // create span-tag
     const span = document.createElement("span");
-    const spanText = document.createTextNode(`: ${randomStudent[key]}`);
+    const spanText = document.createTextNode(`: ${newStudent[key]}`);
     span.appendChild(spanText);
 
     paragraph.appendChild(span);
@@ -82,15 +85,15 @@ function createParagAndSpan(card, randomStudent) {
   }
 }
 
-function createDiv(randomStudent) {
+function createDiv(newStudent) {
   const card = document.createElement("div");
   card.classList.add("card");
-  card.id = `card-${randomStudent.Vorname}-${randomStudent.Nachname}`;
-  console.log("random student from create div " + randomStudent.Vorname);
+  card.id = `card-${newStudent.Vorname}-${newStudent.Nachname}`;
+  console.log("random student from create div " + newStudent.Vorname);
   console.log(card);
 
-  createParagAndSpan(card, randomStudent);
-  createButton(card, randomStudent);
+  createParagAndSpan(card, newStudent);
+  createButton(card, newStudent);
   updateContainer(card);
 }
 
@@ -108,10 +111,9 @@ function loadFromLocalStorage() {
   testArray.forEach(createDiv);
 }
 
-function deleteFromLocalStorage(id) {
+function deleteFromLocalStorage(newStudent) {
   testArray = testArray.filter((item) => {
-    item.Vorname !== id.includes();
-    console.log("item from delete " + item.Vorname);
+    return item.id !== newStudent.id;
   });
   saveToLocalStorage(testArray);
 }
