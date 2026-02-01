@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.title {
+  text-align: center;
+}
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 1rem;
+}
+
+.btn {
+  cursor: pointer;
+  padding: 1rem 2rem;
+  border-radius: 0.9rem;
+}
+
+.option-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.options-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+@media only screen and (min-width: 600px) {
+  .btn {
+    padding: 2rem 5rem;
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .btn {
+    padding: 2rem 8rem;
+    font-size: 1.9rem;
+  }
+  .option-btn {
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+  }
+}
