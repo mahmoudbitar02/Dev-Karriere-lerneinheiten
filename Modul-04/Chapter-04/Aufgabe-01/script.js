@@ -33,7 +33,13 @@ document.addEventListener("DOMContentLoaded", loadFromLocalStorage);
 // create random student
 function createStudent() {
   const randomStudent = students[Math.floor(Math.random() * students.length)];
-  const newStudent = { ...randomStudent, id: Math.random() };
+  //   const newStudent = { ...randomStudent, id: Math.random() }; // dies hier ist moderner
+  const newStudent = {
+    id: Math.random(),
+    Vorname: randomStudent.Vorname,
+    Nachname: randomStudent.Nachname,
+    Alter: randomStudent.Alter,
+  };
   testArray.push(newStudent);
   console.log("the test array has: " + testArray.length);
   console.log(newStudent.id);
@@ -59,7 +65,6 @@ function deleteContent(card, newStudent) {
   deleteFromLocalStorage(newStudent);
 
   card.remove();
-  console.log("from delete " + card.id);
 }
 
 // create p-tag and span-tag
@@ -89,7 +94,6 @@ function createDiv(newStudent) {
   const card = document.createElement("div");
   card.classList.add("card");
   card.id = `card-${newStudent.Vorname}-${newStudent.Nachname}`;
-  console.log("random student from create div " + newStudent.Vorname);
   console.log(card);
 
   createParagAndSpan(card, newStudent);

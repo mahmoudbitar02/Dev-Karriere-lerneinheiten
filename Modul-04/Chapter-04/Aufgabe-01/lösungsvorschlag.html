@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .student {
+        border: 1px solid black;
+      }
+    </style>
+    <script>
+      // TODO 9: Eventlistener
+      document.addEventListener("DOMContentLoaded", initStudents);
+
+      const vornamen = ["Jan", "Peter", "Ulrich"];
+      const nachnamen = ["Müller", "Meier", "Schuster"];
+      const alter = [7, 8, 9];
+
+      // TODO 1: Student Array speichern
+      let students = [];
+
+      //TODO 10: Init Methode zum Laden und anzeigen
+      function initStudents() {
+        loadFromLocalStorage();
+        students.forEach((student) => {
+          appendStudent(student);
+        });
+        //
+      }
+
+      //TODO 4: Students aus localstorage lesen
+      function loadFromLocalStorage() {
+        const studentsFromLocalStorage = JSON.parse(localStorage.getItem("students"));
+        if (studentsFromLocalStorage !== null) {
+          students = studentsFromLocalStorage;
+        }
+      }
+
+      //TODO 3: Students in localstorage speichern
+      function saveToLocalStorage() {
+        localStorage.setItem("students", JSON.stringify(students));
+      }
+
+      //TODO 7: Students löschen function und in Localstorage speichern
+      function deleteStudent(id) {
+        document.getElementById(id).remove();
+        students = students.filter((student) => {
+          return student.id !== id;
+        });
+        saveToLocalStorage();
+      }
+
+      function randomStudent() {
+        const randomVorname = vornamen[Math.floor(Math.random() * vornamen.length)];
+        const randomNachname = nachnamen[Math.floor(Math.random() * nachnamen.length)];
+        const randomAlter = alter[Math.floor(Math.random() * alter.length)];
+
+        //TODO 5: ID generieren
+        const id = Math.random();
+
+        //TODO 2: In Array und Localstorage speichern
+        const student = {
+          //TODO 6: Id anpassen
+          id: id,
+          firstName: randomVorname,
+          lastName: randomNachname,
+          age: randomAlter,
+        };
+
+        students.push(student);
+        saveToLocalStorage();
+
+        // TODO 11: Student appenden.
+        appendStudent(student);
+
+        console.log(studentDiv);
+      }
+
+      // TODO 10: Funktion zum appenden auslagern.
+      function appendStudent(student) {
+        const studentDiv = document.createElement("div");
+        studentDiv.classList.add("student");
+        studentDiv.id = student.id;
+        studentDiv.style.backgroundColor = "#ddd";
+
+        const vornameParagraph = document.createElement("p");
+        const nachnameParagraph = document.createElement("p");
+        const alterParagraph = document.createElement("p");
+
+        const vornamenText = document.createTextNode("Vorname: " + student.firstName);
+        const nachnameText = document.createTextNode("Nachname: " + student.lastName);
+        const agerText = document.createTextNode("Alter: " + student.age);
+
+        vornameParagraph.appendChild(vornamenText);
+        nachnameParagraph.appendChild(nachnameText);
+        alterParagraph.appendChild(agerText);
+
+        studentDiv.appendChild(vornameParagraph);
+        studentDiv.appendChild(nachnameParagraph);
+        studentDiv.appendChild(alterParagraph);
+
+        //TODO 7: Löschen Button
+        const deleteButton = document.createElement("button");
+        const deleteButtonText = document.createTextNode("löschen");
+        deleteButton.setAttribute("onclick", `deleteStudent(${student.id})`);
+        deleteButton.appendChild(deleteButtonText);
+        studentDiv.appendChild(deleteButton);
+
+        document.getElementById("wrapper").appendChild(studentDiv);
+      }
+    </script>
+  </head>
+
+  <body>
+    <button onclick="randomStudent()">ADD</button>
+    <h1>Students</h1>
+    <div id="wrapper"></div>
+  </body>
+</html>
