@@ -137,4 +137,10 @@ function displayQuestion(question, button) {
   document.getElementById("wrapper").appendChild(button);
 }
 
+// nicht sicher ob es so läuft//
+function checkAnswer() {
+  const newRandomFrage = { ...randomFrage, id: Math.random() };
+  console.log(newRandomFrage);
+}
+
 createQuestion();
