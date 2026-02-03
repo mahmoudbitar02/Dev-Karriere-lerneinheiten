@@ -18,6 +18,13 @@
   padding: 1rem 2rem;
   border-radius: 0.9rem;
 }
+.btn-correct {
+  background-color: rgba(8, 228, 8, 0.789);
+}
+
+.btn-not-correct {
+  background-color: rgb(201, 60, 60);
+}
 
 .option-btn {
   margin-top: 1rem;
