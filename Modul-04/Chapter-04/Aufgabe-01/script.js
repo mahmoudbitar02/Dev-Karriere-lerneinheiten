@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", loadFromLocalStorage);
 // create random student
 function createStudent() {
   const randomStudent = students[Math.floor(Math.random() * students.length)];
-  //   const newStudent = { ...randomStudent, id: Math.random() }; // dies hier ist moderner
+  // const newStudent = { ...randomStudent, id: Math.random() }; // dies hier ist moderner
   const newStudent = {
     id: Math.random(),
     Vorname: randomStudent.Vorname,
@@ -53,7 +53,7 @@ function createButton(card, newStudent) {
   const deleteButton = document.createElement("button");
   deleteButton.classList.add("deletebtn");
   const deleteButtonText = document.createTextNode("löschen");
-  id = deleteButton.id = `student-${Math.random()}`;
+  deleteButton.id = `student-${Math.random()}`;
   deleteButton.appendChild(deleteButtonText);
   deleteButton.addEventListener("click", () => {
     deleteContent(card, newStudent);

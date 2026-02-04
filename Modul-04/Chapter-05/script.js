@@ -100,3 +100,105 @@ const quiz = [
     ],
   },
 ];
+
+// const q2 = quiz.forEach((item, index) => {
+//   console.log(item, index);
+// });
+let currentQuestion = null;
+
+function getRandomQuestion() {
+  const randomQuestion = quiz.filter((question) => !question.asked);
+  if (randomQuestion.length === 0) return null;
+
+  const offeneFrage = Math.floor(Math.random() * randomQuestion.length); //
+  console.log(randomQuestion[offeneFrage]);
+  return randomQuestion[offeneFrage];
+}
+
+function klickButton() {}
+
+function createQuestion() {
+  //   const randomFrage = quiz[Math.floor(Math.random() * quiz.length)];
+  //   const randomFrage = quiz.filter((frage) => {
+  //     return frage.asked !== true;
+  //   })[Math.floor(Math.random() * quiz.length)];
+
+  const wrapper = document.getElementById("wrapper");
+  currentQuestion = getRandomQuestion();
+  if (!currentQuestion) {
+    wrapper.textContent = "end quiz";
+    return wrapper;
+  }
+  // create question
+  const question = document.createElement("h1");
+  const questionText = document.createTextNode(currentQuestion.frage);
+  question.classList.add("title");
+  question.appendChild(questionText);
+  console.log(question);
+
+  wrapper.innerHTML = "";
+  wrapper.appendChild(question);
+  createButtons(question, currentQuestion);
+}
+
+function createButtons(question, currentQuestion) {
+  const buttonsDiv = document.createElement("div");
+  buttonsDiv.classList.add("buttons");
+  currentQuestion.antworten.forEach((antwort, index) => {
+    const answerButton = document.createElement("button");
+    answerButton.classList.add("btn");
+    answerButton.dataset.index = index;
+    // index zu dem Button zuweisen !! soll das über ID oder dataset?
+    const buttonText = document.createTextNode(antwort.text);
+    answerButton.appendChild(buttonText);
+
+    //
+    answerButton.addEventListener("click", () => {
+      handelButton(answerButton, antwort, currentQuestion);
+    });
+
+    console.log(antwort.text);
+    buttonsDiv.appendChild(answerButton);
+  });
+  console.log(buttonsDiv);
+  document.getElementById("wrapper").appendChild(buttonsDiv);
+}
+
+function handelButton(answerButton, antwort, currentQuestion) {
+  const allButtons = document.querySelectorAll(".btn");
+  if (antwort.korrekt === true) {
+    answerButton.classList.add("btn-correct");
+  } else if (antwort.korrekt === false) {
+    answerButton.classList.add("btn-not-correct");
+  }
+
+  allButtons.forEach((btn, index) => {
+    btn.disabled = true;
+    if (currentQuestion.antworten[index].korrekt) {
+      btn.classList.add("btn-correct");
+      currentQuestion.asked = true;
+    }
+  });
+
+  console.log(allButtons.index);
+
+  console.log(currentQuestion, antwort);
+}
+
+function weiter() {
+  createQuestion();
+}
+
+function lösungZeigen() {
+  const allButtons = document.querySelectorAll(".btn");
+
+  allButtons.forEach((btn, index) => {
+    btn.disabled = true;
+    if (currentQuestion.antworten[index].korrekt) {
+      btn.classList.add("btn-correct");
+      currentQuestion.asked = true;
+    }
+  });
+}
+
+createQuestion();
