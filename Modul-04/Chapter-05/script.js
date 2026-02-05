@@ -100,3 +100,71 @@ const quiz = [
     ],
   },
 ];
+
+let currentQuestion = null;
+
+let askedQuestions = [];
+
+const wrapper = document.getElementById("wrapper");
+
+function getRandomQuestion() {
+  const randomQuestion = quiz.filter((question) => question.asked === false);
+  const unaskedQuestion = Math.floor(Math.random() * randomQuestion.length);
+
+  console.log(randomQuestion[unaskedQuestion]);
+  return randomQuestion[unaskedQuestion];
+}
+
+function createQuestion() {
+  currentQuestion = getRandomQuestion();
+  // create question
+  const title = document.createElement("h1");
+  title.classList.add("title");
+  const titleText = document.createTextNode(currentQuestion.frage);
+  title.appendChild(titleText);
+
+  wrapper.innerHTML = "";
+  wrapper.appendChild(title);
+
+  createButtons(currentQuestion);
+}
+
+function createButtons(currentQuestion) {
+  const buttonsDiv = document.createElement("div");
+  buttonsDiv.classList.add("buttons");
+  currentQuestion.antworten.forEach((antwort, index) => {
+    const button = document.createElement("button");
+    button.classList.add("btn");
+    button.id = index;
+    const buttonText = document.createTextNode(antwort.text);
+    button.appendChild(buttonText);
+    button.addEventListener("click", () => {
+      handelButtonClick(antwort, button, currentQuestion);
+    });
+
+    buttonsDiv.appendChild(button);
+
+    console.log(button);
+  });
+
+  wrapper.appendChild(buttonsDiv);
+}
+
+function handelButtonClick(antwort, button, currentQuestion) {
+  const allButtons = document.querySelectorAll(".btn");
+  if (!antwort.korrekt) {
+    button.classList.add("btn-not-correct");
+  } else if (antwort.korrekt) {
+    button.classList.add("btn-correct");
+  }
+  allButtons.forEach((btn, index) => {
+    btn.disabled = true;
+    if (currentQuestion.antworten[index].korrekt) {
+      btn.classList.add("btn-correct");
+      btn.asked = true;
+    }
+    console.log(btn.id);
+  });
+}
+
+createQuestion();
