@@ -1,4 +1,4 @@
-const quiz = [
+let quiz = [
   {
     asked: false,
     frage: "Was ist die Hauptstadt von Deutschland?",
@@ -100,16 +100,17 @@ const quiz = [
     ],
   },
 ];
+document.addEventListener("DOMContentLoaded", loadFromLocalStorage);
 
+const storedQuestions = JSON.parse(localStorage.getItem("askedQuestions")) || [];
 let currentQuestion = null;
-
-let askedQuestions = [];
 
 const wrapper = document.getElementById("wrapper");
 
 function getRandomQuestion() {
-  const randomQuestion = quiz.filter((question) => question.asked === false);
-  const unaskedQuestion = Math.floor(Math.random() * randomQuestion.length);
+  const randomQuestion = quiz.filter((question) => question.asked === false); // filtert die Fragen, die noch nicht gestellt wurden
+  const unaskedQuestion = Math.floor(Math.random() * randomQuestion.length); // generiert eine zufällige Zahl zwischen 0 und der Länge des gefilterten Arrays
+  if (randomQuestion.length === 0) return null;
 
   console.log(randomQuestion[unaskedQuestion]);
   return randomQuestion[unaskedQuestion];
@@ -118,15 +119,19 @@ function getRandomQuestion() {
 function createQuestion() {
   currentQuestion = getRandomQuestion();
   // create question
-  const title = document.createElement("h1");
-  title.classList.add("title");
-  const titleText = document.createTextNode(currentQuestion.frage);
-  title.appendChild(titleText);
+  if (!currentQuestion) {
+    wrapper.innerHTML = "<h1>Quiz beendet 🎉</h1>";
+  } else {
+    const title = document.createElement("h1");
+    title.classList.add("title");
+    const titleText = document.createTextNode(currentQuestion.frage);
+    title.appendChild(titleText);
 
-  wrapper.innerHTML = "";
-  wrapper.appendChild(title);
+    wrapper.innerHTML = "";
+    wrapper.appendChild(title);
 
-  createButtons(currentQuestion);
+    createButtons(currentQuestion);
+  }
 }
 
 function createButtons(currentQuestion) {
@@ -139,32 +144,64 @@ function createButtons(currentQuestion) {
     const buttonText = document.createTextNode(antwort.text);
     button.appendChild(buttonText);
     button.addEventListener("click", () => {
-      handelButtonClick(antwort, button, currentQuestion);
+      handelButtonClick(antwort, button);
     });
 
     buttonsDiv.appendChild(button);
-
-    console.log(button);
   });
 
   wrapper.appendChild(buttonsDiv);
 }
 
-function handelButtonClick(antwort, button, currentQuestion) {
-  const allButtons = document.querySelectorAll(".btn");
+function handelButtonClick(antwort, button) {
   if (!antwort.korrekt) {
     button.classList.add("btn-not-correct");
+    button.textContent += " 😔";
   } else if (antwort.korrekt) {
     button.classList.add("btn-correct");
+    button.textContent += " 🎉";
   }
+
+  lösungZeigen();
+  saveToLocalStorage();
+}
+
+function weiter() {
+  createQuestion();
+}
+
+function lösungZeigen() {
+  const allButtons = document.querySelectorAll(".btn");
   allButtons.forEach((btn, index) => {
     btn.disabled = true;
     if (currentQuestion.antworten[index].korrekt) {
       btn.classList.add("btn-correct");
-      btn.asked = true;
+      currentQuestion.asked = true;
     }
-    console.log(btn.id);
   });
 }
 
-createQuestion();
+function saveToLocalStorage() {
+  localStorage.setItem("askedQuestions", JSON.stringify(quiz.filter((question) => question.asked === true)));
+  console.log("saved to local storage");
+}
+
+function loadFromLocalStorage() {
+  if (storedQuestions) {
+    storedQuestions.forEach((question) => {
+      const quizQuestion = quiz.find((q) => q.frage === question.frage);
+      if (quizQuestion) {
+        quizQuestion.asked = true;
+      }
+    });
+  }
+  createQuestion();
+}
+
+function resetQuiz() {
+  quiz.forEach((question) => {
+    question.asked = false;
+  });
+  localStorage.removeItem("askedQuestions");
+  createQuestion();
+}
