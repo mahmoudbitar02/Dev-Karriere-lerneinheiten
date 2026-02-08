@@ -100,108 +100,97 @@ const quiz = [
     ],
   },
 ];
-document.addEventListener("DOMContentLoaded", loadFromLocalStorage);
-
-const storedQuestions = JSON.parse(localStorage.getItem("askedQuestions")) || [];
-let currentQuestion = null;
 
 const wrapper = document.getElementById("wrapper");
 
-function getRandomQuestion() {
-  const randomQuestion = quiz.filter((question) => question.asked === false); // filtert die Fragen, die noch nicht gestellt wurden
-  const unaskedQuestion = Math.floor(Math.random() * randomQuestion.length); // generiert eine zufällige Zahl zwischen 0 und der Länge des gefilterten Arrays
-  if (randomQuestion.length === 0) return null;
+let score = 0;
+let currentQuestion = null;
+let askedQuestions = [];
 
-  console.log(randomQuestion[unaskedQuestion]);
-  return randomQuestion[unaskedQuestion];
+function getRandomQuestion() {
+  const unaskedQuestions = quiz.filter((q) => !q.asked);
+  currentQuestion = quiz.splice(quiz.indexOf(unaskedQuestions[Math.floor(Math.random() * unaskedQuestions.length)]), 1)[0];
+  console.log(quiz);
+  return currentQuestion;
 }
 
 function createQuestion() {
-  currentQuestion = getRandomQuestion();
-  // create question
-  if (!currentQuestion) {
-    wrapper.innerHTML = "<h1>Quiz beendet 🎉</h1>";
-  } else {
-    const title = document.createElement("h1");
-    title.classList.add("title");
-    const titleText = document.createTextNode(currentQuestion.frage);
-    title.appendChild(titleText);
+  getRandomQuestion();
 
-    wrapper.innerHTML = "";
-    wrapper.appendChild(title);
+  wrapper.innerHTML = "";
 
-    createButtons(currentQuestion);
-  }
+  const question = document.createElement("h2");
+  question.classList.add("title");
+  const titleText = document.createTextNode(currentQuestion.frage);
+  question.appendChild(titleText);
+  wrapper.appendChild(question);
+
+  createButtons();
 }
 
-function createButtons(currentQuestion) {
+function createButtons() {
   const buttonsDiv = document.createElement("div");
   buttonsDiv.classList.add("buttons");
-  currentQuestion.antworten.forEach((antwort, index) => {
+  currentQuestion.antworten.forEach((answer) => {
     const button = document.createElement("button");
     button.classList.add("btn");
-    button.id = index;
-    const buttonText = document.createTextNode(antwort.text);
+    const buttonText = document.createTextNode(answer.text);
     button.appendChild(buttonText);
-    button.addEventListener("click", () => {
-      handelButtonClick(antwort, button);
-    });
-
     buttonsDiv.appendChild(button);
+
+    button.addEventListener("click", () => {
+      hadelButtonClick(answer, button);
+    });
   });
 
   wrapper.appendChild(buttonsDiv);
+  console.log(currentQuestion);
 }
 
-function handelButtonClick(antwort, button) {
-  if (!antwort.korrekt) {
-    button.classList.add("btn-not-correct");
-    button.textContent += " 😔";
-  } else if (antwort.korrekt) {
-    button.classList.add("btn-correct");
-    button.textContent += " 🎉";
-  }
+function hadelButtonClick(answer, button) {
+  //   const allButtons = document.querySelectorAll(".btn");
+
+  //   allButtons.forEach((btn) => {
+  //     btn.disabled = true;
+  //     button.classList.add(answer.korrekt ? "btn-correct" : "btn-not-correct");
+  //     if (answer.korrekt) score++;
+  //   });
+
+  if (!answer.korrekt) button.classList.add("btn-not-correct");
+  else score++;
 
   lösungZeigen();
-  saveToLocalStorage();
-}
 
-function weiter() {
-  createQuestion();
+  currentQuestion.asked = true;
+  askedQuestions.push(currentQuestion);
 }
 
 function lösungZeigen() {
   const allButtons = document.querySelectorAll(".btn");
-  allButtons.forEach((btn, index) => {
+
+  allButtons.forEach((btn) => {
     btn.disabled = true;
-    if (currentQuestion.antworten[index].korrekt) {
-      btn.classList.add("btn-correct");
-      currentQuestion.asked = true;
-    }
+    const answer = currentQuestion.antworten.find((answer) => answer.text === btn.textContent);
+    if (answer.korrekt) btn.classList.add("btn-correct");
   });
 }
 
-function saveToLocalStorage() {
-  localStorage.setItem("askedQuestions", JSON.stringify(quiz.filter((question) => question.asked === true)));
-  console.log("saved to local storage");
-}
-
-function loadFromLocalStorage() {
-  if (storedQuestions) {
-    storedQuestions.forEach((question) => {
-      const quizQuestion = quiz.find((q) => q.frage === question.frage);
-      if (quizQuestion) {
-        quizQuestion.asked = true;
-      }
-    });
+function weiter() {
+  if (quiz.length > 0) {
+    createQuestion();
+  } else {
+    wrapper.innerHTML = `<h2 class="title">Quiz beendet! Deine Punktzahl: ${score / currentQuestion.antworten.length}/${askedQuestions.length}</h2>`;
   }
-  createQuestion();
 }
 
 function resetQuiz() {
-  quiz.forEach((question) => {
+  askedQuestions.forEach((question) => {
     question.asked = false;
+    quiz.push(question);
   });
-  localStorage.removeItem("askedQuestions");
-  createQuestion();
+  askedQuestions = [];
+  score = 0;
+  console.log(quiz);
 }
+
+createQuestion();
