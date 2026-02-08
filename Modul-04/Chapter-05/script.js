@@ -155,9 +155,11 @@ function createButtons(currentQuestion) {
 
 function handelButtonClick(antwort, button) {
   if (!antwort.korrekt) {
+    alert("Falsch! Versuche es nochmal.");
     button.classList.add("btn-not-correct");
     button.textContent += " 😔";
   } else if (antwort.korrekt) {
+    alert("Richtig! Gut gemacht.");
     button.classList.add("btn-correct");
     button.textContent += " 🎉";
   }

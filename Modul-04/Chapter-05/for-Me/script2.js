@@ -101,8 +101,11 @@ const quiz = [
   },
 ];
 
+document.addEventListener("DOMContentLoaded", loadFromLocalStorage);
+
 const wrapper = document.getElementById("wrapper");
 
+let answerSelected = false;
 let score = 0;
 let currentQuestion = null;
 let askedQuestions = [];
@@ -129,6 +132,8 @@ function createQuestion() {
 }
 
 function createButtons() {
+  answerSelected = false;
+
   const buttonsDiv = document.createElement("div");
   buttonsDiv.classList.add("buttons");
   currentQuestion.antworten.forEach((answer) => {
@@ -156,6 +161,7 @@ function hadelButtonClick(answer, button) {
   //     if (answer.korrekt) score++;
   //   });
 
+  answerSelected = true;
   if (!answer.korrekt) button.classList.add("btn-not-correct");
   else score++;
 
@@ -176,11 +182,19 @@ function lösungZeigen() {
 }
 
 function weiter() {
+  const allButtons = document.querySelectorAll(".btn");
+  if (!answerSelected) {
+    alert("Bitte wähle eine Antwort aus, bevor du fortfährst!");
+    return;
+  }
+
+  allButtons.forEach((btn) => {});
   if (quiz.length > 0) {
     createQuestion();
   } else {
     wrapper.innerHTML = `<h2 class="title">Quiz beendet! Deine Punktzahl: ${score / currentQuestion.antworten.length}/${askedQuestions.length}</h2>`;
   }
+  saveToLocalStorage();
 }
 
 function resetQuiz() {
@@ -191,6 +205,12 @@ function resetQuiz() {
   askedQuestions = [];
   score = 0;
   console.log(quiz);
+}
+
+function loadFromLocalStorage() {}
+
+function saveToLocalStorage() {
+  localStorage.setItem("askedQuestions", JSON.stringify(askedQuestions));
 }
 
 createQuestion();
