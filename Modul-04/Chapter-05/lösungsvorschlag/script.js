@@ -92,14 +92,31 @@ function renderQuestion(question) {
   const questionAnswers = document.createElement("div");
   questionAnswers.classList.add("question-answers");
 
-  question.answers.forEach((answer) => {
+  // [a,b,c,d]
+
+  // zufällige reinfolge der Antworten
+  const answerCopy = [];
+  question.answers.forEach((answer) => answerCopy.push(answer));
+  while (answerCopy.length > 0) {
+    const randomPointer = Math.floor(Math.random() * answerCopy.length);
+    const answer = answerCopy.splice(randomPointer, 1)[0];
+
     const answerDiv = document.createElement("button");
     answerDiv.id = answer.id;
     answerDiv.setAttribute("onclick", `validate('${answer.id}')`);
     answerDiv.classList.add("answer");
     answerDiv.appendChild(document.createTextNode(answer.text));
     questionAnswers.appendChild(answerDiv);
-  });
+  }
+
+  //   question.answers.forEach((answer) => {
+  //     const answerDiv = document.createElement("button");
+  //     answerDiv.id = answer.id;
+  //     answerDiv.setAttribute("onclick", `validate('${answer.id}')`);
+  //     answerDiv.classList.add("answer");
+  //     answerDiv.appendChild(document.createTextNode(answer.text));
+  //     questionAnswers.appendChild(answerDiv);
+  //   });
 
   questionDiv.appendChild(questiotitle);
   questionDiv.appendChild(questionAnswers);
