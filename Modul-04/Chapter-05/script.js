@@ -104,6 +104,7 @@ document.addEventListener("DOMContentLoaded", loadFromLocalStorage);
 
 const storedQuestions = JSON.parse(localStorage.getItem("askedQuestions")) || [];
 let currentQuestion = null;
+let score = 0;
 
 const wrapper = document.getElementById("wrapper");
 
@@ -121,6 +122,7 @@ function createQuestion() {
   // create question
   if (!currentQuestion) {
     wrapper.innerHTML = "<h1>Quiz beendet 🎉</h1>";
+    wrapper.innerHTML += `<p>Your Score: ${score} / ${quiz.length}</p>`;
   } else {
     const title = document.createElement("h1");
     title.classList.add("title");
@@ -155,11 +157,12 @@ function createButtons(currentQuestion) {
 
 function handelButtonClick(antwort, button) {
   if (!antwort.korrekt) {
-    alert("Falsch! Versuche es nochmal.");
+    // alert("Falsch! Versuche es nochmal.");
     button.classList.add("btn-not-correct");
     button.textContent += " 😔";
   } else if (antwort.korrekt) {
-    alert("Richtig! Gut gemacht.");
+    score++;
+    // alert("Richtig! Gut gemacht.");
     button.classList.add("btn-correct");
     button.textContent += " 🎉";
   }
@@ -185,6 +188,7 @@ function lösungZeigen() {
 
 function saveToLocalStorage() {
   localStorage.setItem("askedQuestions", JSON.stringify(quiz.filter((question) => question.asked === true)));
+  localStorage.setItem("score", score);
   console.log("saved to local storage");
 }
 
@@ -197,6 +201,9 @@ function loadFromLocalStorage() {
       }
     });
   }
+  if (localStorage.getItem("score")) {
+    score = parseInt(localStorage.getItem("score"));
+  }
   createQuestion();
 }
 
@@ -205,5 +212,7 @@ function resetQuiz() {
     question.asked = false;
   });
   localStorage.removeItem("askedQuestions");
+  localStorage.removeItem("score");
+  score = 0;
   createQuestion();
 }
