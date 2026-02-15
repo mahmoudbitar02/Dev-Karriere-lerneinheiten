@@ -26,7 +26,6 @@ body {
 }
 
 .sidebar {
-  margin-top: 1rem;
   width: 100%;
   height: fit-content;
   background-color: #fff;
@@ -131,4 +130,43 @@ body {
 }
 
 @media only screen and (min-width: 600px) {
+  body {
+    margin-top: 2rem;
+  }
+
+  .container {
+    flex-wrap: nowrap;
+    flex-direction: row-reverse;
+  }
+
+  .container:nth-child(1) {
+    flex: 1;
+  }
+
+  .container:nth-child(2) {
+    flex: 2;
+  }
+
+  .container:nth-child(3) {
+    flex: 2;
+  }
+
+  .sidebar {
+    width: 600px;
+    height: fit-content;
+  }
+
+  .main {
+    width: 900px;
+  }
+
+  .buttons {
+    justify-content: flex-end;
+    height: fit-content;
+    flex-direction: column;
+  }
+
+  .buttons button {
+    width: 10rem;
+  }
 }
