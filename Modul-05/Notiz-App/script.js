@@ -8,10 +8,11 @@ const saveBtn = document.getElementById("save");
 
 const notes = [];
 
+const now = new Date();
+const formatted = now.toLocaleString("de-DE");
+
 function handelSaveBtn() {
   saveBtn.addEventListener("click", () => {
-    const now = new Date();
-    const formatted = now.toLocaleString("de-DE");
     const note = {
       title: titleInput.value,
       text: textInput.value,
@@ -56,9 +57,18 @@ function createNote() {
   });
 }
 
+// eine IDEE versuch es mit created false true wenn erstellt created = true else false
+
 function handelNoteClick(note) {
   titleInput.value = note.title;
   textInput.value = note.text;
-  console.log(note);
+  const findNote = notes.map((toUpdate) => {
+    if (toUpdate.updateTime === note.updateTime) {
+      toUpdate.title = titleInput.value;
+      toUpdate.text = textInput.value;
+      console.log(toUpdate.title);
+      console.log("test");
+    }
+  });
 }
 handelSaveBtn();
