@@ -7,30 +7,47 @@ const sideBar = document.getElementById("wrapper");
 const saveBtn = document.getElementById("save");
 
 const notes = [];
+let findNoteIndex = null;
 
 saveBtn.addEventListener("click", saveNote);
 
 function saveNote() {
-  if (titleInput.value == "" && text.value == "") {
+  if (titleInput.value == "" && textInput.value == "") {
     alert("it shold by some in this two fields");
   } else if (titleInput.value == "") {
     alert("please give some title 😁");
-  } else if (text.value == "") {
+  } else if (textInput.value == "") {
     alert("I think you forgot to add the text 🙄");
   } else {
     const now = new Date();
     const formatted = now.toLocaleString("de-DE");
-    const note = {
-      // evtl hier prüfen ob updated TRUE ist????? bin mir noch nicht sicher
-      title: titleInput.value,
-      text: textInput.value,
-      updateTime: formatted,
-      updated: false,
-    };
 
-    notes.push(note);
-    createNote(note);
-    console.log(notes);
+    if (findNoteIndex !== null) {
+      notes[findNoteIndex].title = titleInput.value;
+      notes[findNoteIndex].text = textInput.value;
+      notes[findNoteIndex].updateTime = formatted;
+      notes[findNoteIndex].updated = true;
+      notes[findNoteIndex].updatedAt = Date.now();
+      console.log("should not created");
+      console.log(notes[findNoteIndex].updatedAt);
+
+      console.log("should not created");
+
+      renderNotes();
+      findNoteIndex = null;
+    } else {
+      const note = {
+        title: titleInput.value,
+        text: textInput.value,
+        updateTime: formatted,
+        updated: false,
+        updatedAt: Date.now(),
+      };
+
+      notes.push(note);
+      console.log(notes);
+    }
+    renderNotes();
   }
 }
 
@@ -50,7 +67,7 @@ function createNote(note) {
   div.appendChild(title);
   div.appendChild(paragraph);
   div.appendChild(timeSpan);
-  sideBar.prepend(div);
+  sideBar.appendChild(div);
 
   titleInput.value = "";
   textInput.value = "";
@@ -61,15 +78,17 @@ function createNote(note) {
 }
 
 function updateNote(note) {
-  note.updated = true;
+  findNoteIndex = notes.indexOf(note);
   titleInput.value = note.title;
   textInput.value = note.text;
 
-  const findNoteIndex = notes.findIndex((index) => {
-    return index.title === note.title;
-  });
+  console.log("hello From update" + findNoteIndex);
+}
 
-  console.log(findNoteIndex);
+function renderNotes() {
+  sideBar.innerHTML = "";
+  notes.sort((a, b) => b.updatedAt - a.updatedAt);
+  notes.forEach((note) => createNote(note));
 }
 
 function createNewNote() {
