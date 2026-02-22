@@ -3,13 +3,22 @@ console.log("Notiz-App gestartet");
 const titleInput = document.getElementById("title");
 const textInput = document.getElementById("text");
 const sideBar = document.getElementById("wrapper");
-
 const saveBtn = document.getElementById("save");
+const deleteBtn = document.getElementById("delete");
 
-const notes = [];
+document.addEventListener("DOMContentLoaded", loadFromLocalStorage);
+
+let notes = [];
 let findNoteIndex = null;
 
+deleteBtn.addEventListener("click", deleteNote);
 saveBtn.addEventListener("click", saveNote);
+textInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && e.shiftKey) {
+    e.preventDefault();
+    saveNote();
+  }
+});
 
 function saveNote() {
   if (titleInput.value == "" && textInput.value == "") {
@@ -68,6 +77,7 @@ function createNote(note) {
   div.appendChild(paragraph);
   div.appendChild(timeSpan);
   sideBar.appendChild(div);
+  saveToLocastorage();
 
   titleInput.value = "";
   textInput.value = "";
@@ -81,6 +91,7 @@ function updateNote(note) {
   findNoteIndex = notes.indexOf(note);
   titleInput.value = note.title;
   textInput.value = note.text;
+  saveToLocastorage();
 
   console.log("hello From update" + findNoteIndex);
 }
@@ -89,6 +100,30 @@ function renderNotes() {
   sideBar.innerHTML = "";
   notes.sort((a, b) => b.updatedAt - a.updatedAt);
   notes.forEach((note) => createNote(note));
+}
+
+function deleteNote() {
+  const note = notes[findNoteIndex];
+
+  notes = notes.filter((item) => {
+    return item.updateTime !== note.updateTime;
+  });
+  saveToLocastorage();
+  renderNotes();
+  console.log(notes);
+}
+
+function saveToLocastorage() {
+  localStorage.setItem("notes", JSON.stringify(notes));
+}
+
+function loadFromLocalStorage() {
+  notes = JSON.parse(localStorage.getItem("notes")) || [];
+  notes.forEach((note) => createNote(note));
+}
+
+function deleteFromLocalStorage() {
+  deleteNote();
 }
 
 function createNewNote() {
