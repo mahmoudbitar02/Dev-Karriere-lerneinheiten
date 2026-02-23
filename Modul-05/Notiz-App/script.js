@@ -6,10 +6,13 @@ const sideBar = document.getElementById("wrapper");
 const saveBtn = document.getElementById("save");
 const deleteBtn = document.getElementById("delete");
 
-document.addEventListener("DOMContentLoaded", loadFromLocalStorage);
-
 let notes = [];
 let findNoteIndex = null;
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadFromLocalStorage();
+  titleInput.focus();
+});
 
 deleteBtn.addEventListener("click", deleteNote);
 saveBtn.addEventListener("click", saveNote);
@@ -57,6 +60,7 @@ function saveNote() {
       console.log(notes);
     }
     renderNotes();
+    titleInput.focus();
   }
 }
 
@@ -110,7 +114,7 @@ function deleteNote() {
   });
   saveToLocastorage();
   renderNotes();
-  console.log(notes);
+  titleInput.focus();
 }
 
 function saveToLocastorage() {
@@ -129,4 +133,6 @@ function deleteFromLocalStorage() {
 function createNewNote() {
   titleInput.value = "";
   textInput.value = "";
+  findNoteIndex = null;
+  titleInput.focus();
 }

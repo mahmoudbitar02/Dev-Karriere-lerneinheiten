@@ -5,10 +5,10 @@
 }
 
 :root {
-  --primary-color: #a57d31;
-  --secondary-color: #333;
+  --primary-color: #9272e4;
+  --secondary-color: #7c4eda;
   --focus-color: #007bff;
-  --text-color: #333;
+  --text-color: #ffffff;
   --placeholder-color: #ccc;
 }
 
@@ -43,6 +43,7 @@ body {
   border: none;
   padding: 0.5rem;
   width: 100%;
+  caret-color: var(--primary-color);
 }
 
 .main .main-title input:focus {
@@ -71,14 +72,14 @@ body {
   border: none;
   border-radius: 2rem;
   background-color: var(--secondary-color);
-  color: var(--primary-color);
+  color: white;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 button:hover {
   background-color: var(--primary-color);
-  color: var(--secondary-color);
+  color: white;
 }
 
 .sidebar {
@@ -92,24 +93,34 @@ button:hover {
 
 .sidebar .add-notes button {
   padding: 0.5rem 1.5rem;
+  color: white;
   border-radius: 2rem;
+  background-color: var(--secondary-color);
   font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
+.add-notes button:hover {
+  background-color: var(--primary-color);
+}
+
 .notes-card {
   flex: 0 0 300px;
   margin-top: 0.6rem;
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   padding: 0.8rem;
   border-radius: 0.9rem;
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
   max-width: 100%;
-
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.notes-card:hover {
+  background-color: var(--primary-color);
 }
 
 .notes-title {
@@ -139,6 +150,7 @@ button:hover {
   body {
     margin-top: 1.5rem;
   }
+
   .container {
     flex-direction: row-reverse;
     justify-content: start;
