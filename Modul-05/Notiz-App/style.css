@@ -5,8 +5,8 @@
 }
 
 :root {
-  --primary-color: #9272e4;
-  --secondary-color: #7c4eda;
+  --primary-color: rgb(24, 93, 231);
+  --secondary-color: rgb(93, 162, 237);
   --focus-color: #007bff;
   --text-color: #ffffff;
   --placeholder-color: #ccc;

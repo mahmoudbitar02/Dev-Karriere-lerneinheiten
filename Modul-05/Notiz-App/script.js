@@ -98,6 +98,7 @@ function updateNote(note) {
   saveToLocastorage();
 
   console.log("hello From update" + findNoteIndex);
+  console.log(note);
 }
 
 function renderNotes() {
@@ -108,6 +109,7 @@ function renderNotes() {
 
 function deleteNote() {
   const note = notes[findNoteIndex];
+  if (!note) return;
 
   notes = notes.filter((item) => {
     return item.updateTime !== note.updateTime;
