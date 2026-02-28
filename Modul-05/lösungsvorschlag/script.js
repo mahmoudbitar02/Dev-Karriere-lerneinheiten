@@ -1,9 +1,14 @@
 const notesListEl = document.querySelector(".notes-list");
 const saveButtonEL = document.querySelector(".save-note");
+const deleteButtonEl = document.querySelector(".delete-note");
+const newNoteButtonEl = document.querySelector(".create-new");
 const titleInputEl = document.getElementById("title-input");
 const contentInputEl = document.getElementById("content-input");
 
 saveButtonEL.addEventListener("click", clickSaveButton);
+newNoteButtonEl.addEventListener("click", newNote);
+deleteButtonEl.addEventListener("click", clickDeleteButton);
+
 displayNotesList();
 applyListeners();
 
@@ -24,8 +29,8 @@ function displayNotesList() {
   sortedNotes.forEach((note) => {
     html += `
         <div class="note-entry" data-id=${note.id}>
-            <div class="note-title">${note.title}</div>
-            <div class="note-content-teaser">${note.content}</div>
+            <div class="note-title">${escapeHTML(note.title)}</div>
+            <div class="note-content-teaser">${escapeHTML(note.content)}</div>
             <div class="note-date">${new Date(note.lastUpdated).toLocaleString("de-DE")}</div>
           </div>
     `;
@@ -42,15 +47,22 @@ function clickSaveButton() {
     return;
   }
 
-  let currentId = undefined;
+  getCurrentlySelectedId();
 
-  const currentlySelectedNoteEl = document.querySelector(".selected-note");
+  saveNote(title, content, Number(getCurrentlySelectedId()));
+  titleInputEl.value = "";
+  contentInputEl.value = "";
+  displayNotesList();
+  applyListeners();
+}
 
-  if (currentlySelectedNoteEl) {
-    currentId = currentlySelectedNoteEl.getAttribute("data-id");
-  }
+function clickDeleteButton() {
+  const currentlySelectedId = getCurrentlySelectedId();
 
-  saveNote(title, content, Number(currentId));
+  if (!currentlySelectedId) return;
+
+  deleteNote(currentlySelectedId);
+
   titleInputEl.value = "";
   contentInputEl.value = "";
   displayNotesList();
@@ -62,10 +74,7 @@ function selectNote(id) {
 
   if (slectedNoteEl.classList.contains("selected-note")) return;
 
-  const notesEntriesEls = document.querySelectorAll(".note-entry");
-  notesEntriesEls.forEach((noteEntry) => {
-    noteEntry.classList.remove("selected-note");
-  });
+  removeselectedClassFromAllNotes();
 
   slectedNoteEl.classList.add("selected-note");
 
@@ -77,4 +86,31 @@ function selectNote(id) {
 
   titleInputEl.value = slectedNote.title;
   contentInputEl.value = slectedNote.content;
+}
+
+function newNote() {
+  titleInputEl.value = "";
+  contentInputEl.value = "";
+  removeselectedClassFromAllNotes();
+}
+
+function removeselectedClassFromAllNotes() {
+  const notesEntriesEls = document.querySelectorAll(".note-entry");
+  notesEntriesEls.forEach((noteEntry) => {
+    noteEntry.classList.remove("selected-note");
+  });
+}
+
+function getCurrentlySelectedId() {
+  let currentId = undefined;
+  const currentlySelectedNoteEl = document.querySelector(".selected-note");
+  if (currentlySelectedNoteEl) {
+    currentId = currentlySelectedNoteEl.getAttribute("data-id");
+  }
+
+  return currentId;
+}
+
+function escapeHTML(s) {
+  return s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
