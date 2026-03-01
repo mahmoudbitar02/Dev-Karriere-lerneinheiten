@@ -1,0 +1,59 @@
+
+const LOCAL_STORAGE_KEY = "notizapp-notizen";
+saveButtonEl.addEventListener("click", clickSaveButton);
+
+createNote();
+
+function getNotes() {
+  return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
+}
+
+function createNote() {
+  const notes = getNotes();
+  let html = "";
+
+  sortedNote = notes.sort((noteA, noteB) => noteB.lastUpdated - noteA.lastUpdated);
+
+  sortedNote.forEach((note) => {
+    html += `
+        <div class="note-entry" data-id=${note.id}>
+            <div class="note-title">${note.title}</div>
+            <div class="note-content-teaser">${note.content}</div>
+            <div class="note-date">${new Date(note.lastUpdated).toLocaleString("de-DE")}</div>
+          </div>
+    `;
+  });
+  noteListEl.innerHTML = html;
+}
+
+function clickSaveButton() {
+  const title = titleInputEl.value;
+  const content = contentInputEl.value;
+
+  if (!title && !content) {
+    alert("it should by some text in this two fields");
+  } else if (title == "") {
+    alert("please give some title 😁");
+  } else if (content == "") {
+    alert("I think you forgot to add the text 🙄");
+  }
+
+  saveNote(title, content);
+  createNote();
+  titleInputEl.value = "";
+  contentInputEl.value = "";
+}
+
+function saveNote(title, content) {
+  const notes = getNotes();
+
+  notes.push({
+    title,
+    content,
+    id: 1,
+    lastUpdated: new Date().getTime(),
+  });
+  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(notes));
+}
+
+function getNextId() {}
