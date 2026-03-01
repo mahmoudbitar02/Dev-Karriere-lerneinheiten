@@ -146,6 +146,25 @@ button:hover {
   align-self: flex-end;
 }
 
+.search {
+  padding-left: 0.5rem;
+  background-color: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.focus {
+  background-color: var(--primary-color);
+}
+
+.search input {
+  outline: none;
+  width: 100%;
+  font-size: 1.5rem;
+}
+
 @media only screen and (min-width: 600px) {
   body {
     margin-top: 1.5rem;

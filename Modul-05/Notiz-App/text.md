@@ -72,3 +72,30 @@ console.log(toUpdate.updateTime);
 });
 }
 handelSaveBtn();
+
+---
+
+searchInput.addEventListener("input", handelSearch);
+
+function handelSearch() {
+const input = searchInput.value.toLowerCase().trim();
+
+if (input === "") {
+renderNotes();
+return;
+}
+
+words = input.split(/\s+/);
+
+const filteredNotes = notes.filter((note) => {
+const title = note.title.toLowerCase();
+return words.every((word) => title.includes(word));
+});
+renderFilteredNotes(filteredNotes);
+}
+
+function renderFilteredNotes(list) {
+sideBar.innerHTML = "";
+list.sort((a, b) => b.updatedAt - a.updatedAt);
+list.forEach((note) => createNote(note));
+}

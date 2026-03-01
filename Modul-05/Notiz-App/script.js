@@ -5,9 +5,33 @@ const textInput = document.getElementById("text");
 const sideBar = document.getElementById("wrapper");
 const saveBtn = document.getElementById("save");
 const deleteBtn = document.getElementById("delete");
+const searchInput = document.getElementById("search-input");
 
 let notes = [];
 let findNoteIndex = null;
+
+searchInput.addEventListener("input", handelSearch);
+
+function handelSearch() {
+  const input = searchInput.value.toLowerCase().trim();
+
+  const words = input.split(/\s/);
+
+  const filteredNotes = notes.filter((note) => {
+    const title = note.title;
+    return words.every((word) => title.includes(word));
+  });
+
+  filterdListNote(filteredNotes);
+}
+
+setInterval([]);
+
+function filterdListNote(notes) {
+  sideBar.innerHTML = "";
+  notes.sort((noteA, noteB) => noteB.updatedAt - noteA.updatedAt);
+  notes.forEach((note) => createNote(note));
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   loadFromLocalStorage();
@@ -97,8 +121,11 @@ function updateNote(note) {
   textInput.value = note.text;
   saveToLocastorage();
 
+  setClasses(note);
+
   console.log("hello From update" + findNoteIndex);
   console.log(note);
+  searchInput.value = "";
 }
 
 function renderNotes() {
@@ -137,4 +164,18 @@ function createNewNote() {
   textInput.value = "";
   findNoteIndex = null;
   titleInput.focus();
+}
+
+function setClasses(note) {
+  console.log("the the teh ");
+  console.log(note);
+  console.log("the the teh ");
+}
+
+function getCurrentNote() {
+  const currentNote = document.querySelectorAll(".notes-card");
+}
+
+function getNexId() {
+  let nextId = 1;
 }
