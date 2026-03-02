@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="main-container">
+        <div class="buttons">
+          <button id="save" class="save"><i class="fas fa-save"></i></button>
+          <button id="delete" class="delete"><i class="fa-solid fa-trash"></i></button>
+        </div>
+        <div class="main">
+          <div class="main-title">
+            <label for="title">
+              <input type="text" id="title" placeholder="Enter the Headline" />
+            </label>
+          </div>
+          <div class="main-text">
+            <label for="text">
+              <textarea name="text" id="text" placeholder="Add your notes"></textarea>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <div class="add-notes">
+          <button onclick="createNewNote()">Create New Note</button>
+        </div>
+        <div class="search"><i class="fa-solid fa-magnifying-glass"></i> <input type="text" id="search-input" /></div>
+        <div id="wrapper"></div>
+      </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/89cc2959b1.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

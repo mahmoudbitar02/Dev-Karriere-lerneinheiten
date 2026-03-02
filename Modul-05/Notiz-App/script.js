@@ -25,8 +25,6 @@ function handelSearch() {
   filterdListNote(filteredNotes);
 }
 
-setInterval([]);
-
 function filterdListNote(notes) {
   sideBar.innerHTML = "";
   notes.sort((noteA, noteB) => noteB.updatedAt - noteA.updatedAt);
@@ -120,11 +118,6 @@ function updateNote(note) {
   titleInput.value = note.title;
   textInput.value = note.text;
   saveToLocastorage();
-
-  setClasses(note);
-
-  console.log("hello From update" + findNoteIndex);
-  console.log(note);
   searchInput.value = "";
 }
 
@@ -164,18 +157,4 @@ function createNewNote() {
   textInput.value = "";
   findNoteIndex = null;
   titleInput.focus();
-}
-
-function setClasses(note) {
-  console.log("the the teh ");
-  console.log(note);
-  console.log("the the teh ");
-}
-
-function getCurrentNote() {
-  const currentNote = document.querySelectorAll(".notes-card");
-}
-
-function getNexId() {
-  let nextId = 1;
 }
