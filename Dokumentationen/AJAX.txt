@@ -1,0 +1,104 @@
+AJAX
+
+Was ist der Aufbau von HTTP?
+Request ( Client —> Server)
+	- Methode & Pfad
+	- Header
+	- Body
+Response (Server—> Client)
+	- Status
+	- Header
+	- Body 
+
+Was sind Header?
+Metadaten, um zusätzliche Informationen mitzuliefern.
+	- Authorization
+	- Cache-Control
+	- Accept
+	- Content-Lenght
+	- User-Agent 
+	- …
+Key-Value Pair
+	- User-agent: Mozille/5. (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 			Firefox/117.0
+
+
+Was ist der Body?
+Daten für Request bzw. Response
+Request
+Formular Daten
+…
+Response
+HTML Seite
+Json
+….
+alles, was nicht mit Methode, Status oder Header abgebildet werden kann
+
+REQUEST: 
+Was sind die Methoden?
+Verben, die dem Server signalisieren, welche Aktion gewünscht ist
+GET - Holen
+POST - Erstellen
+PUT - Aktualisieren/Erstellen
+PATCH - Aktualisieren
+DELETE - Löschen 
+CRUD (Create, Read, Update, Delete)
+
+Was ist der Pfad?
+Identifikation einer Russource
+	https://de.wikipedia.org/wiki/Carolin_Matzko
+	Protokoll Domain/Host Pfad 
+In Kombination mit Methode weiß der Browser welche Aktion auf welche Ressource auszuführen ist
+
+Was steht im Body?
+Abhängig von Methode ist der Body optional
+GET —> Kein Body nötig
+POST —> Body enthält Daten
+PUT —> Body enthält Daten
+PATCH —> Body enthält Daten
+DELETE —> Kein Body nötig
+
+
+POST - PUT - PATCH
+POST —> Erzeugt eine neue Ressource
+Erstellung eines neuen Artikels bei Wikipedia (Pfad: /wiki/meinneuerartikel)
+PUT —> Aktualisiert eine bestehende Ressource auch überschreiben 
+Kompletten Artikel überschreiben
+PATCH —> Aktualisiert eine bestehende Ressource auch teilweises überschreiben 
+Abschnitt des Artikels überschreiben 
+
+
+RESPONSE
+
+Aufbau einer HTTP Response
+Antwort/Response —> Server kommuniziert in Richtung Client
+Folgt auf eine Request 
+Aufbau 
+Status
+Header
+Body
+
+Was ist Status?
+Gibt an, ob eine Anfrage erfolgreich verarbeitet wurde
+Statuscode:
+1XX - Information
+2XX - Erfolgreich
+3XX - Umleitung
+4XX - Client Fehler
+5XX - Server Fehler
+Client kann Status auslesen und verarbeiten
+
+Was steht im Body?
+Angefragte Ressource wird im Body verschickt
+Abhängig von Status ist der Body optional 
+200 —> Body enthält Daten
+201 —> Kein Body nötig
+204 —> Kein Body nötig
+4XX —> Body kann Fehlermeldung beinhalten
+5XX —> Body kann Fehlermeldung beinhalten
+
+Zuordnung Methode - Statuscode
+GET —> 200 (OK)
+POST —> 201 (Created)
+PUT —> 201 (Created / 204 (No Content)
+PATCH —> 204 (No Content)
+DELETE —> 200 (OK) / 204 (No Content)
