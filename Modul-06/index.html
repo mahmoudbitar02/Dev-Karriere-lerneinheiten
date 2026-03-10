@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script>
+      const testObject = {
+        userId: 1,
+        name: "Jochen",
+        alter: 36,
+      };
+
+      // TODO 1: Serialisieren und Deserialisieren
+      const serialObject = JSON.stringify(testObject);
+      const deserialObject = JSON.parse(serialObject);
+
+      // TODO 2: (De-)Serialisierung ausgeben
+
+      consol.log(serialObject, deserialObject);
+
+      // TODO 3: Vergleich zwischen original und Deserialisiert ziehen
+      consol.log(deserialObject === testObject);
+
+      // TODO 4: Auf Namen zugreifen
+      console.log(deserialObject.name);
+
+      const testArray = ["a", 1, true, testObject];
+
+      // TODO 5: Serialisierung und Deserialisierung
+      const serialArray = JSON.stringify(testArray);
+      const desserialArray = JSON.parse(serialArray);
+
+      // TODO 6: (De-)Serialisierung ausgeben
+
+      console.log(serialArray, desserialArray);
+
+      // TODO 7: Vergleich zwischen original und Deserialisiert ziehen
+      console.log(desserialArray === testArray);
+
+      // TODO 8: Auf Eintrag zugreifen
+      console.log(desserialArray[3]);
+    </script>
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
