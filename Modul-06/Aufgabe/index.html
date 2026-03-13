@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script>
+      const randomUser = {
+        firstName: "Oscar",
+        lastName: "Silva",
+        email: "oscar.silva@example.com",
+        birthday: "01/07/1987",
+        address: {
+          street: "James St",
+          number: 3,
+          city: "Madrid",
+        },
+        phone: "12345678910",
+        password: "test",
+        image: "https://randomuser.me/api/portraits/men/0.jpg",
+      };
+
+      const userString = `{
+            "gender": "female",
+            "name": {
+                "title": "Mrs",
+                "first": "Kayla",
+                "last": "Wilson"
+            },
+            "location": {
+                "street": {
+                    "number": 3057,
+                    "name": "Hilton Highway"
+                },
+                "city": "Blenheim",
+                "state": "Gisborne",
+                "country": "New Zealand",
+                "postcode": 40649,
+                "coordinates": {
+                    "latitude": "48.5010",
+                    "longitude": "68.5292"
+                },
+                "timezone": {
+                    "offset": "+5:45",
+                    "description": "Kathmandu"
+                }
+            },
+            "email": "kayla.wilson@example.com",
+            "login": {
+                "uuid": "8e5b4613-5c39-48d4-97f6-9ddfcfa88be2",
+                "username": "happylion857",
+                "password": "whale",
+                "salt": "UoJFZpZC",
+                "md5": "6d8baca79fef0c6b0f7f520489f64925",
+                "sha1": "a64aa5de10e131228bef4319d99c2a2bba522a16",
+                "sha256": "5f65fb4d918b3f90c62802e1ac321160b47e88786ce4e14108e441e1dd56748a"
+            },
+            "dob": {
+                "date": "1991-12-02T00:18:35.946Z",
+                "age": 34
+            },
+            "registered": {
+                "date": "2021-11-05T06:59:12.550Z",
+                "age": 4
+            },
+            "phone": "(965)-579-1940",
+            "cell": "(160)-330-7786",
+            "id": {
+                "name": "",
+                "value": null
+            },
+            "picture": {
+                "large": "https://randomuser.me/api/portraits/women/73.jpg",
+                "medium": "https://randomuser.me/api/portraits/med/women/73.jpg",
+                "thumbnail": "https://randomuser.me/api/portraits/thumb/women/73.jpg"
+            },
+            "nat": "NZ"
+        }`;
+
+      const deSerialUser = JSON.parse(userString);
+      deSerialUser.gender = "male";
+      console.log(deSerialUser.name.first);
+      console.log(deSerialUser);
+      console.log(userString);
+      const serialUser = JSON.stringify(deSerialUser);
+      console.log(serialUser);
+    </script>
+  </head>
+  <body></body>
+</html>
