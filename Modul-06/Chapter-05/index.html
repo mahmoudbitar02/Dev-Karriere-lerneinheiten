@@ -6,7 +6,11 @@
     <title>Document</title>
 
     <script>
-      function main() {
+      async function asyncFunction() {
+        return 1;
+      }
+
+      async function main() {
         console.log("erste Nachricht");
         let counter = 0;
         console.log(counter);
@@ -15,12 +19,52 @@
           i++;
         }
 
-        setTimeout(function () {
-          console.log("mittlere Nachricht");
-          counter = 100;
-          console.log(counter);
-        }, 1000);
+        /////////// dise ist mit async und await //////////
+        const result = await new Promise((resolve, reject) => {
+          setTimeout(function () {
+            console.log("mittlere Nachricht");
+            counter = 100;
+            console.log(counter);
+            resolve(counter);
+          }, 1000);
+        });
+
+        console.log("Result " + result);
+
+        /////////// dise ist mit .then() .catch()//////////
+        //const result = new Promise((resolve, reject) => {
+        //  setTimeout(function () {
+        // console.log("mittlere Nachricht");
+        //    counter = 100;
+        //    console.log(counter);
+        //    resolve(counter);
+        //  }, 1000);
+        //});
+        //result
+        //  .then((result) => {
+        //    console.log("Result " + result);
+        //    return result + 1;
+        //  })
+        //  .then((result) => {
+        //    console.log("Result " + result);
+        //  })
+        //  .catch((error) => {
+        //    console.log("Error " + error);
+        //  });
+        let test = 1;
+        while (test < 5000000000) {
+          test++;
+        }
+        const resultAsyncFunction = await asyncFunction();
+        console.log("async Function " + resultAsyncFunction);
+
+        //console.log(result);
+
+        console.log("zweite Nachricht");
+        counter = 5;
+        console.log(counter);
       }
+
       console.log("start Nachricht");
       main();
       console.log("end Nachricht");
