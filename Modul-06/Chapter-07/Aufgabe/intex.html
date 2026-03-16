@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script>
+      const postContact = {
+        address: {
+          street: "test test",
+          city: "Musterstadt",
+          number: 111111,
+          postcode: 12345,
+        },
+        phone: [
+          {
+            label: "Mobil",
+            value: "0123456789",
+          },
+          {
+            label: "Festnetz",
+            value: "9876543210",
+          },
+        ],
+        name: {
+          firstName: "Mahmoud",
+          lastName: "Mustermann",
+        },
+        birthDate: "1990-12-31T01:01:01.000Z",
+        email: "mahmoud.mustermann@musterdoamin.de",
+      };
+
+      const putContacts = {
+        address: {
+          street: "test test",
+          city: "Musterstadt",
+          number: 111111,
+          postcode: 12345,
+        },
+        phone: [
+          {
+            label: "Mobil",
+            value: "123444444444444",
+          },
+          {
+            label: "Festnetz",
+            value: "9876543210",
+          },
+        ],
+        name: {
+          firstName: "Mahmoud",
+          lastName: "Mustermann",
+        },
+        birthDate: "1990-12-31T01:01:01.000Z",
+        email: "mahmoud.mustermann@musterdoamin.de",
+        id: 226,
+      };
+
+      const patchContact = {
+        phone: [
+          {
+            label: "Mobil",
+            value: "111111111111",
+          },
+          {
+            label: "Festnetz",
+            value: "22222222222222222222",
+          },
+        ],
+        name: {
+          lastName: "test",
+        },
+      };
+
+      async function getAllContacts() {
+        const response = await fetch("http://contact-api.devkarriere.de/contacts");
+        const data = await response.json();
+        console.log(data);
+      }
+
+      async function getOneContact(id) {
+        const response = await fetch("http://contact-api.devkarriere.de/contacts/" + id);
+        const data = await response.json();
+        console.log(data);
+      }
+
+      async function postContactAPI() {
+        const response = await fetch("http://contact-api.devkarriere.de/contacts", {
+          method: "POST",
+          body: JSON.stringify(postContact),
+          headers: { "Content-type": "application/json; charset=UTF-8" },
+        });
+        const data = await response.json();
+        console.log("this is the POST DATA ");
+        console.log(data);
+      }
+
+      async function putContactApi(id) {
+        const response = await fetch("http://contact-api.devkarriere.de/contacts/" + id, {
+          method: "PUT",
+          body: JSON.stringify(putContacts),
+          headers: { "Content-type": "application/json; charset=UTF-8" },
+        });
+      }
+
+      async function patchContactApi(id) {
+        const response = await fetch("http://contact-api.devkarriere.de/contacts/" + id, {
+          method: "PATCH",
+          body: JSON.stringify(patchContact),
+          headers: { "Content-type": "application/json; charset=UTF-8" },
+        });
+      }
+
+      async function deleteContact(id) {
+        const response = await fetch("http://contact-api.devkarriere.de/contacts/" + id, {
+          method: "DELETE",
+        });
+      }
+
+      getAllContacts();
+      getOneContact(226);
+      //postContactAPI();
+      putContactApi(226);
+      patchContactApi(225);
+      //deleteContact(234);
+    </script>
+  </head>
+  <body></body>
+</html>
