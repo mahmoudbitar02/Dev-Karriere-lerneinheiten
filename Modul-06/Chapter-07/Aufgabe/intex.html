@@ -77,6 +77,7 @@
         const response = await fetch("http://contact-api.devkarriere.de/contacts");
         const data = await response.json();
         console.log(data);
+        renderContacts(data);
       }
 
       async function getOneContact(id) {
@@ -124,7 +125,47 @@
       putContactApi(226);
       patchContactApi(225);
       //deleteContact(234);
+
+      function renderContacts(contacts) {
+        const container = document.getElementById("contacts");
+        container.innerHTML = "";
+        contacts.forEach((contact) => {
+          container.innerHTML += `
+                <div style=""">
+                    <h3>${contact.name.firstName}</h3>
+                    <h3>${contact.name.lastName}</h3>
+
+                    <p><strong>ID:</strong> ${contact.id}</p>
+                    <p><strong>E-Mail:</strong> ${contact.email}</p>
+                    <p><strong>Geburtstag:</strong> ${contact.birthDate}</p>
+                    
+                    <hr>
+                    
+                    <h4>Adresse:</h4>
+                    <p>${contact.address.street} ${contact.address.number} <br>${contact.address.postcode}, ${contact.address.city}  </p>
+                    
+                    <hr>
+                    
+                    <h4>Telefon:</h4>
+                    <ul>
+                        <li>Mobil: ${contact.phone[0].value} </li>
+                        <li>Festnetz: ${contact.phone[1].value}</li>
+
+                    </ul>
+                    
+                    <hr>
+                    <hr>
+                    <hr>
+
+                </div>
+            `;
+        });
+      }
     </script>
   </head>
-  <body></body>
+  <body>
+    <h1>Contact List</h1>
+
+    <div id="contacts"></div>
+  </body>
 </html>
