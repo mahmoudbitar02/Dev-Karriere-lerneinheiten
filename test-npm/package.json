@@ -10,5 +10,9 @@
     "test": "echo \"hallo\"",
     "mahmoud": "echo test/tesst",
     "bye": "echo bye bye, $NAME"
+  },
+  "dependencies": {
+    "lodash": "^4.17.23",
+    "moment": "^2.30.1"
   }
 }
