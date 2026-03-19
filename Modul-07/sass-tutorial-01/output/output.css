@@ -1,6 +1,29 @@
+.spacial-class, div {
+  background-color: purple;
+}
+
+body {
+  background-color: gray;
+}
+
+div {
+  padding: 20px;
+}
+div h2 {
+  color: red;
+  background-color: #ffcccc;
+}
+div.test {
+  background-color: red;
+}
+div.test-1 {
+  background-color: greenyellow;
+}
+
 h1 {
   background-color: red;
-  color: black;
+  color: rgb(110, 149, 19);
+  font-size: 5rem;
 }
 
 /*# sourceMappingURL=output.css.map */

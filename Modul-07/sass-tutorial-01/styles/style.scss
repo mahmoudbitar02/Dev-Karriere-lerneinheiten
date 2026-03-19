@@ -1,0 +1,35 @@
+@use "variabels" as *;
+
+@mixin coolDesign($color) {
+  color: $color;
+  background-color: lighten($color, 40);
+}
+
+.spacial-class {
+  background-color: purple;
+}
+
+body {
+  background-color: $bg-gray;
+}
+
+div {
+  padding: 20px;
+  @extend .spacial-class;
+  h2 {
+    @include coolDesign(red);
+  }
+  &.test {
+    background-color: red;
+
+    &-1 {
+      background-color: greenyellow;
+    }
+  }
+}
+
+h1 {
+  background-color: $bg-primiry;
+  color: $color;
+  font-size: 5rem;
+}
