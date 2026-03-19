@@ -1,0 +1,29 @@
+@use "variabels" as *;
+
+body {
+  background-color: antiquewhite;
+}
+
+div {
+  background-color: $primary-bg-color;
+  @include padding(1rem, 2rem);
+  h1,
+  & h3 {
+    background-color: $bg-color;
+  }
+  p {
+    background-color: $bg-color;
+  }
+  .card {
+    @include padding(0rem, 0rem);
+  }
+
+  span {
+    font-size: 1.5rem;
+    color: $primary-color;
+  }
+  & div {
+    margin-top: $margin-tb;
+    background-color: rgb(47, 186, 63);
+  }
+}

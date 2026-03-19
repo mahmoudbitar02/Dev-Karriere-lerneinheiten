@@ -1,0 +1,14 @@
+$primary-color: rgb(121, 47, 47);
+$primary-bg-color: gray;
+$color: green;
+$bg-color: yellow;
+
+$padding-tb: 1rem;
+$padding-lr: 0.5rem;
+
+$margin-tb: 1rem;
+
+@mixin padding($pt, $pl) {
+  padding-top: $pt;
+  padding-left: $pl;
+}

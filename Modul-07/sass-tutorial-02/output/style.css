@@ -1,0 +1,29 @@
+body {
+  background-color: antiquewhite;
+}
+
+div {
+  background-color: gray;
+  padding-top: 1rem;
+  padding-left: 2rem;
+}
+div h1, div h3 {
+  background-color: yellow;
+}
+div p {
+  background-color: yellow;
+}
+div .card {
+  padding-top: 0rem;
+  padding-left: 0rem;
+}
+div span {
+  font-size: 1.5rem;
+  color: rgb(121, 47, 47);
+}
+div div {
+  margin-top: 1rem;
+  background-color: rgb(47, 186, 63);
+}
+
+/*# sourceMappingURL=style.css.map */
