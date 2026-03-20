@@ -11,11 +11,11 @@ div {
   & h3 {
     background-color: $bg-color;
   }
+  .card {
+    @include padding();
+  }
   p {
     background-color: $bg-color;
-  }
-  .card {
-    @include padding(0rem, 0rem);
   }
 
   span {
@@ -24,6 +24,6 @@ div {
   }
   & div {
     margin-top: $margin-tb;
-    background-color: rgb(47, 186, 63);
+    background-color: $color;
   }
 }

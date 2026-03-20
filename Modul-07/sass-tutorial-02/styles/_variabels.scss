@@ -1,14 +1,13 @@
+@use "sass:color";
+
 $primary-color: rgb(121, 47, 47);
 $primary-bg-color: gray;
-$color: green;
+$color: color.adjust($primary-color, $lightness: 30%);
 $bg-color: yellow;
-
-$padding-tb: 1rem;
-$padding-lr: 0.5rem;
 
 $margin-tb: 1rem;
 
-@mixin padding($pt, $pl) {
+@mixin padding($pt: 0rem, $pl: 0rem) {
   padding-top: $pt;
   padding-left: $pl;
 }

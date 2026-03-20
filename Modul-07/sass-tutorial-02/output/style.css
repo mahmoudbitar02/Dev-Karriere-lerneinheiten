@@ -10,12 +10,12 @@ div {
 div h1, div h3 {
   background-color: yellow;
 }
-div p {
-  background-color: yellow;
-}
 div .card {
   padding-top: 0rem;
   padding-left: 0rem;
+}
+div p {
+  background-color: yellow;
 }
 div span {
   font-size: 1.5rem;
@@ -23,7 +23,7 @@ div span {
 }
 div div {
   margin-top: 1rem;
-  background-color: rgb(47, 186, 63);
+  background-color: rgb(202.125, 118.875, 118.875);
 }
 
 /*# sourceMappingURL=style.css.map */
