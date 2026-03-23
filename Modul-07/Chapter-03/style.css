@@ -1,0 +1,43 @@
+.navbar {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: gray;
+  gap: 2rem;
+}
+
+.navbar__logo {
+  color: burlywood;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.navbar__links {
+  width: 30rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: darkgray;
+  padding: 0.8rem;
+  border-radius: 2rem;
+}
+
+.navbar__item {
+  list-style: none;
+}
+
+.navbar__link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.4rem;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
+.navbar__link--active {
+  background-color: aquamarine;
+}
+
+.navbar__link:hover {
+  background-color: aqua;
+}
