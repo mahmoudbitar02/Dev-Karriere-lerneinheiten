@@ -1,0 +1,79 @@
+@use "sass:color";
+$primary: rgb(255, 151, 14);
+
+.product-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__heading {
+    font-size: 2.4rem;
+    border-bottom: 2px solid $primary;
+  }
+
+  &__product-list {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__more-button {
+    margin-top: 2rem;
+    padding: 1.2rem 2rem;
+    background-color: $primary;
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background-color: lighten($primary, 15);
+    }
+  }
+}
+
+.product {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+
+  &__image {
+    background-color: lighten($primary, 20%);
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__info {
+    padding: 1rem;
+  }
+
+  &__name {
+    margin: 0.5rem 0 0 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  &__short-description {
+    margin: 0.2rem 0 0 0;
+    color: #575757;
+  }
+
+  &__price-list {
+    margin-top: 2rem;
+  }
+
+  &__price {
+    font-weight: 500;
+    font-size: 1.2rem;
+
+    &--old {
+      margin-left: 0.2rem;
+      font-size: 1rem;
+      text-decoration: line-through;
+      color: red;
+    }
+  }
+}
