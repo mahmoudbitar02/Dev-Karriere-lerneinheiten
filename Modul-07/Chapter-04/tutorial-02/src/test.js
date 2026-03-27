@@ -1,4 +1,4 @@
-import { beispiel } from "./index.js";
+import moment from "moment";
 
 export function testTest(msg) {
   alert("hello there: " + msg);
@@ -6,4 +6,6 @@ export function testTest(msg) {
 
 testTest("hello from test");
 
-beispiel();
+export function dateTest(date) {
+  return moment(date).daysInMonth();
+}
