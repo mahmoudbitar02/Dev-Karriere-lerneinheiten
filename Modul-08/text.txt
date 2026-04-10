@@ -1,0 +1,13 @@
+Wetter App:
+1. erster Ansicht:
+    - Ansicht mit den städten.
+    - oben recht bearbeiten Button (beim klicken ändert sich auf fertig (toggle) und bei den städten wird eine entfernsymbol (-) vorne dran geben)
+    - oben lenks Wetter 
+    - dann kommt ein searchbar 
+    - danach sind die gesuchten städte aufgelistet
+    - wenn ein stadt gesucht kommt eine liste mit betroffene vorschläge.
+    - beim klicken auf die passende Stadt öffnet sich eine details Ansicht 
+
+2. Details Ansicht
+    - Aussehen --> sehe Bilder 
+    
