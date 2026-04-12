@@ -1,0 +1,37 @@
+@use "mixins" as *;
+@use "variables" as *;
+@use "sass:color";
+@use "detailView";
+@use "loading";
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  @include largScreens {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: color.scale($background, $lightness: 10%);
+  }
+}
+
+#app {
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(0deg, $elevation-2 0%, $elevation 50%);
+  color: $text-color;
+  padding: 1rem;
+  min-height: 100vh;
+  @include largScreens {
+    width: 400px;
+    height: $max-height-desktop;
+    min-height: unset;
+    overflow: auto;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+  }
+}
