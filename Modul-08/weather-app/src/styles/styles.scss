@@ -10,6 +10,10 @@
   padding: 0;
 }
 
+::-webkit-scrollbar {
+  width: 0;
+}
+
 body {
   @include largScreens {
     display: flex;
