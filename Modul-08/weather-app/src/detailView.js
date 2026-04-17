@@ -1,7 +1,7 @@
 import { getForcastWeather } from "./api";
 import { renderLoadingScreen } from "./loading";
 import { rootElement } from "./main";
-import { formatTemperature } from "./utils";
+import { formatHourlyTime, formatTemperature, get24HoursForecastFromNow } from "./utils";
 
 export async function loadDetailView(cityName) {
   renderLoadingScreen("Lade Wetterdaten für " + cityName + "...");
@@ -13,13 +13,14 @@ export async function loadDetailView(cityName) {
 function renderDetailView(weatherData) {
   const { location, current, forecast } = weatherData;
   const currentDay = forecast.forecastday[0];
-  rootElement.innerHTML = getHeaderHtml(
-    location.name,
-    formatTemperature(current.temp_c),
-    current.condition.text,
-    formatTemperature(currentDay.day.maxtemp_c),
-    formatTemperature(currentDay.day.mintemp_c),
-  );
+  rootElement.innerHTML =
+    getHeaderHtml(
+      location.name,
+      formatTemperature(current.temp_c),
+      current.condition.text,
+      formatTemperature(currentDay.day.maxtemp_c),
+      formatTemperature(currentDay.day.mintemp_c),
+    ) + getTodayForecasthtml(currentDay.day.condition.text, currentDay.day.maxwind_kph, forecast.forecastday, current.last_updated_epoch);
 }
 
 function getHeaderHtml(location, currentTemp, condition, maxTemp, minTemp) {
@@ -34,4 +35,28 @@ function getHeaderHtml(location, currentTemp, condition, maxTemp, minTemp) {
             </div>
       </div>
     `;
+}
+
+function getTodayForecasthtml(condition, maxWind, forecastdays, lastUpdatedEpoch) {
+  const horlyForecastElements = get24HoursForecastFromNow(forecastdays, lastUpdatedEpoch)
+    .filter((el) => el !== undefined)
+    .map(
+      (hour, index) => `
+      <div class="hourly-forecast">
+        <div class="hourly-forecast__time">${index === 0 ? "Jetzt" : formatHourlyTime(hour.time) + "Uhr"}</div>
+        <img src="https:${hour.condition.icon}" alt="" class="hourly-forecast__icon" />
+        <div class="hourly-forecast__temerature">${formatTemperature(hour.temp_c)}°</div>
+      </div>
+  `,
+    );
+
+  const hourlyForecastHtml = horlyForecastElements.join("");
+  return `
+    <div class="today-forecast">
+      <div class="today-forecast__conditions">Heute ${condition}. Wind bis zu ${maxWind} Km/h.</div>
+      <div class="today-forecast__hours">
+        ${hourlyForecastHtml}
+      </div>
+    </div>
+  `;
 }
