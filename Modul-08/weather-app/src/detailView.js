@@ -1,7 +1,7 @@
 import { getForcastWeather } from "./api";
 import { renderLoadingScreen } from "./loading";
 import { rootElement } from "./main";
-import { formatHourlyTime, formatTemperature, get24HoursForecastFromNow } from "./utils";
+import { formatHourlyTime, formatTemperature, get24HoursForecastFromNow, getDayOfWeek } from "./utils";
 
 export async function loadDetailView(cityName) {
   renderLoadingScreen("Lade Wetterdaten für " + cityName + "...");
@@ -20,7 +20,9 @@ function renderDetailView(weatherData) {
       current.condition.text,
       formatTemperature(currentDay.day.maxtemp_c),
       formatTemperature(currentDay.day.mintemp_c),
-    ) + getTodayForecasthtml(currentDay.day.condition.text, currentDay.day.maxwind_kph, forecast.forecastday, current.last_updated_epoch);
+    ) +
+    getTodayForecasthtml(currentDay.day.condition.text, currentDay.day.maxwind_kph, forecast.forecastday, current.last_updated_epoch) +
+    getForecastHtml(forecast.forecastday);
 }
 
 function getHeaderHtml(location, currentTemp, condition, maxTemp, minTemp) {
@@ -57,6 +59,29 @@ function getTodayForecasthtml(condition, maxWind, forecastdays, lastUpdatedEpoch
       <div class="today-forecast__hours">
         ${hourlyForecastHtml}
       </div>
+    </div>
+  `;
+}
+
+function getForecastHtml(forecast) {
+  const forecastElements = forecast.map(
+    (forecastDay, i) => `
+      <div class="forecast-day">
+        <div class="forecast-day__day">${i === 0 ? "Heute" : getDayOfWeek(forecastDay.date)}</div>
+        <img src="https:${forecastDay.day.condition.icon}" alt="" class="forecast-day__icon" />
+        <div class="forecast-day__max-temp">H:${formatTemperature(forecastDay.day.maxtemp_c)}</div>
+        <div class="forecast-day__min-temp">T:${formatTemperature(forecastDay.day.mintemp_c)}</div>
+        <div class="forecast-day__wind">${forecastDay.day.maxwind_kph} km/h</div>
+      </div>
+    `,
+  );
+  const forecastHtml = forecastElements.join("");
+  return `
+    <div class="forecast">
+        <div class="forecast__title">Vorhersage für die nächsten3 Tage</div>
+        <div class="forecast__days">
+         ${forecastHtml}
+        </div>
     </div>
   `;
 }
