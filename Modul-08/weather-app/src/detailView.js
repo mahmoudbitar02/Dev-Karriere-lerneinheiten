@@ -1,7 +1,7 @@
 import { getForcastWeather } from "./api";
 import { renderLoadingScreen } from "./loading";
 import { rootElement } from "./main";
-import { formatHourlyTime, formatTemperature, get24HoursForecastFromNow, getDayOfWeek } from "./utils";
+import { formatHourlyTime, formatTemperature, formatToMilitaryTime, get24HoursForecastFromNow, getDayOfWeek } from "./utils";
 
 export async function loadDetailView(cityName) {
   renderLoadingScreen("Lade Wetterdaten für " + cityName + "...");
@@ -22,7 +22,8 @@ function renderDetailView(weatherData) {
       formatTemperature(currentDay.day.mintemp_c),
     ) +
     getTodayForecasthtml(currentDay.day.condition.text, currentDay.day.maxwind_kph, forecast.forecastday, current.last_updated_epoch) +
-    getForecastHtml(forecast.forecastday);
+    getForecastHtml(forecast.forecastday) +
+    getMiniStatsHtml(current.humidity, current.feelslike_c, currentDay.astro.sunrise, currentDay.astro.sunset, current.precip_mm, current.uv);
 }
 
 function getHeaderHtml(location, currentTemp, condition, maxTemp, minTemp) {
@@ -82,6 +83,37 @@ function getForecastHtml(forecast) {
         <div class="forecast__days">
          ${forecastHtml}
         </div>
+    </div>
+  `;
+}
+
+function getMiniStatsHtml(humidity, feelsLike, sunrise, sunset, precip, uvIndex) {
+  return `
+    <div class="mini-stats">
+      <div class="mini-stat">
+        <div class="mini-stat__heading">Feuchtigkeit</div>
+        <div class="mini-stat__value">${humidity}%</div>
+      </div>
+      <div class="mini-stat">
+        <div class="mini-stat__heading">Gefühlt</div>
+        <div class="mini-stat__value">${feelsLike}°</div>
+      </div>
+      <div class="mini-stat">
+        <div class="mini-stat__heading">Sonnenaufgang</div>
+        <div class="mini-stat__value">${formatToMilitaryTime(sunrise)} Uhr</div>
+      </div>
+      <div class="mini-stat">
+        <div class="mini-stat__heading">Sonnenuntergang</div>
+        <div class="mini-stat__value">${formatToMilitaryTime(sunset)} Uhr</div>
+      </div>
+      <div class="mini-stat">
+        <div class="mini-stat__heading">Niederschlag</div>
+        <div class="mini-stat__value">${precip}mm</div>
+      </div>
+      <div class="mini-stat">
+        <div class="mini-stat__heading">UV-index</div>
+        <div class="mini-stat__value">${uvIndex}</div>
+      </div>
     </div>
   `;
 }

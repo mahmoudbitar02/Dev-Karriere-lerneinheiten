@@ -33,3 +33,18 @@ export function getDayOfWeek(date) {
   const days = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
   return days[dateObj.getDay()];
 }
+
+export function formatToMilitaryTime(time) {
+  const isAM = time.includes("AM");
+
+  const timeWithoutSuffix = time.split(" ")[0];
+
+  if (isAM) {
+    return timeWithoutSuffix;
+  }
+  const [hour, minutes] = timeWithoutSuffix.split(":");
+
+  const newHour = Number(hour) + 12;
+
+  return newHour + ":" + minutes;
+}
