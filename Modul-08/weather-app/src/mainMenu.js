@@ -1,4 +1,4 @@
-import { getForcastWeather } from "./api";
+import { getFavoriteCities, getForcastWeather } from "./api";
 import { getConditionImagePath } from "./conditions";
 import { loadDetailView } from "./detailView";
 import { renderLoadingScreen } from "./loading";
@@ -32,7 +32,11 @@ function getMenuHeaderHtml() {
 }
 
 async function getCityListHtml() {
-  const favoriteCities = ["Mannheim", "London", "Peking"];
+  const favoriteCities = getFavoriteCities();
+
+  if (!favoriteCities || favoriteCities.length < 1) {
+    return "Noch keine Favoriten gespeichert";
+  }
 
   const favoriteCityElement = [];
 
