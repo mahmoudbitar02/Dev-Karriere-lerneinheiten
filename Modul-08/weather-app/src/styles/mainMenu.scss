@@ -48,7 +48,22 @@
   }
 }
 
-.citx-wrapper {
+.city-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  &__delete {
+    display: none;
+    width: 2rem;
+    filter: drop-shadow($text-shadow);
+    color: rgb(241, 60, 60);
+    cursor: pointer;
+
+    &--show {
+      display: block;
+    }
+  }
 }
 
 .city {
@@ -61,6 +76,7 @@
   background-size: cover;
   background-position: 50% 25%;
   text-shadow: $text-shadow;
+  flex-grow: 1;
 
   &__name {
     font-weight: 400;
