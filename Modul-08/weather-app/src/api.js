@@ -3,11 +3,17 @@ const API_KEY = "0abd99540d1a49c8a81185605260904";
 const FAVORITE_CITIES_KEY = "favorite-cities";
 
 export async function getForcastWeather(location, days = 3) {
-  const response = await fetch(`${API_BASE_URL}/forecast.json?key=${API_KEY}&q=${location}&days=${days}&lang=de`);
+  const response = await fetch(`${API_BASE_URL}/forecast.json?key=${API_KEY}&q=id:${location}&days=${days}&lang=de`);
 
   const weatherData = await response.json();
   console.log(weatherData);
   return weatherData;
+}
+
+export async function searchLocation(q) {
+  const response = await fetch(`${API_BASE_URL}/search.json?key=${API_KEY}&q=${q}&lang=de`);
+  const searchResults = await response.json();
+  return searchResults;
 }
 
 export function getFavoriteCities() {

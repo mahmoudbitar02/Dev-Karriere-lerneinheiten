@@ -5,14 +5,14 @@ import { rootElement } from "./main";
 import { loadMainMenu } from "./mainMenu";
 import { formatHourlyTime, formatTemperature, formatToMilitaryTime, get24HoursForecastFromNow, getDayOfWeek } from "./utils";
 
-export async function loadDetailView(cityName) {
+export async function loadDetailView(cityName, cityId) {
   renderLoadingScreen("Lade Wetterdaten für " + cityName + "...");
-  const weatherData = await getForcastWeather(cityName);
-  renderDetailView(weatherData, cityName);
-  registerEventListner(cityName);
+  const weatherData = await getForcastWeather(cityId);
+  renderDetailView(weatherData, cityId);
+  registerEventListner(cityId);
 }
 
-function renderDetailView(weatherData, cityName) {
+function renderDetailView(weatherData, cityId) {
   const { location, current, forecast } = weatherData;
   const currentDay = forecast.forecastday[0];
 
@@ -23,7 +23,7 @@ function renderDetailView(weatherData, cityName) {
     rootElement.classList.add("show-background");
   }
 
-  const isFavorite = getFavoriteCities().find((city) => city === cityName);
+  const isFavorite = getFavoriteCities().find((city) => city === cityId);
 
   rootElement.innerHTML =
     getActionBarHtml(!isFavorite) +
@@ -153,7 +153,7 @@ function getMiniStatsHtml(humidity, feelsLike, sunrise, sunset, precip, uvIndex)
   `;
 }
 
-function registerEventListner(city) {
+function registerEventListner(cityId) {
   const backButton = document.querySelector(".action-bar__back");
   backButton.addEventListener("click", () => {
     loadMainMenu();
@@ -161,7 +161,7 @@ function registerEventListner(city) {
 
   const favoriteButton = document.querySelector(".action-bar__favorite");
   favoriteButton?.addEventListener("click", () => {
-    saveCityAsFavorite(city);
+    saveCityAsFavorite(cityId);
     favoriteButton.remove();
   });
 }

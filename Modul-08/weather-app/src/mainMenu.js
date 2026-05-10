@@ -1,9 +1,9 @@
-import { getFavoriteCities, getForcastWeather, removeCityFromFavorites } from "./api";
+import { getFavoriteCities, getForcastWeather, removeCityFromFavorites, searchLocation } from "./api";
 import { getConditionImagePath } from "./conditions";
 import { loadDetailView } from "./detailView";
 import { renderLoadingScreen } from "./loading";
 import { rootElement } from "./main";
-import { formatTemperature } from "./utils";
+import { debounce, formatTemperature } from "./utils";
 
 export async function loadMainMenu() {
   rootElement.classList.remove("show-background");
@@ -27,6 +27,7 @@ function getMenuHeaderHtml() {
         <div class="main-menu__heading">Wetter <button class="main-menu__edit">Bearbeiten</button></div>
         <div class="main-menu__search-bar">
           <input type="text" placeholder="Nach Stadt suchen" class="main-menu__search-input" />
+          <div class="main-menu__search-results"></div>
         </div>
     `;
 }
@@ -56,8 +57,8 @@ async function getCityListHtml() {
 
     const cityHtml = `
         <div class="city-wrapper">
-        <div class="city-wrapper__delete" data-city-name="${city}">${deleteIcon}</div>
-            <div class="city" data-city-name="${location.name}" ${conditionImage ? `style="--condition-image: url(${conditionImage})"` : ""}>
+        <div class="city-wrapper__delete" data-city-id="${city}">${deleteIcon}</div>
+            <div class="city" data-city-name="${location.name}" data-city-id="${city}" ${conditionImage ? `style="--condition-image: url(${conditionImage})"` : ""}>
               <div class="city__left-column">
                 <h2 class="city__name">${location.name}</h2>
                 <div class="city__country">${location.country}</div>
@@ -84,13 +85,60 @@ async function getCityListHtml() {
     `;
 }
 
+function renderSearchResults(searchResults) {
+  const searchResultsElements = searchResults.map(
+    (result) => `
+    <div class="search-result" data-city-name="${result.name}" data-city-id="${result.id}">
+      <h3 class="search-result__name">${result.name}</h3>
+      <p class="search-result__country">${result.country}</p>
+    </div>
+  `,
+  );
+
+  const searchResultsHtml = searchResultsElements.join("");
+
+  const searchResultsDiv = document.querySelector(".main-menu__search-results");
+
+  searchResultsDiv.innerHTML = searchResultsHtml;
+}
+
+function registerSearchResultEventListeners() {
+  const searchResults = document.querySelectorAll(".search-result");
+
+  searchResults.forEach((searchResult) => {
+    searchResult.addEventListener("click", () => {
+      const cityName = searchResult.getAttribute("data-city-name");
+      const cityId = searchResult.getAttribute("data-city-id");
+      loadDetailView(cityName, cityId);
+    });
+  });
+}
+
+function renderSearchResultsLoading() {
+  const searchResultsDiv = document.querySelector(".main-menu__search-results");
+  searchResultsDiv.innerHTML = `<div class="search-results">Suche läuft...</div>`;
+}
+
+function bodyClickHandler(e) {
+  const searchWrapper = document.querySelector(".main-menu__search-bar");
+  if (!searchWrapper) {
+    document.removeEventListener("click", bodyClickHandler);
+    return;
+  }
+
+  if (!searchWrapper.contains(e.target)) {
+    const searchResults = document.querySelector(".main-menu__search-results");
+    searchResults.classList.add("main-menu__search-results--hidden");
+  }
+}
+
 function registerEventListeners() {
   const editButton = document.querySelector(".main-menu__edit");
   const deleteButtons = document.querySelectorAll(".city-wrapper__delete");
 
   deleteButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      removeCityFromFavorites(btn.getAttribute("data-city-name"));
+      removeCityFromFavorites(btn.getAttribute("data-city-id"));
       btn.parentElement.remove();
     });
   });
@@ -113,12 +161,35 @@ function registerEventListeners() {
     }
   });
 
+  const searchbar = document.querySelector(".main-menu__search-input");
+  searchbar.addEventListener(
+    "input",
+    debounce(async (e) => {
+      const q = e.target.value;
+      let searchResults = [];
+      if (q.length > 1) {
+        renderSearchResultsLoading();
+
+        searchResults = await searchLocation(q);
+      }
+
+      renderSearchResults(searchResults);
+      registerSearchResultEventListeners();
+    }, 500),
+  );
+
+  document.addEventListener("click", bodyClickHandler);
+  searchbar.addEventListener("focusin", () => {
+    const searchResults = document.querySelector(".main-menu__search-results");
+    searchResults.classList.remove("main-menu__search-results--hidden");
+  });
+
   const cities = document.querySelectorAll(".city");
   cities.forEach((city) => {
     city.addEventListener("click", () => {
       const cityName = city.getAttribute("data-city-name");
-      console.log(cityName);
-      loadDetailView(cityName);
+      const cityId = city.getAttribute("data-city-id");
+      loadDetailView(cityName, cityId);
     });
   });
 }
