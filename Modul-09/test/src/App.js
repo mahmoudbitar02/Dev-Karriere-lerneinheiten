@@ -1,18 +1,27 @@
-import logo from "./logo.svg";
 import "./App.css";
+
+function Button(props) {
+  console.log(props);
+  return (
+    <button type="button">
+      {props.text} + {props.count}
+    </button>
+  );
+}
+
+function Button2({ text, count }) {
+  return (
+    <button type="button">
+      {text} + {count}
+    </button>
+  );
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit Hallo <code>src/App.js</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
+      <Button text="Klick mich!" count={0} />
+      <Button2 text="Klick mich!" count={10} />
     </div>
   );
 }
