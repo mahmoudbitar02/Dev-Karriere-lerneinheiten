@@ -1,0 +1,11 @@
+button {
+  background-color: var(--secondary);
+  border: none;
+  border-radius: 5px;
+  padding: 0.5em;
+}
+
+button:hover {
+  filter: brightness(0.8);
+  cursor: pointer;
+}

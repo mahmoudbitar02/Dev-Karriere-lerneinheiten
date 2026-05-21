@@ -1,0 +1,9 @@
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary);
+  padding: 0.5em;
+  border-radius: 5px;
+  box-shadow: 0 0px 10px 0px var(--dark-shade-shadow);
+}

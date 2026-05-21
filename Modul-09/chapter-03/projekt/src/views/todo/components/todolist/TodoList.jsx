@@ -1,9 +1,10 @@
 import TodoHeader from "../todoheader/TodoHeader";
 import TodoBody from "../todobody/TodoBody";
 import { useState } from "react";
+import "./TodoList.css";
 
 function TodoList() {
-  const [todos, setTodos] = useState([{ id: Math.random(), text: "Todo Item", done: false }]);
+  const [todos, setTodos] = useState([]);
   function handleCheckbox(todoItem) {
     const todoItemIndex = todos.findIndex((todo) => todo.id === todoItem.id);
     const updatedTodos = [...todos];
@@ -23,7 +24,7 @@ function TodoList() {
   }
 
   return (
-    <div>
+    <div className="todo-list">
       <TodoHeader addTodoItemToList={addTodoItemToList} />
       <TodoBody todos={todos} handleCheckbox={handleCheckbox} deleteTodoItemFromList={deleteTodoItemFromList} />
     </div>

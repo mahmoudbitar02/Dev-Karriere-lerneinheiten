@@ -1,11 +1,9 @@
-import TodoItem from "./todoitem/Todoitem";
-import TodoHeader from "./todoheader/TodoHeader";
-import TodoBody from "./todobody/TodoBody";
 import TodoList from "./todolist/TodoList";
+import "./Todo.css";
 
 function Todo() {
   return (
-    <div>
+    <div id="todo-view">
       <TodoList />
     </div>
   );
