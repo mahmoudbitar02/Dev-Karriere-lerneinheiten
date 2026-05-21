@@ -1,22 +1,12 @@
-import { useState } from "react";
 import TodoItem from "./todoitem/Todoitem";
 import TodoHeader from "./todoheader/TodoHeader";
+import TodoBody from "./todobody/TodoBody";
+import TodoList from "./todolist/TodoList";
 
 function Todo() {
-  const [todos, setTodos] = useState([{ id: Math.random(), text: "Todo Item", done: false }]);
-
-  function handleCheckbox(todoItem) {
-    const todoItemIndex = todos.findIndex((todo) => todo.id === todoItem.id);
-    const updatedTodos = [...todos];
-    updatedTodos.splice(todoItemIndex, 1, todoItem);
-    setTodos(updatedTodos);
-  }
   return (
     <div>
-      <TodoHeader />
-      {todos.map((todo) => (
-        <TodoItem todoItem={todo} handleCheckbox={handleCheckbox} />
-      ))}
+      <TodoList />
     </div>
   );
 }
