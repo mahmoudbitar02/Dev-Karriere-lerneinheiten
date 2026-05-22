@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 const students = [];
 const student = {
     name: "Mahmoud",
@@ -12,4 +10,5 @@ function addStudent(student) {
         console.log(`the ${student.name} has passd the exam`);
 }
 addStudent(student);
+export {};
 //# sourceMappingURL=index.js.map
