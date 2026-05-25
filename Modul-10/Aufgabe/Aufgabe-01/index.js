@@ -1,216 +1,212 @@
 const quiz = [
-  {
-    asked: false,
-    frage: "Was ist die Hauptstadt von Deutschland?",
-    antworten: [
-      { text: "Berlin", korrekt: true },
-      { text: "München", korrekt: false },
-      { text: "Hamburg", korrekt: false },
-      { text: "Köln", korrekt: false },
-    ],
-  },
-  {
-    asked: false,
-    frage: "Wie viele Kontinente gibt es auf der Erde?",
-    antworten: [
-      { text: "5", korrekt: false },
-      { text: "6", korrekt: false },
-      { text: "7", korrekt: true },
-      { text: "8", korrekt: false },
-    ],
-  },
-  {
-    asked: false,
-    frage: "Welches Tier ist das größte Landsäugetier?",
-    antworten: [
-      { text: "Elefant", korrekt: true },
-      { text: "Giraffe", korrekt: false },
-      { text: "Nashorn", korrekt: false },
-      { text: "Nilpferd", korrekt: false },
-    ],
-  },
-  {
-    asked: false,
-    frage: "Wie viele Tage hat ein Schaltjahr?",
-    antworten: [
-      { text: "365", korrekt: false },
-      { text: "366", korrekt: true },
-      { text: "364", korrekt: false },
-      { text: "360", korrekt: false },
-    ],
-  },
-  {
-    asked: false,
-    frage: "Welcher Planet ist der Sonne am nächsten?",
-    antworten: [
-      { text: "Merkur", korrekt: true },
-      { text: "Venus", korrekt: false },
-      { text: "Erde", korrekt: false },
-      { text: "Mars", korrekt: false },
-    ],
-  },
-  {
-    asked: false,
-    frage: "Wer malte die Mona Lisa?",
-    antworten: [
-      { text: "Leonardo da Vinci", korrekt: true },
-      { text: "Vincent van Gogh", korrekt: false },
-      { text: "Pablo Picasso", korrekt: false },
-      { text: "Claude Monet", korrekt: false },
-    ],
-  },
-  {
-    asked: false,
-    frage: "Welches Element hat das chemische Symbol O?",
-    antworten: [
-      { text: "Sauerstoff", korrekt: true },
-      { text: "Gold", korrekt: false },
-      { text: "Eisen", korrekt: false },
-      { text: "Wasserstoff", korrekt: false },
-    ],
-  },
-  {
-    asked: false,
-    frage: "Wie viele Minuten hat eine Stunde?",
-    antworten: [
-      { text: "30", korrekt: false },
-      { text: "45", korrekt: false },
-      { text: "60", korrekt: true },
-      { text: "90", korrekt: false },
-    ],
-  },
-  {
-    asked: false,
-    frage: "Welches Land hat die größte Bevölkerung?",
-    antworten: [
-      { text: "China", korrekt: false },
-      { text: "Indien", korrekt: true },
-      { text: "USA", korrekt: false },
-      { text: "Russland", korrekt: false },
-    ],
-  },
-  {
-    asked: false,
-    frage: "Wofür steht die Abkürzung CPU?",
-    antworten: [
-      { text: "Central Processing Unit", korrekt: true },
-      { text: "Computer Personal Unit", korrekt: false },
-      { text: "Central Program Utility", korrekt: false },
-      { text: "Control Processing User", korrekt: false },
-    ],
-  },
+    {
+        asked: false,
+        question: "Was ist die Hauptstadt von Deutschland?",
+        answers: [
+            { text: "Berlin", correct: true },
+            { text: "München", correct: false },
+            { text: "Hamburg", correct: false },
+            { text: "Köln", correct: false },
+        ],
+    },
+    {
+        asked: false,
+        question: "Wie viele Kontinente gibt es auf der Erde?",
+        answers: [
+            { text: "5", correct: false },
+            { text: "6", correct: false },
+            { text: "7", correct: true },
+            { text: "8", correct: false },
+        ],
+    },
+    {
+        asked: false,
+        question: "Welches Tier ist das größte Landsäugetier?",
+        answers: [
+            { text: "Elefant", correct: true },
+            { text: "Giraffe", correct: false },
+            { text: "Nashorn", correct: false },
+            { text: "Nilpferd", correct: false },
+        ],
+    },
+    {
+        asked: false,
+        question: "Wie viele Tage hat ein Schaltjahr?",
+        answers: [
+            { text: "365", correct: false },
+            { text: "366", correct: true },
+            { text: "364", correct: false },
+            { text: "360", correct: false },
+        ],
+    },
+    {
+        asked: false,
+        question: "Welcher Planet ist der Sonne am nächsten?",
+        answers: [
+            { text: "Merkur", correct: true },
+            { text: "Venus", correct: false },
+            { text: "Erde", correct: false },
+            { text: "Mars", correct: false },
+        ],
+    },
+    {
+        asked: false,
+        question: "Wer malte die Mona Lisa?",
+        answers: [
+            { text: "Leonardo da Vinci", correct: true },
+            { text: "Vincent van Gogh", correct: false },
+            { text: "Pablo Picasso", correct: false },
+            { text: "Claude Monet", correct: false },
+        ],
+    },
+    {
+        asked: false,
+        question: "Welches Element hat das chemische Symbol O?",
+        answers: [
+            { text: "Sauerstoff", correct: true },
+            { text: "Gold", correct: false },
+            { text: "Eisen", correct: false },
+            { text: "Wasserstoff", correct: false },
+        ],
+    },
+    {
+        asked: false,
+        question: "Wie viele Minuten hat eine Stunde?",
+        answers: [
+            { text: "30", correct: false },
+            { text: "45", correct: false },
+            { text: "60", correct: true },
+            { text: "90", correct: false },
+        ],
+    },
+    {
+        asked: false,
+        question: "Welches Land hat die größte Bevölkerung?",
+        answers: [
+            { text: "China", correct: false },
+            { text: "Indien", correct: true },
+            { text: "USA", correct: false },
+            { text: "Russland", correct: false },
+        ],
+    },
+    {
+        asked: false,
+        question: "Wofür steht die Abkürzung CPU?",
+        answers: [
+            { text: "Central Processing Unit", correct: true },
+            { text: "Computer Personal Unit", correct: false },
+            { text: "Central Program Utility", correct: false },
+            { text: "Control Processing User", correct: false },
+        ],
+    },
 ];
-
-document.addEventListener("DOMContentLoaded", loadFromLocalStorage);
-
-const wrapper = document.getElementById("wrapper");
-
-let answerSelected = false;
-let score = 0;
+document.addEventListener("DOMContentLoaded", () => {
+    loadFromLocalStorage();
+    document.getElementById("show-sulotion").addEventListener("click", showAnswer);
+    document.getElementById("next-question").addEventListener("click", nextQuestion);
+    document.getElementById("reset").addEventListener("click", resetQuiz);
+});
+const storedQuestions = JSON.parse(localStorage.getItem("askedQuestions")) || [];
 let currentQuestion = null;
-let askedQuestions = [];
-
+let score = 0;
+const wrapper = document.getElementById("wrapper");
 function getRandomQuestion() {
-  const unaskedQuestions = quiz.filter((q) => !q.asked);
-  currentQuestion = quiz.splice(quiz.indexOf(unaskedQuestions[Math.floor(Math.random() * unaskedQuestions.length)]), 1)[0];
-  console.log(quiz);
-  return currentQuestion;
+    const randomQuestion = quiz.filter((question) => question.asked === false); // filtert die questionn, die noch nicht gestellt wurden
+    const unaskedQuestion = Math.floor(Math.random() * randomQuestion.length); // generiert eine zufällige Zahl zwischen 0 und der Länge des gefilterten Arrays
+    if (randomQuestion.length === 0)
+        return null;
+    console.log(randomQuestion[unaskedQuestion]);
+    return randomQuestion[unaskedQuestion];
 }
-
 function createQuestion() {
-  getRandomQuestion();
-
-  wrapper.innerHTML = "";
-
-  const question = document.createElement("h2");
-  question.classList.add("title");
-  const titleText = document.createTextNode(currentQuestion.frage);
-  question.appendChild(titleText);
-  wrapper.appendChild(question);
-
-  createButtons();
+    currentQuestion = getRandomQuestion();
+    // create question
+    if (!currentQuestion) {
+        wrapper.innerHTML = "<h1>Quiz beendet 🎉</h1>";
+        wrapper.innerHTML += `<p>Your Score: ${score} / ${quiz.length}</p>`;
+    }
+    else {
+        const title = document.createElement("h1");
+        title.classList.add("title");
+        const titleText = document.createTextNode(currentQuestion.question);
+        title.appendChild(titleText);
+        wrapper.innerHTML = "";
+        wrapper.appendChild(title);
+        createButtons(currentQuestion);
+    }
 }
-
-function createButtons() {
-  answerSelected = false;
-
-  const buttonsDiv = document.createElement("div");
-  buttonsDiv.classList.add("buttons");
-  currentQuestion.antworten.forEach((answer) => {
-    const button = document.createElement("button");
-    button.classList.add("btn");
-    const buttonText = document.createTextNode(answer.text);
-    button.appendChild(buttonText);
-    buttonsDiv.appendChild(button);
-
-    button.addEventListener("click", () => {
-      hadelButtonClick(answer, button);
+function createButtons(currentQuestion) {
+    const buttonsDiv = document.createElement("div");
+    buttonsDiv.classList.add("buttons");
+    currentQuestion.answers.forEach((antwort, index) => {
+        const button = document.createElement("button");
+        button.classList.add("btn");
+        button.id = index;
+        const buttonText = document.createTextNode(antwort.text);
+        button.appendChild(buttonText);
+        button.addEventListener("click", () => {
+            handelButtonClick(antwort, button);
+        });
+        buttonsDiv.appendChild(button);
     });
-  });
-
-  wrapper.appendChild(buttonsDiv);
-  console.log(currentQuestion);
+    wrapper.appendChild(buttonsDiv);
 }
-
-function hadelButtonClick(answer, button) {
-  //   const allButtons = document.querySelectorAll(".btn");
-
-  //   allButtons.forEach((btn) => {
-  //     btn.disabled = true;
-  //     button.classList.add(answer.korrekt ? "btn-correct" : "btn-not-correct");
-  //     if (answer.korrekt) score++;
-  //   });
-
-  answerSelected = true;
-  if (!answer.korrekt) button.classList.add("btn-not-correct");
-  else score++;
-
-  lösungZeigen();
-
-  currentQuestion.asked = true;
-  askedQuestions.push(currentQuestion);
+function handelButtonClick(antwort, button) {
+    if (!antwort.correct) {
+        // alert("Falsch! Versuche es nochmal.");
+        button.classList.add("btn-not-correct");
+        button.textContent += " 😔";
+    }
+    else if (antwort.correct) {
+        score++;
+        // alert("Richtig! Gut gemacht.");
+        button.classList.add("btn-correct");
+        button.textContent += " 🎉";
+    }
+    showAnswer();
+    saveToLocalStorage();
 }
-
-function lösungZeigen() {
-  const allButtons = document.querySelectorAll(".btn");
-
-  allButtons.forEach((btn) => {
-    btn.disabled = true;
-    const answer = currentQuestion.antworten.find((answer) => answer.text === btn.textContent);
-    if (answer.korrekt) btn.classList.add("btn-correct");
-  });
-}
-
-function weiter() {
-  const allButtons = document.querySelectorAll(".btn");
-  if (!answerSelected) {
-    alert("Bitte wähle eine Antwort aus, bevor du fortfährst!");
-    return;
-  }
-
-  allButtons.forEach((btn) => {});
-  if (quiz.length > 0) {
+function nextQuestion() {
     createQuestion();
-  } else {
-    wrapper.innerHTML = `<h2 class="title">Quiz beendet! Deine Punktzahl: ${score / currentQuestion.antworten.length}/${askedQuestions.length}</h2>`;
-  }
-  saveToLocalStorage();
 }
-
-function resetQuiz() {
-  askedQuestions.forEach((question) => {
-    question.asked = false;
-    quiz.push(question);
-  });
-  askedQuestions = [];
-  score = 0;
-  console.log(quiz);
+function showAnswer() {
+    const allButtons = document.querySelectorAll(".btn");
+    allButtons.forEach((btn, index) => {
+        btn.disabled = true;
+        if (currentQuestion.answers[index].correct) {
+            btn.classList.add("btn-correct");
+            currentQuestion.asked = true;
+        }
+    });
+    saveToLocalStorage();
 }
-
-function loadFromLocalStorage() {}
-
 function saveToLocalStorage() {
-  localStorage.setItem("askedQuestions", JSON.stringify(askedQuestions));
+    localStorage.setItem("askedQuestions", JSON.stringify(quiz.filter((question) => question.asked === true)));
+    localStorage.setItem("score", String(score));
+    console.log("saved to local storage");
 }
-
-createQuestion();
+function loadFromLocalStorage() {
+    if (storedQuestions) {
+        storedQuestions.forEach((question) => {
+            const quizQuestion = quiz.find((q) => q.question === question.question);
+            if (quizQuestion) {
+                quizQuestion.asked = true;
+            }
+        });
+    }
+    if (localStorage.getItem("score")) {
+        score = parseInt(localStorage.getItem("score"));
+    }
+    createQuestion();
+}
+function resetQuiz() {
+    quiz.forEach((question) => {
+        question.asked = false;
+    });
+    localStorage.removeItem("askedQuestions");
+    localStorage.removeItem("score");
+    score = 0;
+    createQuestion();
+}
+export {};
+//# sourceMappingURL=index.js.map

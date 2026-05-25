@@ -1,5 +1,5 @@
 // TODO 10: Fragen Struktur
-
+import type { Question, Answer } from "./Question";
 const questions = [
   {
     id: 1,
@@ -79,9 +79,9 @@ let currentQuestion = questions[0];
 let currentQuestionPointer = -1;
 
 // TODO 11: Fragen Rendern
-function renderQuestion(question) {
+function renderQuestion(question: Question) {
   const questionDiv = document.createElement("div");
-  questionDiv.id = question.id;
+  questionDiv.id = String(question.id);
   questionDiv.classList.add("question");
 
   const questiotitle = document.createElement("div");
@@ -95,7 +95,7 @@ function renderQuestion(question) {
   // [a,b,c,d]
 
   // zufällige reinfolge der Antworten
-  const answerCopy = [];
+  const answerCopy: Answer[] = [];
   question.answers.forEach((answer) => answerCopy.push(answer));
   while (answerCopy.length > 0) {
     const randomPointer = Math.floor(Math.random() * answerCopy.length);
@@ -141,7 +141,7 @@ function nextQuestion() {
 }
 
 // TODO 13: Frage beantworten Logik
-function validate(answerId) {
+function validate(answerId: string) {
   const correctAnswer = currentQuestion.answers.find((answer) => answer.korrekt);
 
   if (correctAnswer.id === answerId) {
