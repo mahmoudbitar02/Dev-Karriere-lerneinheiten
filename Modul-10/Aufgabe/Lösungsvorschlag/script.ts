@@ -1,6 +1,6 @@
 // TODO 10: Fragen Struktur
 import type { Question, Answer } from "./Question";
-const questions = [
+const questions: Question[] = [
   {
     id: 1,
     question: "Was ist die Hauptstadt von Deutschland?",
@@ -75,8 +75,8 @@ const questions = [
   },
 ];
 
-let currentQuestion = questions[0];
-let currentQuestionPointer = -1;
+let currentQuestion: Question | undefined = questions[0];
+let currentQuestionPointer: number = -1;
 
 // TODO 11: Fragen Rendern
 function renderQuestion(question: Question) {
@@ -101,6 +101,7 @@ function renderQuestion(question: Question) {
     const randomPointer = Math.floor(Math.random() * answerCopy.length);
     const answer = answerCopy.splice(randomPointer, 1)[0];
 
+    if (!answer) continue;
     const answerDiv = document.createElement("button");
     answerDiv.id = answer.id;
     // answerDiv.setAttribute("onclick", `validate('${answer.id}')`);
@@ -123,12 +124,12 @@ function renderQuestion(question: Question) {
 
   questionDiv.appendChild(questiotitle);
   questionDiv.appendChild(questionAnswers);
-  document.getElementById("display-question").appendChild(questionDiv);
+  document.getElementById("display-question")?.appendChild(questionDiv);
 }
 
 // TODO 12: "Next" Logik
 function nextQuestion() {
-  if (currentQuestion) document.getElementById(String(currentQuestion.id)).remove();
+  if (currentQuestion) document.getElementById(String(currentQuestion.id))?.remove();
   if (currentQuestionPointer + 1 < questions.length) {
     currentQuestionPointer++;
 
@@ -137,33 +138,40 @@ function nextQuestion() {
     currentQuestionPointer = 0;
     currentQuestion = questions[currentQuestionPointer];
   }
+  if (!currentQuestion) return;
   renderQuestion(currentQuestion);
 }
 
 // TODO 13: Frage beantworten Logik
 function validate(answerId: string) {
+  if (!currentQuestion) return;
   const correctAnswer = currentQuestion.answers.find((answer) => answer.korrekt);
 
+  if (!correctAnswer) return;
   if (correctAnswer.id === answerId) {
     // alert("Richtig!");
 
-    document.getElementById(answerId).classList.add("correct");
+    document.getElementById(answerId)?.classList.add("correct");
   } else {
     alert("Falsch!");
-    document.getElementById(answerId).classList.add("incorrect");
-    document.getElementById(correctAnswer.id).classList.add("correct");
+    document.getElementById(answerId)?.classList.add("incorrect");
+    document.getElementById(correctAnswer.id)?.classList.add("correct");
   }
 }
 
 // TODO 14: Lösung anzeigen
 
 function showSolution() {
+  if (!currentQuestion) return;
   const correctAnswer = currentQuestion.answers.find((answer) => answer.korrekt);
-  document.getElementById(correctAnswer.id).classList.add("correct");
+  if (!correctAnswer) return;
+  document.getElementById(correctAnswer.id)?.classList.add("correct");
 }
 
 window.addEventListener("DOMContentLoaded", () => {
+  if (!currentQuestion) return;
   renderQuestion(currentQuestion);
-  document.getElementById("showSolution").addEventListener("click", showSolution);
-  document.getElementById("showNextQuestion").addEventListener("click", nextQuestion);
+  console.log(currentQuestion);
+  document.getElementById("showSolution")?.addEventListener("click", showSolution);
+  document.getElementById("showNextQuestion")?.addEventListener("click", nextQuestion);
 });
