@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "./assets/vite.svg";
 import heroImg from "./assets/hero.png";
@@ -6,6 +6,19 @@ import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [arrayState, setArrayState] = useState([1]);
+  const [objectState, setObjectState] = useState({ attribute: "a" });
+
+  useEffect(() => {
+    console.log(count);
+    console.log(arrayState);
+    console.log(objectState);
+    return () => {
+      console.log(count, "RETURNED EFFECT");
+      console.log(arrayState, "RETURNED EFFECT");
+      console.log(objectState, "RETURNED EFFECT");
+    };
+  }, [count, arrayState, objectState]);
 
   return (
     <>
@@ -23,6 +36,12 @@ function App() {
         </div>
         <button type="button" className="counter" onClick={() => setCount((count) => count + 1)}>
           Count is {count}
+        </button>
+        <button type="button" className="counter" onClick={() => setArrayState([...arrayState, 1])}>
+          array Lenght is {arrayState}
+        </button>
+        <button type="button" className="counter" onClick={() => setObjectState({ ...objectState, attribute: "b" })}>
+          object attribute is {objectState.attribute}
         </button>
       </section>
 
