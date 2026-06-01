@@ -1,23 +1,33 @@
 import { useMemo, useState } from "react";
-console.log("COMPONENT RENDER");
-function MemoTest() {
-  const [count, setCount] = useState(0);
-  const [text, setText] = useState("");
 
-  function testMemo(num: number) {
-    console.log("Rechne...");
-    let result = 0;
-    for (let i = 0; i < 1000000000; i++) {
-      result += num;
-    }
-    return result;
+function testMemo(num: number) {
+  console.log("MemoTest -> Rechne...");
+  let result = 0;
+
+  for (let i = 0; i < 1000000000; i++) {
+    result += num;
   }
 
-  const value = useMemo(() => {
-    console.log("memo wird ausgeführt");
+  return result;
+}
 
+function InputField() {
+  const [text, setText] = useState("");
+  console.log("InputField -> Render");
+
+  return <input value={text} onChange={(e) => setText(e.target.value)} placeholder="Tippe hier" />;
+}
+
+function MemoTest() {
+  const [count, setCount] = useState(0);
+
+  console.log("MemoTest -> Render");
+
+  const value = useMemo(() => {
+    console.log("MemoTest -> useMemo");
     return testMemo(count);
   }, [count]);
+  console.log("after memo ");
 
   return (
     <div>
@@ -25,7 +35,7 @@ function MemoTest() {
 
       <button onClick={() => setCount(count + 1)}>+ Count</button>
 
-      <input value={text} onChange={(e) => setText(e.target.value)} placeholder="Tippe hier" />
+      <InputField />
     </div>
   );
 }
