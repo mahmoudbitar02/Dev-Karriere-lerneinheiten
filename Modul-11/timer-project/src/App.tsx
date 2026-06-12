@@ -16,19 +16,11 @@ function useFormInput() {
 
 function App() {
   const { value, handleInputChangeEvent } = useFormInput();
-  const [starTime, setStartTime] = useState(0);
+  const [timeStart, setTimeStart] = useState(0);
   const [now, setNow] = useState(0);
   const [isPause, setIsPause] = useState(false);
 
   const intervalId = useRef(0);
-
-  useEffect(() => {
-    if ((now - starTime) / 1000 >= value) {
-      clearInterval(intervalId.current);
-      setIsPause(false);
-      setNow(starTime + value * 1000);
-    }
-  }, [value, starTime, now]);
 
   function interval() {
     intervalId.current = setInterval(() => {
@@ -36,24 +28,34 @@ function App() {
     }, 10);
   }
 
+  useEffect(() => {
+    if ((now - timeStart) / 1000 >= value) {
+      clearInterval(intervalId.current);
+      setIsPause(false);
+      setNow(timeStart + value * 1000);
+    }
+  }, [timeStart, value, now]);
+
   function handleStart() {
     clearInterval(intervalId.current);
+
     if (!isPause) {
       const dateNow = Date.now();
-      setStartTime(dateNow);
+      setTimeStart(dateNow);
       setNow(dateNow);
       interval();
     } else {
-      const elapsedTime = now - starTime;
+      const elipsedTime = now - timeStart;
+      console.log();
       const dateNow = Date.now();
-      setNow(Date.now());
-      setStartTime(dateNow - elapsedTime);
+      setNow(Date.now);
+      setTimeStart(dateNow - elipsedTime);
       setIsPause(false);
       interval();
     }
   }
 
-  const secondsLeft = value - (now - starTime) / 1000;
+  const secondsLeft = value - (now - timeStart) / 1000;
 
   function handlePause() {
     setIsPause(true);
@@ -63,10 +65,9 @@ function App() {
   function handleReset() {
     clearInterval(intervalId.current);
     setIsPause(false);
-    setStartTime(0);
     setNow(0);
+    setTimeStart(0);
   }
-
   return (
     <div className="body">
       <div className="app">
