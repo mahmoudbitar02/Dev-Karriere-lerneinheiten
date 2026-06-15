@@ -5,6 +5,10 @@ import SecondRoute from "./routes/secoundroute/SecondRoute";
 import Root from "./routes/Root";
 import ErrorPage from "./routes/error/ErrorPage";
 import Index from "./routes/Index";
+import Edit from "./routes/edit/Edit";
+import FirstRouteDetail from "./routes/detail/FirstRouteDetail";
+
+const testPath = "first";
 function App() {
   const router = createBrowserRouter([
     {
@@ -14,8 +18,16 @@ function App() {
 
       children: [
         { index: true, element: <Index /> },
-        { path: "/first", element: <FirstRoute /> },
-        { path: "/second", element: <SecondRoute /> },
+        {
+          path: testPath,
+          element: <FirstRoute />,
+        },
+        {
+          path: "first/:itemId",
+          element: <FirstRouteDetail />,
+          children: [{ path: "edit", element: <Edit /> }],
+        },
+        { path: "second", element: <SecondRoute /> },
       ],
     },
   ]);
