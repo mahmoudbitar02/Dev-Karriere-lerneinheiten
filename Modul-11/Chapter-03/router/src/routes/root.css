@@ -1,0 +1,21 @@
+.root-body {
+  display: flex;
+  flex: 1 0 100%;
+}
+
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  border: solid;
+  width: 360px;
+  gap: 0.5rem;
+}
+
+.main-container {
+  border: solid;
+  width: 100%;
+}
+
+.sidebar-item {
+  width: 100%;
+}
