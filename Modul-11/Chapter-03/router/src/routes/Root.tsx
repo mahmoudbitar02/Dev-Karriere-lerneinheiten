@@ -1,18 +1,18 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import "./root.css";
 function Root() {
   return (
     <div className="root-body">
       <nav className="sidebar-container">
-        <a href="/">
+        <Link to="/">
           <button className="sidebar-item">Home</button>
-        </a>
-        <a href="/first">
+        </Link>
+        <Link to="/first">
           <button className="sidebar-item">First</button>
-        </a>
-        <a href="/second">
+        </Link>
+        <Link to="/second">
           <button className="sidebar-item">second</button>
-        </a>
+        </Link>
       </nav>
       <main className="main-container">
         <Outlet />

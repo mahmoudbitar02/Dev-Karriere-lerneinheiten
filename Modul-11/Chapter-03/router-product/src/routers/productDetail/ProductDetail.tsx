@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function ProductDetail() {
   const { id } = useParams<string>();
-  const product = products.find((product) => product.id === parseInt(id || ""));
+  const product = products.find((product) => product.id === Number(id || ""));
   if (!product) return <div> Products nicht gefunden</div>;
 
   return (

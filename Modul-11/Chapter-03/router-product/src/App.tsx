@@ -23,6 +23,17 @@ function App() {
   ]);
 
   return <RouterProvider router={router} />;
+
+  // return (
+  //   <BrowserRouter>
+  //     <Routes>
+  //       <Route path="/" element={<ProductList />} />
+  //       <Route path="/products" element={<ProductList />} />
+  //       <Route path="/products/:id" element={<ProductDetail />} />
+  //       <Route path="/products/:id/edit" element={<ProductEdit />} />
+  //     </Routes>
+  //   </BrowserRouter>
+  // );
 }
 
 export default App;
