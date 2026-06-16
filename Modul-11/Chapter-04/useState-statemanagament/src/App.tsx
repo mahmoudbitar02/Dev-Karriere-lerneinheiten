@@ -30,11 +30,12 @@ import Index from "./routes/Index";
 import Edit from "./routes/edit/Edit";
 import FirstRouteDetail from "./routes/detail/FirstRouteDetail";
 import { ClickerContext } from "./context/ClickerContext";
-import { useState } from "react";
+import { useReducer } from "react";
+import { clickerReducer } from "./hook/ClickerReducer";
 
 const testPath = "first";
 function App() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useReducer(clickerReducer, 0);
   const router = createBrowserRouter([
     {
       path: "/",

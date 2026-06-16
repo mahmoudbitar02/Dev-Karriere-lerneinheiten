@@ -6,7 +6,7 @@ function SecondRoute() {
   return (
     <>
       <p>button wurde {count} mal geklickt...</p>
-      <button onClick={() => setCount(count + 1)}>{count}</button>
+      <button onClick={() => setCount({ type: "INCREMENT", value: 1 })}>{count}</button>
       Hello from second Route
     </>
   );

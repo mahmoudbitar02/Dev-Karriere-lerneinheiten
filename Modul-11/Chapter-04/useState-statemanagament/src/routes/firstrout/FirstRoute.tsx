@@ -6,7 +6,7 @@ function FirstRoute() {
   const { count, setCount } = useContext(ClickerContext);
   return (
     <>
-      <button onClick={() => setCount(count + 1)}>count: {count}</button>
+      <button onClick={() => setCount({ type: "DECREMENT", value: 1 })}>count: {count}</button>
       Hello from first Route "Products List" <Outlet />
     </>
   );
