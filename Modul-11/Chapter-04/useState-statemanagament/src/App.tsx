@@ -29,13 +29,16 @@ import ErrorPage from "./routes/error/ErrorPage";
 import Index from "./routes/Index";
 import Edit from "./routes/edit/Edit";
 import FirstRouteDetail from "./routes/detail/FirstRouteDetail";
-import { ClickerContext } from "./context/ClickerContext";
+import { ClickerContext, ClickerContext2 } from "./context/ClickerContext";
 import { useReducer } from "react";
-import { clickerReducer } from "./hook/ClickerReducer";
+// import { clickerReducer } from "./hook/ClickerReducer";
+import ClickerReducer from "./hook/ClickerReducer2";
 
 const testPath = "first";
 function App() {
-  const [count, setCount] = useReducer(clickerReducer, 0);
+  // const [count, setCount] = useReducer(clickerReducer, 0);
+
+  const [count2, setCount2] = useReducer(ClickerReducer, 0);
   const router = createBrowserRouter([
     {
       path: "/",
@@ -59,9 +62,9 @@ function App() {
   ]);
 
   return (
-    <ClickerContext.Provider value={{ count, setCount }}>
+    <ClickerContext2.Provider value={{ count2, setCount2 }}>
       <RouterProvider router={router} />
-    </ClickerContext.Provider>
+    </ClickerContext2.Provider>
   );
 }
 
