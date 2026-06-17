@@ -33,6 +33,8 @@ import { ClickerContext, ClickerContext2 } from "./context/ClickerContext";
 import { useReducer } from "react";
 // import { clickerReducer } from "./hook/ClickerReducer";
 import ClickerReducer from "./hook/ClickerReducer2";
+import User from "./routes/user/User";
+import Posts from "./routes/posts/Posts";
 
 const testPath = "first";
 function App() {
@@ -57,6 +59,8 @@ function App() {
           children: [{ path: "edit", element: <Edit /> }],
         },
         { path: "second", element: <SecondRoute /> },
+        { path: "user", element: <User /> },
+        { path: "posts", element: <Posts /> },
       ],
     },
   ]);

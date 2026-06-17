@@ -13,6 +13,12 @@ function Root() {
         <Link to="/second">
           <button className="sidebar-item">second</button>
         </Link>
+        <Link to="/user">
+          <button className="sidebar-item">user</button>
+        </Link>
+        <Link to="/posts">
+          <button className="sidebar-item">posts</button>
+        </Link>
       </nav>
       <main className="main-container">
         <Outlet />
