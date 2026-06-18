@@ -22,6 +22,9 @@ function Root() {
         <Link to="/contact">
           <button className="sidebar-item">Contact</button>
         </Link>
+        <Link to="/contactReducer">
+          <button className="sidebar-item">Contact Reducer</button>
+        </Link>
       </nav>
       <main className="main-container">
         <Outlet />

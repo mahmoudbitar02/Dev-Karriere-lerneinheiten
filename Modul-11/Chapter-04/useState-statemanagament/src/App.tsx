@@ -36,6 +36,7 @@ import ClickerReducer from "./hook/ClickerReducer2";
 import User from "./routes/user/User";
 import Posts from "./routes/posts/Posts";
 import Contact from "./routes/contacts/Contact";
+import ContactsReducer from "./routes/contactReducer/ContactsReducer";
 
 const testPath = "first";
 function App() {
@@ -63,6 +64,7 @@ function App() {
         { path: "user", element: <User /> },
         { path: "posts", element: <Posts /> },
         { path: "contact", element: <Contact /> },
+        { path: "contactReducer", element: <ContactsReducer /> },
       ],
     },
   ]);
