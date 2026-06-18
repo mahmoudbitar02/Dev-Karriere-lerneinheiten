@@ -19,6 +19,9 @@ function Root() {
         <Link to="/posts">
           <button className="sidebar-item">posts</button>
         </Link>
+        <Link to="/contact">
+          <button className="sidebar-item">Contact</button>
+        </Link>
       </nav>
       <main className="main-container">
         <Outlet />

@@ -35,6 +35,7 @@ import { useReducer } from "react";
 import ClickerReducer from "./hook/ClickerReducer2";
 import User from "./routes/user/User";
 import Posts from "./routes/posts/Posts";
+import Contact from "./routes/contacts/Contact";
 
 const testPath = "first";
 function App() {
@@ -61,6 +62,7 @@ function App() {
         { path: "second", element: <SecondRoute /> },
         { path: "user", element: <User /> },
         { path: "posts", element: <Posts /> },
+        { path: "contact", element: <Contact /> },
       ],
     },
   ]);
