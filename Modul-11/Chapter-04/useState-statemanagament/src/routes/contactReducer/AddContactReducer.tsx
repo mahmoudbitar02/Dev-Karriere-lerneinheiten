@@ -1,8 +1,8 @@
-import { useReducer } from "react";
-import { contactFormReducer, initialState, type FormContact } from "../../hook/contactReducer";
+import { useContext, useReducer } from "react";
+import { contactContext, contactFormReducer, initialState, type FormContact } from "../../hook/contactReducer";
 import axios from "axios";
 
-function AddContactReducer({ dispatch }: any) {
+function AddContactReducer() {
   const [formContact, formContactDispatch] = useReducer(contactFormReducer, initialState);
 
   function handleChangeInput(field: keyof FormContact) {
@@ -19,7 +19,7 @@ function AddContactReducer({ dispatch }: any) {
       phone: [{ label: formContact.phoneLabel, number: formContact.phoneNumber }],
     });
 
-    dispatch({ type: "ADD_CONTACT", payload: response.data });
+    contactDispatch({ type: "ADD_CONTACT", payload: response.data });
 
     formContactDispatch({ type: "RESET" });
   }

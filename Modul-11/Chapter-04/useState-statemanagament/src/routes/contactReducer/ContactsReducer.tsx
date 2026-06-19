@@ -2,6 +2,7 @@ import { useEffect, useReducer } from "react";
 import { contactReducer } from "../../hook/contactReducer";
 import axios from "axios";
 import AddContactReducer from "./AddContactReducer";
+import { contactContext } from "../../hook/contactReducer";
 
 function ContactsReducer() {
   const [contacts, contactDispatch] = useReducer(contactReducer, []);
@@ -63,12 +64,7 @@ function ContactsReducer() {
       );
     }
   }
-  return (
-    <div>
-      <AddContactReducer dispatch={contactDispatch} />
-      {displayContacts()}
-    </div>
-  );
+  return <div></div>;
 }
 
 export default ContactsReducer;
