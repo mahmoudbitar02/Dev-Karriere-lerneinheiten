@@ -1,51 +1,210 @@
-// type State = {
-//   firstName: string;
-//   lastName: string;
-//   email: string;
-//   city: string;
-//   street: string;
-//   postcode: string;
-//   houseNumber: string;
-//   phoneLabel: string;
-//   phoneNumber: string;
-// };
+import axios from "axios";
+import { useReducer } from "react";
+import contactFormReducer, { initialState, type FormState } from "../../hook/contactReducer";
 
-// type Action =
-//   | { type: "SET_FIRSTNAME"; payload: string }
-//   | { type: "SET_LASTNAME"; payload: string }
-//   | { type: "SET_EMAIL"; payload: string }
-//   | { type: "SET_CITY"; payload: string }
-//   | { type: "SET_STREET"; payload: string }
-//   | { type: "SET_POSTCODE"; payload: string }
-//   | { type: "SET_HOUSENUMBER"; payload: string }
-//   | { type: "SET_PHNOELABEL"; payload: string }
-//   | { type: "SET_PHONENUMBER"; payload: string }
-//   | { type: "RESET"; payload: string };
+function AddContactReducer({ dispatch }: any) {
+  const [state, formDispatch] = useReducer(contactFormReducer, initialState);
 
-// export function AddContactReducer(state: State, action: Action) {
-//   switch (action.type) {
-//     case "SET_FIRSTNAME":
-//       return { ...state, firstName: action.payload };
-//     case "SET_LASTNAME":
-//       return { ...state, lastName: action.payload };
-//     case "SET_EMAIL":
-//       return { ...state, email: action.payload };
-//     case "SET_CITY":
-//       return { ...state, city: action.payload };
-//     case "SET_STREET":
-//       return { ...state, street: action.payload };
-//     case "SET_POSTCODE":
-//       return { ...state, postcode: action.payload };
-//     case "SET_HOUSENUMBER":
-//       return { ...state, houseNumber: action.payload };
-//     case "SET_PHNOELABEL":
-//       return { ...state, phoneLabel: action.payload };
-//     case "SET_PHONENUMBER":
-//       return { ...state, phoneNumber: action.payload };
+  async function hendleFormSubmit() {
+    const response = await axios.post("http://contact-api.devkarriere.de/contacts", {
+      email: state.email,
+      name: {
+        firstName: state.firstName,
+        lastName: state.lastName,
+      },
+      address: {
+        city: state.city,
+        street: state.street,
+        housNumber: Number(state.houseNumber),
+      },
+    });
+    dispatch({ type: "ADD_CONTACT", payload: response.data });
 
-//     default:
-//       break;
-//   }
+    formDispatch({ type: "RESET" });
+  }
 
-//   return <div></div>;
-// }
+  function handleChange(field: keyof FormState) {
+    return (e: React.<HTMLInputElement>) => {
+      formDispatch({
+        type: "SET__FIELD",
+        field,
+        value: e.target.value,
+      });
+    };
+  }
+  return (
+    <div>
+      <p>
+        <input type="text" value={state.firstName} onChange={handleChange("firstName")} placeholder="firstname" />
+      </p>
+      <p>
+        <input value={state.lastName} onChange={handleChange("lastName")} placeholder="last name" />
+      </p>
+      <p>
+        <input value={state.email} onChange={handleChange("email")} placeholder="email" />
+      </p>
+      <p>
+        <input value={state.city} onChange={handleChange("city")} placeholder="city" />
+      </p>
+      <p>
+        <input value={state.street} onChange={handleChange("street")} placeholder="street" />
+      </p>
+      <p>
+        {" "}
+        <input value={state.houseNumber} onChange={handleChange("houseNumber")} placeholder="number" />
+      </p>
+      <button onClick={hendleFormSubmit}>add</button>
+    </div>
+  );
+}
+
+export default AddContactReducer;
+
+
+
+
+_______________________________________________________________________
+
+
+
+export type Contact = {
+  id: number;
+  email: string;
+  name?: {
+    firstName: string;
+    lastName: string;
+  };
+  address?: {
+    city: string;
+    street: string;
+    number: number;
+  };
+  phone?: [
+    {
+      label?: string;
+      value?: string;
+    },
+  ];
+};
+
+export type Action = { type: "SET_CONTACT"; payload: Contact[] } | { type: "ADD_CONTACT"; payload: Contact };
+
+export function contactReducer(state: Contact[], action: Action) {
+  switch (action.type) {
+    case "SET_CONTACT":
+      return action.payload;
+
+    case "ADD_CONTACT":
+      return [action.payload, ...state];
+
+    default:
+      return state;
+  }
+}
+
+export type FormState = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  city: string;
+  street: string;
+  houseNumber: string;
+  phoneLabel: string;
+  phoneNumber: string;
+};
+
+export const initialState: FormState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  city: "",
+  street: "",
+  houseNumber: "",
+  phoneLabel: "",
+  phoneNumber: "",
+};
+
+type FormAction = { type: "SET__FIELD"; field: keyof FormState; value: string } | { type: "RESET" };
+
+function contactFormReducer(state: FormState, action: FormAction) {
+  switch (action.type) {
+    case "SET__FIELD":
+      return { ...state, [action.field]: action.value };
+
+    case "RESET":
+      return initialState;
+
+    default:
+      return state;
+  }
+}
+
+export default contactFormReducer;
+
+
+
+
+
+import { useEffect, useReducer } from "react";
+import { contactReducer } from "../../hook/contactReducer";
+import axios from "axios";
+
+function ContactsReducer() {
+  const [contacts, dispatch] = useReducer(contactReducer, []);
+
+  async function getContacts() {
+    const response = await axios.get("http://contact-api.devkarriere.de/contacts");
+
+    if (response.status === 200 && response.data.length > 0) dispatch({ type: "SET_CONTACT", payload: response.data });
+  }
+  useEffect(() => {
+    getContacts();
+  }, []);
+
+  function displayContact() {
+    if (contacts) {
+      return (
+        <div>
+          <h1>Contacts</h1>
+          {contacts.map((contact, index) => (
+            <div key={index}>
+              <p>_______________________________________________________________</p>
+
+              <div>
+                <p>Vorname: {contact.name?.firstName}</p>
+                <p>Nachname: {contact.name?.lastName}</p>
+                <p>Email: {contact.email}</p>
+                <p>ID: {contact.id}</p>
+              </div>
+              <div>
+                <h4>Address</h4>
+                <p>City: {contact.address?.city}</p>
+                <p>Street: {contact.address?.street}</p>
+                <p>Number: {contact.address?.number}</p>
+              </div>
+              <div>
+                <h4>Telefonnummern</h4>
+                {contact.phone?.map((item, index) => (
+                  <div key={index}>
+                    <p>Label: {item.label}</p>
+                    <p>Number: {item.value}</p>
+                    <p>––––––––––––––––––––</p>
+                  </div>
+                ))}
+              </div>
+              <p>_______________________________________________________________</p>
+            </div>
+          ))}
+        </div>
+      );
+    } else {
+      if (!contacts) {
+        return <p>No contacts found</p>;
+      }
+    }
+  }
+
+  return <div>{displayContact()}</div>;
+}
+
+export default ContactsReducer;

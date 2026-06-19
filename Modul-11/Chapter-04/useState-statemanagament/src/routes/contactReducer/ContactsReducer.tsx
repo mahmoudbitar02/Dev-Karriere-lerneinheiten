@@ -1,63 +1,74 @@
 import { useEffect, useReducer } from "react";
 import { contactReducer } from "../../hook/contactReducer";
 import axios from "axios";
+import AddContactReducer from "./AddContactReducer";
 
 function ContactsReducer() {
-  const [contacts, dispatch] = useReducer(contactReducer, []);
+  const [contacts, contactDispatch] = useReducer(contactReducer, []);
 
   async function getContacts() {
-    const response = await axios.get("http://contact-api.devkarriere.de/contacts");
-
-    if (response.status === 200 && response.data.length > 0) dispatch({ type: "SET_CONTACT", pyload: response.data });
+    try {
+      const response = await axios.get("http://contact-api.devkarriere.de/contacts");
+      if (response.status === 200 && response.data.length > 0) contactDispatch({ type: "SET_CONTACT", payload: response.data });
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   }
+
   useEffect(() => {
     getContacts();
   }, []);
 
-  function displayContact() {
+  function displayContacts() {
     if (contacts) {
       return (
-        <div>
+        <>
           <h1>Contacts</h1>
           {contacts.map((contact, index) => (
             <div key={index}>
-              <p>_______________________________________________________________</p>
+              <p>_________________________________________________</p>
 
               <div>
-                <p>Vorname: {contact.name?.firstName}</p>
-                <p>Nachname: {contact.name?.lastName}</p>
+                <p>Firstname: {contact.name?.firstName}</p>
+                <p>Lastname: {contact.name?.lastName}</p>
                 <p>Email: {contact.email}</p>
                 <p>ID: {contact.id}</p>
               </div>
               <div>
                 <h4>Address</h4>
-                <p>City: {contact.address?.city}</p>
-                <p>Street: {contact.address?.street}</p>
-                <p>Number: {contact.address?.number}</p>
+                <p>
+                  Street: {contact.address?.street}/ {contact.address?.number}
+                </p>
+
+                <p>
+                  Postcode: {contact.address?.postcode}, City: {contact.address?.city}
+                </p>
               </div>
+
               <div>
                 <h4>Telefonnummern</h4>
                 {contact.phone?.map((item, index) => (
                   <div key={index}>
-                    <p>Label: {item.label}</p>
-                    <p>Number: {item.value}</p>
-                    <p>––––––––––––––––––––</p>
+                    <p>Phone Label: {item.label}</p>
+                    <p>Phone Number: {item.number}</p>
+                    <p>-----------------------</p>
                   </div>
                 ))}
               </div>
-              <p>_______________________________________________________________</p>
+              <p>_________________________________________________</p>
             </div>
           ))}
-        </div>
+        </>
       );
-    } else {
-      if (!contacts) {
-        return <p>No contacts found</p>;
-      }
     }
   }
-
-  return <div>{displayContact()}</div>;
+  return (
+    <div>
+      <AddContactReducer dispatch={contactDispatch} />
+      {displayContacts()}
+    </div>
+  );
 }
 
 export default ContactsReducer;
