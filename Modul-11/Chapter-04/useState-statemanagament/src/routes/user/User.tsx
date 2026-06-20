@@ -1,5 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
 
 type RandomUser = {
   name: { first: string; last: string };
@@ -36,15 +40,28 @@ function User() {
   function displayUser() {
     if (user) {
       return (
-        <div>
-          <img src={user.picture.large} alt={`user ${user.name.first} profile`} />
-          <p>
-            Firstname: {user.name.first}, Lastname: {user.name.last}
-          </p>
-          <p>Email: {user.email}</p>
-          <p>Gender: {user.gender}</p>
-          <p>Age: {user.dob.age}</p>
-        </div>
+        <>
+          <Card sx={{ maxWidth: 345 }}>
+            <CardMedia sx={{ height: 345 }} image={user.picture.large} title="User Profile"></CardMedia>
+            <CardContent>
+              <Typography variant="h5">
+                {user.name.first} {user.name.last}
+              </Typography>
+              <Typography variant="body2">
+                {user.email} {user.gender}
+              </Typography>
+            </CardContent>
+          </Card>
+          <div>
+            <img src={user.picture.large} alt={`user ${user.name.first} profile`} />
+            <p>
+              Firstname: {user.name.first}, Lastname: {user.name.last}
+            </p>
+            <p>Email: {user.email}</p>
+            <p>Gender: {user.gender}</p>
+            <p>Age: {user.dob.age}</p>
+          </div>
+        </>
       );
     } else {
       return <p>{errorText}</p>;

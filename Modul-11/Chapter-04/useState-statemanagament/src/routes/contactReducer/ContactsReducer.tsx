@@ -64,7 +64,14 @@ function ContactsReducer() {
       );
     }
   }
-  return <div></div>;
+  return (
+    <div>
+      <contactContext.Provider value={{ contacts, contactDispatch }}>
+        <AddContactReducer />
+        {displayContacts()}
+      </contactContext.Provider>
+    </div>
+  );
 }
 
 export default ContactsReducer;

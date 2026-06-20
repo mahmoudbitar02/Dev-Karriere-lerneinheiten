@@ -4,6 +4,9 @@ import axios from "axios";
 
 function AddContactReducer() {
   const [formContact, formContactDispatch] = useReducer(contactFormReducer, initialState);
+  const context = useContext(contactContext);
+  if (!context) throw new Error("contactContext must be used inside Provider");
+  const { contactDispatch } = context;
 
   function handleChangeInput(field: keyof FormContact) {
     return (event: React.ChangeEvent<HTMLInputElement>) => {

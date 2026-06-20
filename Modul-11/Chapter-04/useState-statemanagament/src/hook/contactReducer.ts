@@ -61,3 +61,10 @@ export function contactFormReducer(state: FormContact, action: FormContactAction
       return state;
   }
 }
+
+type ContactContext = {
+  contacts: Contact[];
+  contactDispatch: React.Dispatch<ContactAction>;
+};
+
+export const contactContext = createContext<ContactContext | undefined>(undefined);

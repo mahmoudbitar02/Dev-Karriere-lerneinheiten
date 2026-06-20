@@ -1,29 +1,44 @@
 import { Link, Outlet } from "react-router-dom";
 import "./root.css";
+import Button from "@mui/material/Button";
 function Root() {
   return (
     <div className="root-body">
       <nav className="sidebar-container">
         <Link to="/">
-          <button className="sidebar-item">Home</button>
+          <Button variant="contained" className="sidebar-item">
+            Home
+          </Button>
         </Link>
         <Link to="/first">
-          <button className="sidebar-item">First</button>
+          <Button variant="contained" className="sidebar-item">
+            First
+          </Button>
         </Link>
         <Link to="/second">
-          <button className="sidebar-item">second</button>
+          <Button variant="contained" className="sidebar-item">
+            second
+          </Button>
         </Link>
         <Link to="/user">
-          <button className="sidebar-item">user</button>
+          <Button variant="contained" className="sidebar-item">
+            user
+          </Button>
         </Link>
         <Link to="/posts">
-          <button className="sidebar-item">posts</button>
+          <Button variant="contained" className="sidebar-item">
+            posts
+          </Button>
         </Link>
         <Link to="/contact">
-          <button className="sidebar-item">Contact</button>
+          <Button variant="contained" className="sidebar-item">
+            Contact
+          </Button>
         </Link>
         <Link to="/contactReducer">
-          <button className="sidebar-item">Contact Reducer</button>
+          <Button variant="contained" className="sidebar-item">
+            Contact Reducer
+          </Button>
         </Link>
       </nav>
       <main className="main-container">
