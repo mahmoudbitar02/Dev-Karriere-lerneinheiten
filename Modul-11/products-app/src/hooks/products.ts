@@ -6,8 +6,10 @@ export type Products = {
   price: number;
   stock: number;
   brand: string;
-  review: [{ rating: number; comment: string }];
-  images: string;
+  reviews: [{ rating: number; comment: string }];
+  images: [string];
+  availabilityStatus: string;
+  shippingInformation: string;
 };
 type FormProduct = {
   id: number;
@@ -19,7 +21,9 @@ type FormProduct = {
   brand: string;
   reviewRating: number;
   reviewComment: string;
-  images: string;
+  images: [string];
+  availabilityStatus: string;
+  shippingInformation: string;
 };
 export const initialAddProductsForm = {
   title: "",
