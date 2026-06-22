@@ -1,32 +1,27 @@
-import { useEffect, useReducer } from "react";
+import { useContext, useEffect, useReducer } from "react";
 import { products } from "../../hooks/products";
+import { Link } from "react-router-dom";
 import axios from "axios";
+import { productsContext } from "../../context/productsContext";
 
 function Products() {
-  const [product, dispatchProducts] = useReducer(products, []);
-
-  useEffect(() => {
-    getProducts();
-  }, [product]);
-
-  async function getProducts() {
-    try {
-      const response = await axios.get("https://dummyjson.com/products");
-      if (response.status === 200) {
-        dispatchProducts({ type: "SET_PRODUCTS", payload: response.data.products });
-      }
-    } catch (error) {}
-  }
-
   function displayProducts() {
+    const context = useContext(productsContext);
+    if (!context) return;
+    const { products } = context;
     return (
       <>
-        {product.map((item, index) => (
+        {products.map((item, index) => (
           <div key={index}>
             <p>ID: {item.id}</p>
             <p>Title:{item.title}</p>
             <p>Description: {item.description}</p>
-            <p>Category: {item.category}</p>
+            <p>
+              Category:{" "}
+              <Link to={`/category/${item.category}`}>
+                <button>{item.category}</button>{" "}
+              </Link>
+            </p>
             <p>Price: {item.price}</p>
             <p>Stock: {item.stock}</p>
             <p>Brand: {item.brand}</p>

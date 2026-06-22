@@ -12,8 +12,8 @@ function Roots() {
           <Link to="products">
             <button className="sidebar-item">Products</button>
           </Link>
-          <Link to="category">
-            <button className="sidebar-item">Category</button>
+          <Link to="allcategories">
+            <button className="sidebar-item">All Categories</button>
           </Link>
         </nav>
       </div>
