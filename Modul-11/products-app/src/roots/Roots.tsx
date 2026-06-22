@@ -1,26 +1,30 @@
 import { Link, Outlet } from "react-router-dom";
 import "./Roots.css";
+import { Button } from "@mui/material";
 
 function Roots() {
   return (
-    <div>
-      <div className="root-body">
-        <nav className="sidebar-container">
-          <Link to="/">
-            <button className="sidebar-item">Home</button>
-          </Link>
-          <Link to="products">
-            <button className="sidebar-item">Products</button>
-          </Link>
-          <Link to="allcategories">
-            <button className="sidebar-item">All Categories</button>
-          </Link>
-        </nav>
-      </div>
-
-      <div className="main">
+    <div className="root-body">
+      <nav className="sidebar-container">
+        <Link to="/">
+          <Button variant="outlined" className="sidebar-item">
+            Home
+          </Button>
+        </Link>
+        <Link to="products">
+          <Button variant="outlined" className="sidebar-item">
+            Products
+          </Button>
+        </Link>
+        <Link to="allcategories">
+          <Button variant="outlined" className="sidebar-item">
+            All Categories
+          </Button>
+        </Link>
+      </nav>
+      <main className="main-container">
         <Outlet />
-      </div>
+      </main>
     </div>
   );
 }

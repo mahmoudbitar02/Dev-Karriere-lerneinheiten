@@ -1,6 +1,10 @@
 import { useContext } from "react";
 import { productsContext } from "../../context/productsContext";
 import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import "./AllCategories.css";
 
 function AllCategories() {
   const context = useContext(productsContext);
@@ -12,15 +16,27 @@ function AllCategories() {
   console.log(categories);
 
   return (
-    <div>
-      {categories.map((cat, index) => (
-        <div key={index}>
-          <Link to={`/category/${cat}`}>
-            <button>Category: {cat}</button>
+    <Box className="box-container" sx={{ padding: 2 }}>
+      <Typography variant="h5" sx={{ mb: 2 }}>
+        Categories
+      </Typography>
+
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 1,
+        }}
+      >
+        {categories.map((cat) => (
+          <Link key={cat} to={`/category/${cat}`} style={{ textDecoration: "none" }}>
+            <Button variant="outlined" size="small">
+              {cat}
+            </Button>
           </Link>
-        </div>
-      ))}
-    </div>
+        ))}
+      </Box>
+    </Box>
   );
 }
 

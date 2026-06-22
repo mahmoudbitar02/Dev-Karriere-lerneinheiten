@@ -7,7 +7,7 @@ export type Products = {
   stock: number;
   brand: string;
   reviews: [{ rating: number; comment: string }];
-  images: [string];
+  thumbnail: string;
   availabilityStatus: string;
   shippingInformation: string;
 };
