@@ -5,6 +5,7 @@ import Products from "./componants/products/Products";
 import Category from "./componants/category/Category";
 import Index from "./componants/index/Index";
 import AllCategories from "./componants/category/AllCategories";
+import ProductDetail from "./componants/products/ProductDetail";
 
 function App() {
   const router = createBrowserRouter([
@@ -24,6 +25,10 @@ function App() {
         {
           path: "category/:categoryName",
           element: <Category />,
+        },
+        {
+          path: "products/:productsId",
+          element: <ProductDetail />,
         },
       ],
     },

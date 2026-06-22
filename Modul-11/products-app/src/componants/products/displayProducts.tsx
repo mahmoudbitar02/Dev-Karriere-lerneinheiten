@@ -44,7 +44,7 @@ function displayProducts(products: Products[]) {
       >
         {products.map((item, index) => (
           <Card key={index} sx={{ width: 345, height: "500", display: "flex", flexDirection: "column" }}>
-            <CardActionArea sx={{ flexFlow: 1, display: "flex", flexDirection: "column" }}>
+            <CardActionArea component={Link} to={`/products/${item.id}`} sx={{ flexFlow: 1, display: "flex", flexDirection: "column" }}>
               <CardMedia
                 component="img"
                 sx={{
@@ -68,7 +68,10 @@ function displayProducts(products: Products[]) {
 
                 <Typography variant="body2">📦 Stock: {item.stock}</Typography>
 
-                <Typography variant="body2">🟢 Availability: {item.availabilityStatus}</Typography>
+                <Typography variant="body2">
+                  {item.availabilityStatus === "In Stock" ? "🟢" : item.availabilityStatus === "Low Stock" ? "🟡" : "🔴"} Availability:{" "}
+                  {item.availabilityStatus}
+                </Typography>
               </CardContent>
             </CardActionArea>
 

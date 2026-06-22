@@ -1,5 +1,5 @@
 import { useEffect, useReducer } from "react";
-import { products as productsReducer } from "../hooks/products";
+import { products as productsReducer, type Products } from "../hooks/products";
 import axios from "axios";
 import { productsContext } from "./productsContext";
 
