@@ -1,0 +1,7 @@
+@use "sass:color";
+$color: #fff;
+
+$gray-90: color.adjust($color, $lightness: -10%);
+$gray-80: color.adjust($color, $lightness: -20%);
+$gray-75: color.adjust($color, $lightness: -25%);
+$gray-30: color.adjust($color, $lightness: -70%);

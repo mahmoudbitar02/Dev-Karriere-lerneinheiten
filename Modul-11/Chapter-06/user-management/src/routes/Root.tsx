@@ -1,9 +1,13 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Sidebar from "../components/sidebar/Sidebar";
 function Root() {
   return (
-    <div>
-      <div>Hallo</div>
-      <div>
+    <div className="app">
+      <div className="app-sidebar">
+        <Sidebar />
+      </div>
+
+      <div className="app-content">
         <Outlet />
       </div>
     </div>
