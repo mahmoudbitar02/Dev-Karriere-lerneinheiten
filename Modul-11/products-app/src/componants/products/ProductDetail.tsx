@@ -32,7 +32,7 @@ function ProductDetail() {
         }}
       >
         <Card sx={{ width: 345, height: "500", display: "flex", flexDirection: "column" }}>
-          <CardActionArea component={Link} to={`/products/${product?.id}`} sx={{ flexFlow: 1, display: "flex", flexDirection: "column" }}>
+          <CardActionArea sx={{ flexFlow: 1, display: "flex", flexDirection: "column" }}>
             <CardMedia
               component="img"
               sx={{
