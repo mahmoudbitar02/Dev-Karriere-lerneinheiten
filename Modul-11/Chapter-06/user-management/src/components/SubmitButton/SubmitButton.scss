@@ -1,0 +1,13 @@
+@use "../../variables" as *;
+
+.submit-button {
+  background-color: $primary;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 10px;
+  color: #fff;
+}
+
+.submit-button:hover {
+  cursor: pointer;
+}
