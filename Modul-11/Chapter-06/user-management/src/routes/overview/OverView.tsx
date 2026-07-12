@@ -1,5 +1,11 @@
+import UserCard from "../../components/UserCard/UserCard";
+
 function OverView() {
-  return <div>hallo from overview</div>;
+  return (
+    <div>
+      <UserCard />
+    </div>
+  );
 }
 
 export default OverView;
