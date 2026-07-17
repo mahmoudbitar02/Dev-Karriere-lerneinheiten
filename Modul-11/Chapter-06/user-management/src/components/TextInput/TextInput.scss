@@ -11,3 +11,7 @@
 .input-text:focus {
   outline: solid 1px $primary;
 }
+
+.input-error {
+  color: $danger;
+}

@@ -49,7 +49,6 @@ function UserCard() {
             <div className="usercard-data-list-item">
               <span className="usercard-data-icon">
                 <FontAwesomeIcon icon={faGlobe} />
-                <FontAwesomeIcon icon={faGlobe} />
               </span>
               <span usercard-data-text>www.test.de</span>
             </div>

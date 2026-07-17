@@ -5,20 +5,20 @@ import { useFormInput } from "../../hooks/useFormInput";
 import "./CreateView.scss";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 function CreateView() {
-  const userNameProps = useFormInput("");
-  const dobProps = useFormInput("");
-  const genderProps = useFormInput("");
-  const emailProps = useFormInput("");
-  const telephoneProps = useFormInput("");
-  const addressProps = useFormInput("");
-  const websiteProps = useFormInput("");
+  const userNameProps = useFormInput("", true);
+  const dobProps = useFormInput("", true);
+  const genderProps = useFormInput("", true);
+  const emailProps = useFormInput("", true);
+  const telephoneProps = useFormInput("", true);
+  const addressProps = useFormInput("", true);
+  const websiteProps = useFormInput("", true);
 
   return (
     <>
       <div className="input-form-container">
         <div className="input-container">
           <span className="input-title">Username:</span>
-          <TextInput value={userNameProps.value} onChange={userNameProps.handleInputChange} />
+          <TextInput value={userNameProps.value} onChange={userNameProps.handleInputChange} error={userNameProps.error} />
         </div>
         <div className="input-container">
           <span className="input-title">Geburtsdatum:</span>
@@ -30,19 +30,19 @@ function CreateView() {
         </div>
         <div className="input-container">
           <span className="input-title">Email:</span>
-          <TextInput value={emailProps.value} onChange={emailProps.handleInputChange} />
+          <TextInput value={emailProps.value} onChange={emailProps.handleInputChange} error={emailProps.error} />
         </div>
         <div className="input-container">
           <span className="input-title">Telefon:</span>
-          <TextInput value={telephoneProps.value} onChange={telephoneProps.handleInputChange} />
+          <TextInput value={telephoneProps.value} onChange={telephoneProps.handleInputChange} error={telephoneProps.error} />
         </div>
         <div className="input-container">
           <span className="input-title">Adresse:</span>
-          <TextInput value={addressProps.value} onChange={addressProps.handleInputChange} />
+          <TextInput value={addressProps.value} onChange={addressProps.handleInputChange} error={addressProps.error} />
         </div>
         <div className="input-container">
           <span className="input-title">Website:</span>
-          <TextInput value={websiteProps.value} onChange={websiteProps.handleInputChange} />
+          <TextInput value={websiteProps.value} onChange={websiteProps.handleInputChange} error={websiteProps.error} />
         </div>
         <SubmitButton />
       </div>
