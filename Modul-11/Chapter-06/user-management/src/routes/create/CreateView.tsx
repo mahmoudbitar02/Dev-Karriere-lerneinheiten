@@ -4,6 +4,10 @@ import SelectInput from "../../components/SelectInput/SelectInput";
 import { useFormInput } from "../../hooks/useFormInput";
 import "./CreateView.scss";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
+import { Gender, type User } from "../../types/User";
+
 function CreateView() {
   const userNameProps = useFormInput("", true);
   const dobProps = useFormInput("", true);
@@ -12,6 +16,36 @@ function CreateView() {
   const telephoneProps = useFormInput("", true);
   const addressProps = useFormInput("", true);
   const websiteProps = useFormInput("", true);
+
+  const { usersDispatch } = useContext(UserContext);
+
+  function convertStringToGender(value: string): Gender {
+    switch (value) {
+      case "Männlich":
+        return Gender.MALE;
+      case "Weiblich":
+        return Gender.FEMALE;
+      case "Keine Angaben":
+        return Gender.OTHER;
+      default:
+        return Gender.OTHER;
+    }
+  }
+
+  function handleSubmitNewUser() {
+    const user: User = {
+      id: Math.random(),
+      name: userNameProps.value,
+      dob: dobProps.value,
+      gender: convertStringToGender(genderProps.value),
+      email: emailProps.value,
+      address: addressProps.value,
+      phone: telephoneProps.value,
+      web: websiteProps.value,
+    };
+    usersDispatch({ type: "ADD_USER", user: user });
+    alert("Added user");
+  }
 
   return (
     <>
@@ -26,7 +60,7 @@ function CreateView() {
         </div>
         <div className="input-container">
           <span className="input-title">Geschlecht:</span>
-          <SelectInput value={genderProps.value} onChange={genderProps.handleInputChange} options={["Männlich", "Weiblich"]} />
+          <SelectInput value={genderProps.value} onChange={genderProps.handleInputChange} options={["Keine Angaben", "Männlich", "Weiblich"]} />
         </div>
         <div className="input-container">
           <span className="input-title">Email:</span>
@@ -44,7 +78,7 @@ function CreateView() {
           <span className="input-title">Website:</span>
           <TextInput value={websiteProps.value} onChange={websiteProps.handleInputChange} error={websiteProps.error} />
         </div>
-        <SubmitButton />
+        <SubmitButton onClick={handleSubmitNewUser} />
       </div>
     </>
   );

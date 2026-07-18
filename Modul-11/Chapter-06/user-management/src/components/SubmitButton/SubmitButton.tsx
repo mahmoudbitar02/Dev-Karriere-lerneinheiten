@@ -1,7 +1,12 @@
+import type { MouseEventHandler } from "react";
 import "./SubmitButton.scss";
-function SubmitButton() {
+
+type SubmitButtonProps = {
+  onClick: MouseEventHandler<HTMLButtonElement>;
+};
+function SubmitButton({ onClick }: SubmitButtonProps) {
   return (
-    <button className="submit-button" type="submit">
+    <button className="submit-button" type="submit" onClick={onClick}>
       Submit
     </button>
   );

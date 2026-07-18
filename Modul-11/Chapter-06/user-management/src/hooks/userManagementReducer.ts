@@ -1,7 +1,7 @@
 import type { User } from "../types/User";
-type UserManagementState = User[];
+export type UserManagementState = User[];
 
-type UserManagementAction = {
+export type UserManagementAction = {
   type: "ADD_USER" | "REMOVE_USER" | "UPDATE_USER";
   user: User;
 };
