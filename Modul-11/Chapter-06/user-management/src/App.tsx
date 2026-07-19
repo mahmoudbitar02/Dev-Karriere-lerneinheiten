@@ -21,7 +21,15 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const [users, usersDispatch] = useReducer(userManagementReducer, []);
+  const [users, usersDispatch] = useReducer(userManagementReducer, [], fetchInitUserData());
+
+  function fetchInitUserData() {
+    const stringUsers = localStorage.getItem("users");
+    if (stringUsers) {
+      return JSON.parse(stringUsers);
+    }
+    return [];
+  }
   return (
     <UserContext.Provider value={{ users, usersDispatch }}>
       <RouterProvider router={router} />{" "}
