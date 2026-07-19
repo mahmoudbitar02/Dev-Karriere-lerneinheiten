@@ -1,3 +1,5 @@
+@use "./variables" as *;
+
 #root {
   margin: 0 auto;
   display: flex;
@@ -10,7 +12,12 @@
   font-weight: 400;
   background-color: rgba(255, 255, 255, 0.87);
 
-  color: #242424;
+  color: $font-color;
+}
+
+a {
+  text-decoration: none;
+  color: $font-color;
 }
 
 body {

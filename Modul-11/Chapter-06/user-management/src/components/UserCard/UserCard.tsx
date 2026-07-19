@@ -2,14 +2,24 @@ import "./userCard.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAddressBook, faCakeCandles, faEnvelope, faGlobe, faPhone, faVenusMars } from "@fortawesome/free-solid-svg-icons";
 import type { User } from "../../types/User";
+import DeleteButton from "../DeleteButton/DeleteButton";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
 type UserCardProps = {
   user: User;
 };
 
 function UserCard({ user }: UserCardProps) {
+  const { usersDispatch } = useContext(UserContext);
+  function deleteUser(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    event.preventDefault();
+    usersDispatch({ type: "REMOVE_USER", user });
+    alert("Deleted user");
+  }
   return (
     <div className="usercard-container">
+      <DeleteButton onClick={deleteUser} />
       <div className="usercard-header">
         <img className="usercard-header-image" src="https://randomuser.me/api/portraits/men/75.jpg" alt="" />
       </div>

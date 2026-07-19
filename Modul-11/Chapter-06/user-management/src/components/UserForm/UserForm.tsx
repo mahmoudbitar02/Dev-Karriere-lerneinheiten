@@ -3,8 +3,6 @@ import DateInput from "../../components/DateInput/DateInput";
 import SelectInput from "../../components/SelectInput/SelectInput";
 import { useFormInput } from "../../hooks/useFormInput";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
-import { useContext } from "react";
-import { UserContext } from "../../context/UserContext";
 import { Gender, type User } from "../../types/User";
 
 type UserFormProps = {
