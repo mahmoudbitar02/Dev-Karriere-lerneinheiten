@@ -21,7 +21,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const [users, usersDispatch] = useReducer(userManagementReducer, [], fetchInitUserData());
+  const [users, usersDispatch] = useReducer(userManagementReducer, [], fetchInitUserData);
 
   function fetchInitUserData() {
     const stringUsers = localStorage.getItem("users");
