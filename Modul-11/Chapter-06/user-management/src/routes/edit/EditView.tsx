@@ -2,10 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import UserForm from "../../components/UserForm/UserForm";
 import { UserContext } from "../../context/UserContext";
 import type { User } from "../../types/User";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function EditView() {
   const [editUser, setEditUser] = useState<User | undefined>();
+  const navigate = useNavigate();
 
   const { users, usersDispatch } = useContext(UserContext);
 
@@ -19,6 +20,7 @@ function EditView() {
   function updateUser(user: User) {
     usersDispatch({ type: "UPDATE_USER", user: user });
     alert("Updated User");
+    navigate(-1);
   }
 
   function displayUser() {
