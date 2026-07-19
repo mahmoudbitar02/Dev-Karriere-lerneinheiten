@@ -28,23 +28,39 @@ function CreateView() {
       case "Keine Angaben":
         return Gender.OTHER;
       default:
-        return Gender.OTHER;
+        return Gender.NONE;
     }
   }
 
+  function isValidInputs(): boolean {
+    const isUserNameValid = userNameProps.validateInput(userNameProps.value);
+    const isDobValid = dobProps.validateInput(dobProps.value);
+
+    const isGenderValid = genderProps.validateInput(genderProps.value);
+    const isEmailValid = emailProps.validateInput(emailProps.value);
+    const isTelephoneValid = telephoneProps.validateInput(telephoneProps.value);
+    const isAddressValid = addressProps.validateInput(addressProps.value);
+    const isWebsiteValid = websiteProps.validateInput(websiteProps.value);
+    return isUserNameValid && isAddressValid && isDobValid && isEmailValid && isGenderValid && isTelephoneValid && isWebsiteValid;
+  }
+
   function handleSubmitNewUser() {
-    const user: User = {
-      id: Math.random(),
-      name: userNameProps.value,
-      dob: dobProps.value,
-      gender: convertStringToGender(genderProps.value),
-      email: emailProps.value,
-      address: addressProps.value,
-      phone: telephoneProps.value,
-      web: websiteProps.value,
-    };
-    usersDispatch({ type: "ADD_USER", user: user });
-    alert("Added user");
+    if (isValidInputs()) {
+      const user: User = {
+        id: Math.random(),
+        name: userNameProps.value,
+        dob: dobProps.value,
+        gender: convertStringToGender(genderProps.value),
+        email: emailProps.value,
+        address: addressProps.value,
+        phone: telephoneProps.value,
+        web: websiteProps.value,
+      };
+      usersDispatch({ type: "ADD_USER", user: user });
+      alert("Added user");
+    } else {
+      alert("Bitte Informationen eingeben ");
+    }
   }
 
   return (
@@ -56,11 +72,16 @@ function CreateView() {
         </div>
         <div className="input-container">
           <span className="input-title">Geburtsdatum:</span>
-          <DateInput value={dobProps.value} onChange={dobProps.handleInputChange} />
+          <DateInput value={dobProps.value} onChange={dobProps.handleInputChange} error={dobProps.error} />
         </div>
         <div className="input-container">
           <span className="input-title">Geschlecht:</span>
-          <SelectInput value={genderProps.value} onChange={genderProps.handleInputChange} options={["Keine Angaben", "Männlich", "Weiblich"]} />
+          <SelectInput
+            value={genderProps.value}
+            onChange={genderProps.handleInputChange}
+            options={["", "Keine Angaben", "Männlich", "Weiblich"]}
+            error={genderProps.error}
+          />
         </div>
         <div className="input-container">
           <span className="input-title">Email:</span>

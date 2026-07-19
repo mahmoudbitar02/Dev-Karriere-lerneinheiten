@@ -8,16 +8,23 @@ export function useFormInput(value: string, required = false) {
     console.log("Input value changed:", event.target.value);
     const inputValue = event.target.value;
     setInputValue(inputValue);
+    validateInput(inputValue);
+  }
+
+  function validateInput(inputValue: string): boolean {
     if (required) {
       if (inputValue === "") {
         //setze einen fehler
         setError({ isError: true, errorMessage: "Bitte geben Sie einen Wert ein" });
+        return false;
       } else {
         // resette Fehler
         setError({ isError: false, errorMessage: "" });
+        return true;
       }
     }
+    return true;
   }
 
-  return { value: inputValue, handleInputChange, error: error };
+  return { value: inputValue, handleInputChange, error: error, validateInput: validateInput };
 }
