@@ -9,17 +9,15 @@
     <script src="https://kit.fontawesome.com/89cc2959b1.js" crossorigin="anonymous"></script>
   </head>
   <body class="bg-slate-950 text-white">
-    <section
-      class="flex flex-col justify-center items-center mt-20 px-6 lg:px-10 lg:flex lg:flex-row lg:gap-4 lg:items-center xl:flex xl:flex-row xl:gap-4 xl:items-center"
-    >
+    <section class="flex flex-col justify-center items-center mt-20 px-6 lg:flex-row lg:gap-4 lg:px-10">
       <div class="sm:max-w-2xl lg:max-w-3xl xl:max-w-xl">
-        <article class="">
+        <article>
           <figure><img class="object-fit h-20 w-20 rounded-full border" src="/src/assets/person.png" alt="Hero Image" /></figure>
           <p class="text-lg mt-5">Hi, ich bin <span class="font-bold">Mahmoud</span>.</p>
           <div class="mt-6">
             <p class="tracking-tighter text-4xl">
               Ihr neuer
-              <span class="tracking-tighter block text-3.5xl font-bold bg-linear-to-r from-blue-400 to-green-400 text-transparent bg-clip-text"
+              <span class="tracking-tighter block text-4xl font-bold bg-linear-to-r from-blue-400 to-green-400 text-transparent bg-clip-text"
                 >Frontend Developer</span
               >
             </p>
@@ -30,7 +28,7 @@
           </p>
         </article>
         <article class="mt-6 flex gap-5">
-          <a href="https://www.linkedin.com/in/mahmoud-bitar-012345678/" target="_blank" class="text-2xl no-underline">
+          <a href="https://www.linkedin.com/in/mahmoud-bitar-012345678/" target="_blank" rel="noopener noreferrer" class="text-2xl no-underline">
             <svg class="w-8 h-8 fill-slate-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
               <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
               <path
@@ -38,7 +36,7 @@
               />
             </svg>
           </a>
-          <a href="https://github.com/" target="_blank" class="text-2xl no-underline">
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="text-2xl no-underline">
             <svg class="w-8 h-8 fill-slate-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
               <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
               <path
@@ -46,7 +44,7 @@
               />
             </svg>
           </a>
-          <a href="https://www.instagram.com/" target="_blank" class="text-2xl no-underline">
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="text-2xl no-underline">
             <svg class="w-8 h-8 fill-slate-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
               <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
               <path
@@ -56,7 +54,7 @@
           </a>
         </article>
 
-        <a class="flex items-center gap-2 w-fit bg-blue-600 hover:bg-blue-400 text-white font-bold text-sm py-2 px-4 mt-10 rounded">
+        <a href="#projects" class="flex items-center gap-2 w-fit bg-blue-600 hover:bg-blue-400 text-white font-bold text-sm py-2 px-4 mt-10 rounded">
           Projekte ansehen
 
           <svg class="w-5 h-5 fill-slate-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
@@ -68,7 +66,43 @@
         </a>
       </div>
 
-      <figure class="mt-15 sm:max-w-2xl xl:max-w-xl"><img src="/src/assets/school.png" alt="Hero Image" /></figure>
+      <img class="mt-15 sm:max-w-2xl lg:max-w-lg xl:max-w-xl" src="/src/assets/school.png" alt="Hero Image" />
+    </section>
+
+    <section>
+      <div>
+        <h3>Meine Projekte</h3>
+        <p>Hier sind einige Auszüge aus meiner Arbeit, sodass Sie sich ein Bild meiner Fähigkeiten und Erfahrungen machen können.</p>
+      </div>
+
+      <div>
+        <img src="https://picsum.photos/400/300" alt="Project 1" />
+        <h2>Moderner Wetter App</h2>
+        <a href="#">test</a>
+        <p>
+          Meine moderne Wetter App zeigt aktuelle Wetterdaten für Städte auf der ganzen Welt an. Die App wurde "mobile-first" entwickelt und für
+          Mobilgeräte aller Art optimiert. Der Nutzer hat die Möglichkeit, Orte in einer Favoritenliste zu speichern und diese Liste zu bearbeiten.
+        </p>
+        <div>
+          <span>HTML</span>
+          <span>JavaScript</span>
+          <span>Vite</span>
+          <span>SCSS</span>
+          <span>BEM</span>
+          <span>WeatherAPI</span>
+        </div>
+
+        <a href="#projects" class="flex items-center gap-2 w-fit bg-blue-600 hover:bg-blue-400 text-white font-bold text-sm py-2 px-4 mt-10 rounded">
+          Code ansehen
+
+          <svg class="w-5 h-5 fill-slate-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+            <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+            <path
+              d="M297.4 566.6C309.9 579.1 330.2 579.1 342.7 566.6L502.7 406.6C515.2 394.1 515.2 373.8 502.7 361.3C490.2 348.8 469.9 348.8 457.4 361.3L352 466.7L352 96C352 78.3 337.7 64 320 64C302.3 64 288 78.3 288 96L288 466.7L182.6 361.3C170.1 348.8 149.8 348.8 137.3 361.3C124.8 373.8 124.8 394.1 137.3 406.6L297.3 566.6z"
+            />
+          </svg>
+        </a>
+      </div>
     </section>
     <script type="module" src="/src/main.js"></script>
   </body>
