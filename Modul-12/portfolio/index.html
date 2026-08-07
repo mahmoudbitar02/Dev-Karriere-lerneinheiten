@@ -15,19 +15,19 @@
           <figure><img class="object-fit h-20 w-20 rounded-full border" src="/src/assets/person.png" alt="Hero Image" /></figure>
           <p class="text-lg mt-5">Hi, ich bin <span class="font-bold">Mahmoud</span>.</p>
           <div class="mt-6">
-            <p class="tracking-tighter text-4xl">
-              Ihr neuer
-              <span class="tracking-tighter block text-4xl font-bold bg-linear-to-r from-blue-400 to-green-400 text-transparent bg-clip-text"
+            <p class="tracking-tight text-4xl">
+              Ihr neuer <br />
+              <span class="tracking-normal text-4xl font-bold bg-linear-to-r from-blue-400 to-green-400 text-transparent bg-clip-text"
                 >Frontend Developer</span
-              >
+              >.
             </p>
           </div>
-          <p class="mt-5 text-base text-gray-400">
+          <p class="mt-6 text-base text-gray-400">
             Mein Name ist Mahmoud Bitar und ich bin Softwareentwickler mit Schwerpunkt auf den Bereich Frontend Web Development aus der schönen Stadt
             Walldürn. Ich liebe es neue Dinge zu lernen und Ideen in die Realität zu bringen.
           </p>
         </article>
-        <article class="mt-6 flex gap-5">
+        <article class="mt-10 flex gap-5">
           <a href="https://www.linkedin.com/in/mahmoud-bitar-012345678/" target="_blank" rel="noopener noreferrer" class="text-2xl no-underline">
             <svg class="w-8 h-8 fill-slate-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
               <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
@@ -66,42 +66,121 @@
         </a>
       </div>
 
-      <img class="mt-15 sm:max-w-2xl lg:max-w-lg xl:max-w-xl" src="/src/assets/school.png" alt="Hero Image" />
+      <img class="mt-15 sm:max-w-xl lg:max-w-lg xl:max-w-xl" src="/src/assets/school.png" alt="Hero Image" />
     </section>
 
-    <section>
-      <div>
-        <h3>Meine Projekte</h3>
-        <p>Hier sind einige Auszüge aus meiner Arbeit, sodass Sie sich ein Bild meiner Fähigkeiten und Erfahrungen machen können.</p>
+    <section id="projects" class="px-6 flex flex-col justify-center items-center mt-20">
+      <div class="max-w-xl mt-20 text-center lg:max-w-full">
+        <h3 class="text-3xl font-bold">Meine Projekte</h3>
+        <p class="text-gray-400 mt-5">
+          Hier sind einige Auszüge aus meiner Arbeit, sodass Sie sich ein Bild meiner Fähigkeiten und Erfahrungen machen können.
+        </p>
       </div>
 
-      <div>
-        <img src="https://picsum.photos/400/300" alt="Project 1" />
-        <h2>Moderner Wetter App</h2>
-        <a href="#">test</a>
-        <p>
-          Meine moderne Wetter App zeigt aktuelle Wetterdaten für Städte auf der ganzen Welt an. Die App wurde "mobile-first" entwickelt und für
-          Mobilgeräte aller Art optimiert. Der Nutzer hat die Möglichkeit, Orte in einer Favoritenliste zu speichern und diese Liste zu bearbeiten.
-        </p>
-        <div>
-          <span>HTML</span>
-          <span>JavaScript</span>
-          <span>Vite</span>
-          <span>SCSS</span>
-          <span>BEM</span>
-          <span>WeatherAPI</span>
+      <div class="flex flex-col items-center justify-center md:flex md:flex-wrap md:flex-row md:gap-4">
+        <div class="max-w-xl">
+          <div class="flex flex-col gap-2">
+            <img class="mt-15" src="https://picsum.photos/400/250" alt="Project 1" />
+            <h2 class="text-3xl font-bold mt-5">Moderner Wetter App</h2>
+            <a class="text-blue-500 text-xl" href="#">test</a>
+            <p class="text-gray-400">
+              Meine moderne Wetter App zeigt aktuelle Wetterdaten für Städte auf der ganzen Welt an. Die App wurde "mobile-first" entwickelt und für
+              Mobilgeräte aller Art optimiert. Der Nutzer hat die Möglichkeit, Orte in einer Favoritenliste zu speichern und diese Liste zu
+              bearbeiten.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2 mt-5">
+            <span class="text-xs bg-slate-600 text-white py-1 px-3 rounded-xl">HTML</span>
+            <span class="text-xs bg-slate-600 text-white py-1 px-3 rounded-xl">JavaScript</span>
+            <span class="text-xs bg-slate-600 text-white py-1 px-3 rounded-xl">Vite</span>
+            <span class="text-xs bg-slate-600 text-white py-1 px-3 rounded-xl">SCSS</span>
+            <span class="text-xs bg-slate-600 text-white py-1 px-3 rounded-xl">BEM</span>
+            <span class="text-xs bg-slate-600 text-white py-1 px-3 rounded-xl">WeatherAPI</span>
+          </div>
+
+          <a
+            href="#projects"
+            class="flex items-center gap-2 w-fit bg-blue-600 hover:bg-blue-400 text-white font-bold text-sm py-2 px-4 mt-10 rounded"
+          >
+            Code ansehen
+
+            <svg class="w-5 h-5 fill-slate-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+              <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+              <path
+                d="M297.4 566.6C309.9 579.1 330.2 579.1 342.7 566.6L502.7 406.6C515.2 394.1 515.2 373.8 502.7 361.3C490.2 348.8 469.9 348.8 457.4 361.3L352 466.7L352 96C352 78.3 337.7 64 320 64C302.3 64 288 78.3 288 96L288 466.7L182.6 361.3C170.1 348.8 149.8 348.8 137.3 361.3C124.8 373.8 124.8 394.1 137.3 406.6L297.3 566.6z"
+              />
+            </svg>
+          </a>
         </div>
 
-        <a href="#projects" class="flex items-center gap-2 w-fit bg-blue-600 hover:bg-blue-400 text-white font-bold text-sm py-2 px-4 mt-10 rounded">
-          Code ansehen
+        <div class="max-w-xl lg:max-w-full">
+          <div class="flex flex-col gap-2">
+            <img class="mt-15" src="https://picsum.photos/400/250" alt="Project 1" />
+            <h2 class="text-3xl font-bold mt-5">Moderner Wetter App</h2>
+            <a class="text-blue-500 text-xl" href="#">test</a>
+            <p class="text-gray-400">
+              Meine moderne Wetter App zeigt aktuelle Wetterdaten für Städte auf der ganzen Welt an. Die App wurde "mobile-first" entwickelt und für
+              Mobilgeräte aller Art optimiert. Der Nutzer hat die Möglichkeit, Orte in einer Favoritenliste zu speichern und diese Liste zu
+              bearbeiten.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2 mt-5">
+            <span class="text-xs bg-slate-600 text-white py-1 px-3 rounded-xl">HTML</span>
+            <span class="text-xs bg-slate-600 text-white py-1 px-3 rounded-xl">JavaScript</span>
+            <span class="text-xs bg-slate-600 text-white py-1 px-3 rounded-xl">Vite</span>
+            <span class="text-xs bg-slate-600 text-white py-1 px-3 rounded-xl">SCSS</span>
+            <span class="text-xs bg-slate-600 text-white py-1 px-3 rounded-xl">BEM</span>
+            <span class="text-xs bg-slate-600 text-white py-1 px-3 rounded-xl">WeatherAPI</span>
+          </div>
 
-          <svg class="w-5 h-5 fill-slate-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-            <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
-            <path
-              d="M297.4 566.6C309.9 579.1 330.2 579.1 342.7 566.6L502.7 406.6C515.2 394.1 515.2 373.8 502.7 361.3C490.2 348.8 469.9 348.8 457.4 361.3L352 466.7L352 96C352 78.3 337.7 64 320 64C302.3 64 288 78.3 288 96L288 466.7L182.6 361.3C170.1 348.8 149.8 348.8 137.3 361.3C124.8 373.8 124.8 394.1 137.3 406.6L297.3 566.6z"
-            />
-          </svg>
-        </a>
+          <a
+            href="#projects"
+            class="flex items-center gap-2 w-fit bg-blue-600 hover:bg-blue-400 text-white font-bold text-sm py-2 px-4 mt-10 rounded"
+          >
+            Code ansehen
+
+            <svg class="w-5 h-5 fill-slate-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+              <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+              <path
+                d="M297.4 566.6C309.9 579.1 330.2 579.1 342.7 566.6L502.7 406.6C515.2 394.1 515.2 373.8 502.7 361.3C490.2 348.8 469.9 348.8 457.4 361.3L352 466.7L352 96C352 78.3 337.7 64 320 64C302.3 64 288 78.3 288 96L288 466.7L182.6 361.3C170.1 348.8 149.8 348.8 137.3 361.3C124.8 373.8 124.8 394.1 137.3 406.6L297.3 566.6z"
+              />
+            </svg>
+          </a>
+        </div>
+        <div class="max-w-xl lg:max-w-full">
+          <div class="flex flex-col gap-2">
+            <img class="mt-15" src="https://picsum.photos/400/250" alt="Project 1" />
+            <h2 class="text-3xl font-bold mt-5">Moderner Wetter App</h2>
+            <a class="text-blue-500 text-xl" href="#">test</a>
+            <p class="text-gray-400">
+              Meine moderne Wetter App zeigt aktuelle Wetterdaten für Städte auf der ganzen Welt an. Die App wurde "mobile-first" entwickelt und für
+              Mobilgeräte aller Art optimiert. Der Nutzer hat die Möglichkeit, Orte in einer Favoritenliste zu speichern und diese Liste zu
+              bearbeiten.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2 mt-5">
+            <span class="text-xs bg-slate-600 text-white py-1 px-3 rounded-xl">HTML</span>
+            <span class="text-xs bg-slate-600 text-white py-1 px-3 rounded-xl">JavaScript</span>
+            <span class="text-xs bg-slate-600 text-white py-1 px-3 rounded-xl">Vite</span>
+            <span class="text-xs bg-slate-600 text-white py-1 px-3 rounded-xl">SCSS</span>
+            <span class="text-xs bg-slate-600 text-white py-1 px-3 rounded-xl">BEM</span>
+            <span class="text-xs bg-slate-600 text-white py-1 px-3 rounded-xl">WeatherAPI</span>
+          </div>
+
+          <a
+            href="#projects"
+            class="flex items-center gap-2 w-fit bg-blue-600 hover:bg-blue-400 text-white font-bold text-sm py-2 px-4 mt-10 rounded"
+          >
+            Code ansehen
+
+            <svg class="w-5 h-5 fill-slate-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+              <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+              <path
+                d="M297.4 566.6C309.9 579.1 330.2 579.1 342.7 566.6L502.7 406.6C515.2 394.1 515.2 373.8 502.7 361.3C490.2 348.8 469.9 348.8 457.4 361.3L352 466.7L352 96C352 78.3 337.7 64 320 64C302.3 64 288 78.3 288 96L288 466.7L182.6 361.3C170.1 348.8 149.8 348.8 137.3 361.3C124.8 373.8 124.8 394.1 137.3 406.6L297.3 566.6z"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
     <script type="module" src="/src/main.js"></script>
