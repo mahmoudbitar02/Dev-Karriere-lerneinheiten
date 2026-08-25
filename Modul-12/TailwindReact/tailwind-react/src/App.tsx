@@ -1,11 +1,40 @@
 import { Button } from "@/components/ui/button";
+import { Field, FieldContent, FieldDescription, FieldLabel } from "@/components/ui/field";
+import { Switch } from "@/components/ui/switch";
 
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Toaster, toast } from "./components/ui/toast";
 function App() {
   function handleClick() {
-    console.log("Button clicked");
+    toast.add({
+      title: "create Todo",
+      description: "heute, 15:23",
+    });
+  }
+
+  function handleCheck(checked: boolean) {
+    if (checked) console.log("Switch: " + checked);
+    else {
+      console.log(1 + 1);
+    }
+  }
+
+  function hand() {
+    const product: number = 1;
+    if (product === 2) {
+      toast.add({
+        type: "warning",
+        description: "The event cannot start before 8:00 AM.",
+      });
+    } else {
+      toast.add({
+        type: "error",
+        description: "The event could not be created.",
+        priority: "high",
+      });
+    }
   }
 
   return (
@@ -50,6 +79,30 @@ function App() {
           </Button>
         </CardFooter>
       </Card>
+
+      <Toaster />
+      <br />
+      <br />
+
+      <div className="flex flex-wrap gap-2">
+        <Button className="w-60 py-10 hover:bg-slate-600 transition duration-900" variant="outline" onClick={hand}>
+          Add
+        </Button>
+      </div>
+      <br />
+      <br />
+
+      <hr />
+      <br />
+      <br />
+
+      <Field orientation="horizontal" className="max-w-sm">
+        <FieldContent>
+          <FieldLabel htmlFor="switch-focus-mode">Share across devices</FieldLabel>
+          <FieldDescription>Focus is shared across devices, and turns off when you leave the app.</FieldDescription>
+        </FieldContent>
+        <Switch onCheckedChange={handleCheck} id="switch-focus-mode" />
+      </Field>
     </>
   );
 }
