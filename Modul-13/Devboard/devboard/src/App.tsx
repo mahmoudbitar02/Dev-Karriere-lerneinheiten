@@ -7,6 +7,8 @@ function App() {
 
       <Button>Click me</Button>
       <Button>Click me</Button>
+      <Button>Click me</Button>
+      <Button>Click me</Button>
     </>
   );
 }
