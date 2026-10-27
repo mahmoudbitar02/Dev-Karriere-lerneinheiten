@@ -1,14 +1,30 @@
-import { Button } from "@/components/ui/button";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Profile from "./pages/Profile/Profile";
+import BoardDetail from "./pages/BoardDetail/BoardDetail";
+import BoardOverview from "./pages/BoardOverview/BoardOverview";
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      children: [
+        {
+          path: "/profile",
+          element: <Profile />,
+        },
+        {
+          path: "/boards",
+          children: [
+            { index: true, element: <BoardOverview /> },
+            { path: ":id", element: <BoardDetail /> },
+          ],
+        },
+      ],
+    },
+  ]);
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Devboard</h1>
-
-      <Button>Click me</Button>
-      <Button>Click me</Button>
-      <Button>Click me</Button>
-      <Button>Click me</Button>
+      <RouterProvider router={router}></RouterProvider>
     </>
   );
 }
