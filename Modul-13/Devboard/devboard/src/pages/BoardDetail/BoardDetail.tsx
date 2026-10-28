@@ -1,5 +1,49 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ArrowLeft, Check, Pencil, X } from "lucide-react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 function BoardDetail() {
-  return <div>hallo Detail</div>;
+  const [isEditBoardName, setIsEditBoardName] = useState(false);
+  const [boardName, setBoardName] = useState("name des Boards");
+
+  function renderBoardDetailHeader() {
+    if (isEditBoardName) {
+      return (
+        <>
+          <Input value={boardName} onChange={(event) => setBoardName(event.target.value)} className="w-96" />
+          <Button variant="ghost" size="icon-lg" onClick={() => setIsEditBoardName(false)}>
+            <Check />
+          </Button>
+          <Button variant="ghost" size="icon-lg" onClick={() => setIsEditBoardName(false)}>
+            <X />
+          </Button>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <h1 className="text-2xl font-bold">{boardName}</h1>
+          <Button variant="ghost" size="icon-lg" onClick={() => setIsEditBoardName(true)}>
+            <Pencil />
+          </Button>
+        </>
+      );
+    }
+  }
+  return (
+    <div className="container">
+      <div className="flex flex-row gap-2 items-center">
+        <Link to={"/boards"}>
+          <Button variant="ghost" size="icon-lg">
+            <ArrowLeft />
+          </Button>
+        </Link>
+        {renderBoardDetailHeader()}
+      </div>
+    </div>
+  );
 }
 
 export default BoardDetail;
