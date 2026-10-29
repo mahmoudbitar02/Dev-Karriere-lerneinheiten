@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { ArrowLeft, Check, Pencil, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import BoardColumn from "./components/BoardColumn";
 
 function BoardDetail() {
   const [isEditBoardName, setIsEditBoardName] = useState(false);
@@ -41,6 +42,11 @@ function BoardDetail() {
           </Button>
         </Link>
         {renderBoardDetailHeader()}
+      </div>
+      <div className="grid grid-cols-3 gap-4 mt-8">
+        <BoardColumn title="ToDo" />
+        <BoardColumn title="Progress" />
+        <BoardColumn title="Done" />
       </div>
     </div>
   );
