@@ -2,12 +2,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowLeft, Check, Pencil, X } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import BoardColumn from "./components/BoardColumn";
+import type { Board } from "@/types/board.type";
 
 function BoardDetail() {
+  const { id } = useParams();
   const [isEditBoardName, setIsEditBoardName] = useState(false);
   const [boardName, setBoardName] = useState("name des Boards");
+
+  const [board, setBoard] = useState<Board>({
+    id: "board-1",
+    title: "test",
+    tasks: [{ id: "task-1", title: "abc", column: "InProgress", description: "def" }],
+  });
 
   function renderBoardDetailHeader() {
     if (isEditBoardName) {
@@ -44,9 +52,9 @@ function BoardDetail() {
         {renderBoardDetailHeader()}
       </div>
       <div className="grid grid-cols-3 gap-4 mt-8">
-        <BoardColumn title="ToDo" />
-        <BoardColumn title="Progress" />
-        <BoardColumn title="Done" />
+        <BoardColumn title="ToDo" tasks={board.tasks.filter((task) => task.column === "ToDo")} />
+        <BoardColumn title="Progress" tasks={board.tasks.filter((task) => task.column === "InProgress")} />
+        <BoardColumn title="Done" tasks={board.tasks.filter((task) => task.column === "Done")} />
       </div>
     </div>
   );
