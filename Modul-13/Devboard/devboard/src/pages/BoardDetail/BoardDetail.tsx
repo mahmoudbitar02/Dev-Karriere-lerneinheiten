@@ -22,11 +22,11 @@ function BoardDetail() {
       return (
         <>
           <Input value={boardName} onChange={(event) => setBoardName(event.target.value)} className="w-96" />
-          <Button variant="ghost" size="icon-lg" onClick={() => setIsEditBoardName(false)}>
-            <Check />
+          <Button variant="ghost" size="icon-xl" onClick={() => setIsEditBoardName(false)}>
+            <Check className="size-5" />
           </Button>
-          <Button variant="ghost" size="icon-lg" onClick={() => setIsEditBoardName(false)}>
-            <X />
+          <Button variant="ghost" size="icon-xl" onClick={() => setIsEditBoardName(false)}>
+            <X className="size-5" />
           </Button>
         </>
       );
@@ -34,8 +34,8 @@ function BoardDetail() {
       return (
         <>
           <h1 className="text-2xl font-bold">{boardName}</h1>
-          <Button variant="ghost" size="icon-lg" onClick={() => setIsEditBoardName(true)}>
-            <Pencil />
+          <Button variant="ghost" size="icon-xl" onClick={() => setIsEditBoardName(true)}>
+            <Pencil className="size-4" />
           </Button>
         </>
       );
@@ -45,8 +45,8 @@ function BoardDetail() {
     <div className="container">
       <div className="flex flex-row gap-2 items-center">
         <Link to={"/boards"}>
-          <Button variant="ghost" size="icon-lg">
-            <ArrowLeft />
+          <Button variant="ghost" size="icon-xl">
+            <ArrowLeft className="size-5" />
           </Button>
         </Link>
         {renderBoardDetailHeader()}

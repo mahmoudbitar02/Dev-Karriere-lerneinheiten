@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import BoardCard from "./components/BoardCard";
 import { useState } from "react";
 import type { Board } from "@/types/board.type";
+import { Plus } from "lucide-react";
 
 function BoardOverview() {
   const [board, setBoard] = useState<Board[]>([
@@ -11,7 +12,9 @@ function BoardOverview() {
     <>
       <div className="flex flex-row place-content-between">
         <h1 className="text-xl font-bold">Meine Boards</h1>
-        <Button>Neuer Board</Button>
+        <Button>
+          <Plus className="size-5" /> Neuer Board
+        </Button>
       </div>
       <div className=" grid grid-cols-3 gap-4 pt-4">
         {board.map((board) => {

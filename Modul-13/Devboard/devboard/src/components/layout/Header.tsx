@@ -5,12 +5,12 @@ function Header() {
   return (
     <header className="bg-black">
       <div className="container mx-auto py-5 flex justify-between">
-        <Link to="/boards" className="text-blue-100 flex flex-row gap-2 text-lg items-center">
+        <Link to="/boards" className="text-primary flex flex-row gap-2 text-lg items-center">
           <LayoutDashboard className="w-5 h-5" /> Devkarriere
         </Link>
 
-        <Link to="/profile" className="text-blue-100 flex flex-row gap-2 text-lg items-center">
-          <UserCircle className="w-5 h-5" /> Profil
+        <Link to="/profile" className="hover:text-primary text-secondary flex flex-row gap-2 text-lg items-center">
+          <UserCircle className="w-5 h-5" /> <span className="text-secondary">Profil</span>
         </Link>
       </div>
     </header>

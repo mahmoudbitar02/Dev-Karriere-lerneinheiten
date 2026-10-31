@@ -5,7 +5,7 @@ import { Trash2 } from "lucide-react";
 
 function TaskCard({ task }: { task: Task }) {
   return (
-    <Card>
+    <Card size="sm">
       <CardHeader>
         <CardTitle>{task.title}</CardTitle>
         <CardDescription>{task.description}</CardDescription>

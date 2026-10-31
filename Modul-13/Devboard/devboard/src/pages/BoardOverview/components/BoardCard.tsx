@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function BoardCard({ board }: { board: Board }) {
   return (
     <Link to={`/boards/${board.id}`}>
-      <Card className="hover:shadow-md transition-shadow border border-black">
+      <Card className="hover:shadow-md transition-shadow ">
         <CardHeader>
           <CardTitle>{board.title}</CardTitle>
           <CardDescription>3 Spalten - {board.tasks.length} Tasks</CardDescription>
