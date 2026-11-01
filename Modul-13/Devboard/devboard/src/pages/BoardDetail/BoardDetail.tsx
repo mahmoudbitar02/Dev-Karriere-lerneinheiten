@@ -7,6 +7,7 @@ import BoardColumn from "./components/BoardColumn";
 import type { Board } from "@/types/board.type";
 
 function BoardDetail() {
+  const [draggedColumn, setDraggedColumn] = useState<string | null>(null);
   const { id } = useParams();
   const [isEditBoardName, setIsEditBoardName] = useState(false);
   const [boardName, setBoardName] = useState("name des Boards");
@@ -14,7 +15,7 @@ function BoardDetail() {
   const [board, setBoard] = useState<Board>({
     id: "board-1",
     title: "test",
-    tasks: [{ id: "task-1", title: "abc", column: "InProgress", description: "def" }],
+    tasks: [{ id: "task-1", title: "abc", column: "Progress", description: "def" }],
   });
 
   function renderBoardDetailHeader() {
@@ -52,9 +53,24 @@ function BoardDetail() {
         {renderBoardDetailHeader()}
       </div>
       <div className="grid grid-cols-3 gap-4 mt-8">
-        <BoardColumn title="ToDo" tasks={board.tasks.filter((task) => task.column === "ToDo")} />
-        <BoardColumn title="Progress" tasks={board.tasks.filter((task) => task.column === "InProgress")} />
-        <BoardColumn title="Done" tasks={board.tasks.filter((task) => task.column === "Done")} />
+        <BoardColumn
+          title="ToDo"
+          tasks={board.tasks.filter((task) => task.column === "ToDo")}
+          draggedColumn={draggedColumn}
+          setDraggedColumn={setDraggedColumn}
+        />
+        <BoardColumn
+          title="Progress"
+          tasks={board.tasks.filter((task) => task.column === "Progress")}
+          draggedColumn={draggedColumn}
+          setDraggedColumn={setDraggedColumn}
+        />
+        <BoardColumn
+          title="Done"
+          tasks={board.tasks.filter((task) => task.column === "Done")}
+          draggedColumn={draggedColumn}
+          setDraggedColumn={setDraggedColumn}
+        />
       </div>
     </div>
   );

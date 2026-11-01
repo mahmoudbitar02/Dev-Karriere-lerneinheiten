@@ -3,9 +3,16 @@ import { Card, CardAction, CardDescription, CardHeader, CardTitle } from "@/comp
 import type { Task } from "@/types/board.type";
 import { Trash2 } from "lucide-react";
 
-function TaskCard({ task }: { task: Task }) {
+function TaskCard({ task, setDraggedColumn }: { task: Task; setDraggedColumn: (column: string | null) => void }) {
   return (
-    <Card size="sm">
+    <Card
+      size="sm"
+      draggable={true}
+      onDragStart={(e) => {
+        e.dataTransfer.setData("column", task.column);
+        setDraggedColumn(task.column);
+      }}
+    >
       <CardHeader>
         <CardTitle>{task.title}</CardTitle>
         <CardDescription>{task.description}</CardDescription>
