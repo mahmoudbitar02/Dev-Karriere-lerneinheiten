@@ -9,17 +9,19 @@ type BoardsOverviewAction = {
 };
 
 export default function useBoardOverviewReducer(prevState: BoardsOverviewState, action: BoardsOverviewAction) {
+  let newState = prevState;
   switch (action.type) {
     case "ADD": {
-      const newState = [...prevState, action.data];
-      saveBoards(newState);
-      return newState;
+      newState = [...prevState, action.data];
+      break;
     }
     case "DELETE":
-      const newState = prevState.filter((board) => board.id !== action.data.id);
-      saveBoards(newState);
-      return newState;
+      newState = prevState.filter((board) => board.id !== action.data.id);
+      break;
+
     default:
-      return prevState;
+      break;
   }
+  saveBoards(newState);
+  return newState;
 }

@@ -3,6 +3,9 @@ import BoardCard from "./components/BoardCard";
 import { useState } from "react";
 import type { Board } from "@/types/board.type";
 import { Plus } from "lucide-react";
+import { useReducer } from "react";
+import useBoardOverviewReducer from "@/hooks/boardsOverviewReduser";
+import { getBoards } from "@/lib/api";
 import {
   Dialog,
   DialogContent,
@@ -16,11 +19,24 @@ import {
 import { Input } from "@/components/ui/input";
 
 function BoardOverview() {
-  const [board, setBoard] = useState<Board[]>([
-    { id: "board-1", title: "test", tasks: [{ id: "task-1", title: "abc", column: "ToDo", description: "def" }] },
-  ]);
+  const [board, boardDispatch] = useReducer(useBoardOverviewReducer, [], getBoards);
 
   const [boardNameInput, setBoardNameInput] = useState("Neues Board");
+
+  function handleAddNewBoard() {
+    const newBoard: Board = {
+      id: String(Math.random()),
+      title: boardNameInput,
+      tasks: [],
+    };
+
+    boardDispatch({ type: "ADD", data: newBoard });
+    setBoardNameInput("");
+  }
+
+  function handleDeleteBoard(id: string) {
+    boardDispatch({ type: "DELETE", data: { id, title: "", tasks: [] } });
+  }
   return (
     <>
       <div className="flex flex-row place-content-between">
@@ -50,14 +66,20 @@ function BoardOverview() {
                 }
               ></DialogClose>
 
-              <DialogClose render={<Button className="mt-4">Speichern</Button>}></DialogClose>
+              <DialogClose
+                render={
+                  <Button onClick={handleAddNewBoard} className="mt-4">
+                    Speichern
+                  </Button>
+                }
+              ></DialogClose>
             </DialogFooter>
           </DialogContent>
         </Dialog>
       </div>
       <div className=" grid grid-cols-3 gap-4 pt-4">
         {board.map((board) => {
-          return <BoardCard board={board} />;
+          return <BoardCard board={board} onDelete={handleDeleteBoard} />;
         })}
       </div>
     </>

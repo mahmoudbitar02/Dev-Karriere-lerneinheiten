@@ -4,7 +4,7 @@ import type { Board } from "@/types/board.type";
 import { Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-function BoardCard({ board }: { board: Board }) {
+function BoardCard({ board, onDelete }: { board: Board; onDelete: (id: string) => void }) {
   return (
     <Link to={`/boards/${board.id}`}>
       <Card className="hover:shadow-md transition-shadow ">
@@ -12,7 +12,15 @@ function BoardCard({ board }: { board: Board }) {
           <CardTitle>{board.title}</CardTitle>
           <CardDescription>3 Spalten - {board.tasks.length} Tasks</CardDescription>
           <CardAction>
-            <Button className="hover:text-destructive text-muted-foreground" size="icon" variant="ghost">
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                onDelete(board.id);
+              }}
+              className="hover:text-destructive text-muted-foreground"
+              size="icon"
+              variant="ghost"
+            >
               <Trash2 />
             </Button>
           </CardAction>
