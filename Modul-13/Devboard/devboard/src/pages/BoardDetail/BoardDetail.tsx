@@ -5,28 +5,42 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import BoardColumn from "./components/BoardColumn";
 import type { Board } from "@/types/board.type";
+import { useReducer } from "react";
+import { getBoardById } from "@/lib/api";
+import { useBoardDetailReducer } from "@/hooks/boardDetailReducer";
 
 function BoardDetail() {
   const [draggedColumn, setDraggedColumn] = useState<string | null>(null);
   const { id } = useParams();
   const [isEditBoardName, setIsEditBoardName] = useState(false);
-  const [boardName, setBoardName] = useState("name des Boards");
+  const [boardName, setBoardName] = useState("");
+  const boardFromLocalStorage = getBoardById(id ?? "") ?? {
+    id: "",
+    title: "",
+    tasks: [],
+  };
 
-  const [board, setBoard] = useState<Board>({
-    id: "board-1",
-    title: "test",
-    tasks: [{ id: "task-1", title: "abc", column: "Progress", description: "def" }],
-  });
+  const [board, dispatchBoard] = useReducer(useBoardDetailReducer, boardFromLocalStorage);
+
+  function handleEditBoardTitle() {
+    setIsEditBoardName(true);
+    setBoardName(board.title);
+  }
+
+  function handleSubmitEditBoardTitle() {
+    dispatchBoard({ type: "UPDATE_BOARD_NAME", data: boardName });
+    setIsEditBoardName(false);
+  }
 
   function renderBoardDetailHeader() {
     if (isEditBoardName) {
       return (
         <>
           <Input value={boardName} onChange={(event) => setBoardName(event.target.value)} className="w-96" />
-          <Button variant="ghost" size="icon-xl" onClick={() => setIsEditBoardName(false)}>
+          <Button variant="ghost" size="icon-lg" onClick={handleSubmitEditBoardTitle}>
             <Check className="size-5" />
           </Button>
-          <Button variant="ghost" size="icon-xl" onClick={() => setIsEditBoardName(false)}>
+          <Button variant="ghost" size="icon-lg" onClick={() => setIsEditBoardName(false)}>
             <X className="size-5" />
           </Button>
         </>
@@ -34,8 +48,8 @@ function BoardDetail() {
     } else {
       return (
         <>
-          <h1 className="text-2xl font-bold">{boardName}</h1>
-          <Button variant="ghost" size="icon-xl" onClick={() => setIsEditBoardName(true)}>
+          <h1 className="text-2xl font-bold">{board.title}</h1>
+          <Button variant="ghost" size="icon-lg" onClick={handleEditBoardTitle}>
             <Pencil className="size-4" />
           </Button>
         </>
@@ -46,7 +60,7 @@ function BoardDetail() {
     <div className="container">
       <div className="flex flex-row gap-2 items-center">
         <Link to={"/boards"}>
-          <Button variant="ghost" size="icon-xl">
+          <Button variant="ghost" size="icon-lg">
             <ArrowLeft className="size-5" />
           </Button>
         </Link>

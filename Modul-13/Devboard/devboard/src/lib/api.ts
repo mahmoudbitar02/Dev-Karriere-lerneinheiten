@@ -10,6 +10,17 @@ export function getBoards(): Board[] {
   return [];
 }
 
+export function getBoardById(id: string): Board | undefined {
+  const boards = getBoards();
+  return boards.find((board) => board.id === id);
+}
+
 export function saveBoards(boards: Board[]): void {
   localStorage.setItem(LOCAL_STORAGE_BOARDS_KEY, JSON.stringify(boards));
+}
+
+export function saveBoard(board: Board): void {
+  const boards = getBoards();
+  const updatedBoards = boards.map((b) => (b.id === board.id ? board : b));
+  saveBoards(updatedBoards);
 }
