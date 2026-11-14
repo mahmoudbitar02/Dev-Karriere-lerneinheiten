@@ -3,7 +3,15 @@ import { Card, CardAction, CardDescription, CardHeader, CardTitle } from "@/comp
 import type { Task } from "@/types/board.type";
 import { Trash2 } from "lucide-react";
 
-function TaskCard({ task, setDraggedColumn }: { task: Task; setDraggedColumn: (column: string | null) => void }) {
+function TaskCard({
+  task,
+  setDraggedColumn,
+  onDeleteTask,
+}: {
+  task: Task;
+  setDraggedColumn: (column: string | null) => void;
+  onDeleteTask: (task: Task) => void;
+}) {
   return (
     <Card
       size="sm"
@@ -20,7 +28,7 @@ function TaskCard({ task, setDraggedColumn }: { task: Task; setDraggedColumn: (c
           {task.deadLine ? new Date(task.deadLine).toLocaleDateString("de-DE") : ""}
         </CardDescription>
         <CardAction>
-          <Button className="text-muted-foreground hover:text-destructive" variant={"ghost"} size={"icon-lg"}>
+          <Button onClick={() => onDeleteTask(task)} className="text-muted-foreground hover:text-destructive" variant={"ghost"} size={"icon-lg"}>
             <Trash2 />
           </Button>
         </CardAction>

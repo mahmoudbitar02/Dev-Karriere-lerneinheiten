@@ -4,7 +4,7 @@ import { ArrowLeft, Check, Pencil, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import BoardColumn from "./components/BoardColumn";
-import type { Board } from "@/types/board.type";
+import type { Board, Task } from "@/types/board.type";
 import { useReducer } from "react";
 import { getBoardById } from "@/lib/api";
 import { useBoardDetailReducer } from "@/hooks/boardDetailReducer";
@@ -32,8 +32,12 @@ function BoardDetail() {
     setIsEditBoardName(false);
   }
 
-  function handleAddTask(Task: any) {
-    dispatchBoard({ type: "ADD_TASK", data: Task });
+  function handleAddTask(task: Task) {
+    dispatchBoard({ type: "ADD_TASK", data: task });
+  }
+
+  function handleDeleteTask(task: Task) {
+    dispatchBoard({ type: "DELETE_TASK", data: task });
   }
 
   function renderBoardDetailHeader() {
@@ -72,6 +76,7 @@ function BoardDetail() {
       </div>
       <div className="grid grid-cols-3 gap-4 mt-8">
         <BoardColumn
+          onDeleteTask={handleDeleteTask}
           onAddTask={handleAddTask}
           title="ToDo"
           tasks={board.tasks.filter((task) => task.column === "ToDo")}
@@ -79,6 +84,7 @@ function BoardDetail() {
           setDraggedColumn={setDraggedColumn}
         />
         <BoardColumn
+          onDeleteTask={handleDeleteTask}
           onAddTask={handleAddTask}
           title="Progress"
           tasks={board.tasks.filter((task) => task.column === "Progress")}
@@ -86,6 +92,7 @@ function BoardDetail() {
           setDraggedColumn={setDraggedColumn}
         />
         <BoardColumn
+          onDeleteTask={handleDeleteTask}
           onAddTask={handleAddTask}
           title="Done"
           tasks={board.tasks.filter((task) => task.column === "Done")}

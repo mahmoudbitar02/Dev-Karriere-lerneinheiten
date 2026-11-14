@@ -26,12 +26,14 @@ function BoardColumn({
   draggedColumn,
   setDraggedColumn,
   onAddTask,
+  onDeleteTask,
 }: {
   title: "ToDo" | "Progress" | "Done";
   tasks: Task[];
   draggedColumn: string | null;
   setDraggedColumn: (column: string | null) => void;
   onAddTask: (task: Task) => void;
+  onDeleteTask: (task: Task) => void;
 }) {
   const [isDragHover, setIsDragHover] = useState(false);
   const [taskTitle, setTaskTitle] = useState<string>("");
@@ -163,7 +165,7 @@ function BoardColumn({
           Hier ablegen
         </div>
         {tasks.map((task) => {
-          return <TaskCard task={task} setDraggedColumn={setDraggedColumn} />;
+          return <TaskCard task={task} onDeleteTask={onDeleteTask} setDraggedColumn={setDraggedColumn} />;
         })}
       </div>
     </div>
