@@ -32,6 +32,10 @@ function BoardDetail() {
     setIsEditBoardName(false);
   }
 
+  function handleAddTask(Task: any) {
+    dispatchBoard({ type: "ADD_TASK", data: Task });
+  }
+
   function renderBoardDetailHeader() {
     if (isEditBoardName) {
       return (
@@ -68,18 +72,21 @@ function BoardDetail() {
       </div>
       <div className="grid grid-cols-3 gap-4 mt-8">
         <BoardColumn
+          onAddTask={handleAddTask}
           title="ToDo"
           tasks={board.tasks.filter((task) => task.column === "ToDo")}
           draggedColumn={draggedColumn}
           setDraggedColumn={setDraggedColumn}
         />
         <BoardColumn
+          onAddTask={handleAddTask}
           title="Progress"
           tasks={board.tasks.filter((task) => task.column === "Progress")}
           draggedColumn={draggedColumn}
           setDraggedColumn={setDraggedColumn}
         />
         <BoardColumn
+          onAddTask={handleAddTask}
           title="Done"
           tasks={board.tasks.filter((task) => task.column === "Done")}
           draggedColumn={draggedColumn}

@@ -25,11 +25,13 @@ function BoardColumn({
   tasks,
   draggedColumn,
   setDraggedColumn,
+  onAddTask,
 }: {
-  title: string;
+  title: "ToDo" | "Progress" | "Done";
   tasks: Task[];
   draggedColumn: string | null;
   setDraggedColumn: (column: string | null) => void;
+  onAddTask: (task: Task) => void;
 }) {
   const [isDragHover, setIsDragHover] = useState(false);
   const [taskTitle, setTaskTitle] = useState<string>("");
@@ -55,7 +57,18 @@ function BoardColumn({
   }
 
   function handleAddNewTask() {
-    console.log("Add new task with title:", taskTitle, "description:", taskDescription, "assigned to:", selectedPerson, "deadline:", date);
+    const newTask: Task = {
+      id: String(Math.random()),
+      title: taskTitle,
+      description: taskDescription ?? "",
+      column: title,
+      deadLine: date?.toISOString() ?? undefined,
+    };
+    onAddTask(newTask);
+    setTaskTitle("");
+    setTaskDescription("");
+    setSelectedPerson("");
+    setDate(undefined);
   }
 
   return (

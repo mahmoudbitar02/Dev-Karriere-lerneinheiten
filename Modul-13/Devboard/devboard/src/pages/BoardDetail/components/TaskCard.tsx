@@ -15,7 +15,10 @@ function TaskCard({ task, setDraggedColumn }: { task: Task; setDraggedColumn: (c
     >
       <CardHeader>
         <CardTitle>{task.title}</CardTitle>
-        <CardDescription>{task.description}</CardDescription>
+        <CardDescription>
+          {task.description}
+          {task.deadLine ? new Date(task.deadLine).toLocaleDateString("de-DE") : ""}
+        </CardDescription>
         <CardAction>
           <Button className="text-muted-foreground hover:text-destructive" variant={"ghost"} size={"icon-lg"}>
             <Trash2 />
