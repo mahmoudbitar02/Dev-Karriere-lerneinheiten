@@ -7,10 +7,12 @@ function TaskCard({
   task,
   setDraggedColumn,
   onDeleteTask,
+  handleEditTask,
 }: {
   task: Task;
   setDraggedColumn: (column: string | null) => void;
   onDeleteTask: (task: Task) => void;
+  handleEditTask: (task: Task) => void;
 }) {
   return (
     <Card
@@ -19,6 +21,9 @@ function TaskCard({
       onDragStart={(e) => {
         e.dataTransfer.setData("column", task.column);
         setDraggedColumn(task.column);
+      }}
+      onClick={() => {
+        handleEditTask(task);
       }}
     >
       <CardHeader>

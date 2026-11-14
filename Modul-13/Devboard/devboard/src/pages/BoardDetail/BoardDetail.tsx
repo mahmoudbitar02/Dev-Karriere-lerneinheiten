@@ -8,6 +8,7 @@ import type { Board, Task } from "@/types/board.type";
 import { useReducer } from "react";
 import { getBoardById } from "@/lib/api";
 import { useBoardDetailReducer } from "@/hooks/boardDetailReducer";
+import TaskDialog from "./components/TaskDialog";
 
 function BoardDetail() {
   const [draggedColumn, setDraggedColumn] = useState<string | null>(null);
@@ -19,6 +20,8 @@ function BoardDetail() {
     title: "",
     tasks: [],
   };
+  const [isEditTaskDialogOpen, setIsEditTaskDialogOpen] = useState(false);
+  const [editTask, setEditTask] = useState<Task | undefined>();
 
   const [board, dispatchBoard] = useReducer(useBoardDetailReducer, boardFromLocalStorage);
 
@@ -38,6 +41,11 @@ function BoardDetail() {
 
   function handleDeleteTask(task: Task) {
     dispatchBoard({ type: "DELETE_TASK", data: task });
+  }
+
+  function handleEditTask(task: Task) {
+    setIsEditTaskDialogOpen(true);
+    setEditTask(task);
   }
 
   function renderBoardDetailHeader() {
@@ -74,6 +82,13 @@ function BoardDetail() {
         </Link>
         {renderBoardDetailHeader()}
       </div>
+      <TaskDialog
+        key={editTask?.id ?? String(Math.random())}
+        open={isEditTaskDialogOpen}
+        handleOpenChange={setIsEditTaskDialogOpen}
+        handleSubmitUpdate={(task) => {}}
+        task={editTask ?? { id: "", title: "", description: "", column: "ToDo" }}
+      />
       <div className="grid grid-cols-3 gap-4 mt-8">
         <BoardColumn
           onDeleteTask={handleDeleteTask}
@@ -82,6 +97,7 @@ function BoardDetail() {
           tasks={board.tasks.filter((task) => task.column === "ToDo")}
           draggedColumn={draggedColumn}
           setDraggedColumn={setDraggedColumn}
+          handleEditTask={handleEditTask}
         />
         <BoardColumn
           onDeleteTask={handleDeleteTask}
@@ -90,6 +106,7 @@ function BoardDetail() {
           tasks={board.tasks.filter((task) => task.column === "Progress")}
           draggedColumn={draggedColumn}
           setDraggedColumn={setDraggedColumn}
+          handleEditTask={handleEditTask}
         />
         <BoardColumn
           onDeleteTask={handleDeleteTask}
@@ -98,6 +115,7 @@ function BoardDetail() {
           tasks={board.tasks.filter((task) => task.column === "Done")}
           draggedColumn={draggedColumn}
           setDraggedColumn={setDraggedColumn}
+          handleEditTask={handleEditTask}
         />
       </div>
     </div>
