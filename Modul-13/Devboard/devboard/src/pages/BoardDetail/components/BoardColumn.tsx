@@ -1,24 +1,25 @@
 import { Button } from "@/components/ui/button";
-import { ChevronDownIcon, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import TaskCard from "./TaskCard";
 import type { Task } from "@/types/board.type";
 import { useState } from "react";
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-  DialogClose,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
-import { format } from "date-fns";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
+// import {
+//   Dialog,
+//   DialogTrigger,
+//   DialogContent,
+//   DialogHeader,
+//   DialogTitle,
+//   DialogDescription,
+//   DialogFooter,
+//   DialogClose,
+// } from "@/components/ui/dialog";
+// import { Input } from "@/components/ui/input";
+// import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+// import { Calendar } from "@/components/ui/calendar";
+// import { format } from "date-fns";
+// import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+// import { Textarea } from "@/components/ui/textarea";
+import TaskDialog from "./TaskDialog";
 
 function BoardColumn({
   title,
@@ -38,13 +39,12 @@ function BoardColumn({
   handleEditTask: (task: Task) => void;
 }) {
   const [isDragHover, setIsDragHover] = useState(false);
-  const [taskTitle, setTaskTitle] = useState<string>("");
-  const [taskDescription, setTaskDescription] = useState<string>("");
-  const [selectedPerson, setSelectedPerson] = useState<string>("");
+  // const [taskTitle, setTaskTitle] = useState<string>("");
+  // const [taskDescription, setTaskDescription] = useState<string>("");
+  // const [selectedPerson, setSelectedPerson] = useState<string>("");
+  // const [date, setDate] = useState<Date>();
 
-  const [date, setDate] = useState<Date>();
-
-  function handleDragHover(event: React.DragEvent<HTMLDivElement>) {
+  function handleDragHover() {
     if (draggedColumn === title) {
       setIsDragHover(false);
     } else {
@@ -52,7 +52,7 @@ function BoardColumn({
     }
   }
 
-  function handleDrop(event: React.DragEvent<HTMLDivElement>) {
+  function handleDrop() {
     if (draggedColumn === title) {
       setIsDragHover(false);
     } else {
@@ -60,21 +60,26 @@ function BoardColumn({
     }
   }
 
-  function handleAddNewTask() {
-    const newTask: Task = {
-      id: String(Math.random()),
-      title: taskTitle,
-      description: taskDescription ?? "",
-      column: title,
-      deadLine: date?.toISOString() ?? undefined,
-    };
-    onAddTask(newTask);
-    setTaskTitle("");
-    setTaskDescription("");
-    setSelectedPerson("");
-    setDate(undefined);
-  }
+  // function handleAddNewTask() {
+  //   const newTask: Task = {
+  //     id: String(Math.random()),
+  //     title: taskTitle,
+  //     description: taskDescription ?? "",
+  //     column: title,
+  //     deadLine: date?.toISOString() ?? undefined,
+  //   };
+  //   onAddTask(newTask);
+  //   setTaskTitle("");
+  //   setTaskDescription("");
+  //   setSelectedPerson("");
+  //   setDate(undefined);
+  // }
 
+  // Bonus aufgabe
+  const [isTaskDialogOpen, setIsTaskDialogOpen] = useState(false);
+  function getRandomId() {
+    return String(Math.random());
+  }
   return (
     <div
       className={`border border-black rounded-lg bg-gray-50 ${isDragHover && " border-primary border"}`}
@@ -85,7 +90,20 @@ function BoardColumn({
     >
       <div className="flex items-center justify-between border-b border-black p-4">
         <h3 className="font-bold">{title}</h3>
-        <Dialog>
+
+        <Button variant={"ghost"} size={"icon-lg"} onClick={() => setIsTaskDialogOpen(true)}>
+          <Plus />
+        </Button>
+        <TaskDialog
+          open={isTaskDialogOpen}
+          handleOpenChange={setIsTaskDialogOpen}
+          onSubmitUpdate={onAddTask}
+          title="Neue Task erstellen"
+          description="Erstelle eine neue Aufgabe für diese Spalte."
+          task={{ id: getRandomId(), title: "", description: "", column: title, deadLine: "" }}
+        />
+
+        {/* <Dialog>
           <DialogTrigger
             render={
               <Button variant={"ghost"} size={"icon-lg"}>
@@ -160,15 +178,17 @@ function BoardColumn({
               ></DialogClose>
             </DialogFooter>
           </DialogContent>
-        </Dialog>
+        </Dialog> */}
       </div>
       <div className="p-4 ">
         <div className={`border-2 border-primary border-dashed text-primary text-center p-2 rounded-lg bg-primary/10 ${!isDragHover && "hidden"}`}>
           Hier ablegen
         </div>
-        {tasks.map((task) => {
-          return <TaskCard task={task} onDeleteTask={onDeleteTask} setDraggedColumn={setDraggedColumn} handleEditTask={handleEditTask} />;
-        })}
+        <div className="flex flex-col gap-2 ">
+          {tasks.map((task) => {
+            return <TaskCard task={task} onDeleteTask={onDeleteTask} setDraggedColumn={setDraggedColumn} handleEditTask={handleEditTask} />;
+          })}
+        </div>
       </div>
     </div>
   );

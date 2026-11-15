@@ -1,14 +1,5 @@
 import { useState } from "react";
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-  DialogClose,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
@@ -22,25 +13,39 @@ import { Textarea } from "@/components/ui/textarea";
 function TaskDialog({
   open,
   handleOpenChange,
-  handleSubmitUpdate,
+  onSubmitUpdate,
+  title,
+  description,
   task,
 }: {
   open: boolean;
   handleOpenChange: (open: boolean) => void;
-  handleSubmitUpdate: (task: Task) => void;
+  onSubmitUpdate: (task: Task) => void;
+  title: string;
+  description: string;
   task: Task;
 }) {
   const [taskTitle, setTaskTitle] = useState<string>(task.title);
   const [taskDescription, setTaskDescription] = useState<string>(task.description ?? "");
   const [selectedPerson, setSelectedPerson] = useState<string>("");
 
-  const [date, setDate] = useState<Date>(new Date(task.deadLine ?? new Date()));
+  const [date, setDate] = useState<Date | undefined>(task.deadLine ? new Date(task.deadLine) : undefined);
+
+  function handleSubmitUpdate() {
+    const updatedTask: Task = {
+      ...task,
+      title: taskTitle,
+      description: taskDescription,
+      deadLine: date?.toISOString(),
+    };
+    onSubmitUpdate(updatedTask);
+  }
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Task bearbeiten</DialogTitle>
-          <DialogDescription>Ändere die Details der Aufgabe.</DialogDescription>
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
         <div>
           <span>Title</span>
@@ -76,7 +81,7 @@ function TaskDialog({
                   data-empty={!date}
                   className="w-full justify-between text-left font-normal data-[empty=true]:text-muted-foreground"
                 >
-                  {date ? format(date, "PPP") : <span>Pick a date</span>}
+                  {date ? format(date, "dd.MM.yyyy") : <span>Pick a date</span>}
                   <ChevronDownIcon data-icon="inline-end" />
                 </Button>
               }

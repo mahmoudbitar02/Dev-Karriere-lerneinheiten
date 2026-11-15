@@ -7,7 +7,7 @@ type BoardDetailAction =
       data: string;
     }
   | {
-      type: "ADD_TASK" | "DELETE_TASK";
+      type: "ADD_TASK" | "DELETE_TASK" | "UPDATE_TASK";
       data: Task;
     };
 
@@ -27,6 +27,18 @@ export function useBoardDetailReducer(prevState: Board, action: BoardDetailActio
       newState = { ...prevState };
       const newTasks = prevState.tasks.filter((task) => task.id !== action.data.id);
       newState.tasks = newTasks;
+      break;
+    }
+    case "UPDATE_TASK": {
+      newState = { ...prevState };
+      const updatedTasks = prevState.tasks.map((task) => {
+        if (task.id === action.data.id) {
+          return action.data;
+        } else {
+          return task;
+        }
+      });
+      newState.tasks = updatedTasks;
       break;
     }
   }

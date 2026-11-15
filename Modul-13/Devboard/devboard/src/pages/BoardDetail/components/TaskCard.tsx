@@ -16,6 +16,7 @@ function TaskCard({
 }) {
   return (
     <Card
+      className=" cursor-pointer"
       size="sm"
       draggable={true}
       onDragStart={(e) => {
@@ -33,7 +34,15 @@ function TaskCard({
           {task.deadLine ? new Date(task.deadLine).toLocaleDateString("de-DE") : ""}
         </CardDescription>
         <CardAction>
-          <Button onClick={() => onDeleteTask(task)} className="text-muted-foreground hover:text-destructive" variant={"ghost"} size={"icon-lg"}>
+          <Button
+            onClick={(e) => {
+              e.stopPropagation();
+              onDeleteTask(task);
+            }}
+            className="text-muted-foreground hover:text-destructive"
+            variant={"ghost"}
+            size={"icon-lg"}
+          >
             <Trash2 />
           </Button>
         </CardAction>
