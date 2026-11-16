@@ -29,6 +29,7 @@ function BoardColumn({
   onAddTask,
   onDeleteTask,
   handleEditTask,
+  onUpdateTaskStatus,
 }: {
   title: "ToDo" | "Progress" | "Done";
   tasks: Task[];
@@ -37,6 +38,7 @@ function BoardColumn({
   onAddTask: (task: Task) => void;
   onDeleteTask: (task: Task) => void;
   handleEditTask: (task: Task) => void;
+  onUpdateTaskStatus: (id: string, newColumn: "ToDo" | "Progress" | "Done") => void;
 }) {
   const [isDragHover, setIsDragHover] = useState(false);
   // const [taskTitle, setTaskTitle] = useState<string>("");
@@ -44,7 +46,31 @@ function BoardColumn({
   // const [selectedPerson, setSelectedPerson] = useState<string>("");
   // const [date, setDate] = useState<Date>();
 
-  function handleDragHover() {
+  function getColumnFromDraggedItem(dataTransfer: DataTransfer): String | null {
+    let column: string | null = null;
+    dataTransfer.types.forEach((type) => {
+      if (type.startsWith("column-")) {
+        column = type.replace("column-", "");
+      }
+    });
+    return column;
+  }
+
+  function getIdFromDraggedItem(dataTransfer: DataTransfer): String | null {
+    let column: string | null = null;
+    dataTransfer.types.forEach((type) => {
+      if (type.startsWith("id-")) {
+        column = type.replace("id-", "");
+      }
+    });
+    return column;
+  }
+
+  function handleDragHover(event: React.DragEvent<HTMLDivElement>) {
+    event.preventDefault();
+    const column = getColumnFromDraggedItem(event.dataTransfer);
+    console.log(column);
+
     if (draggedColumn === title) {
       setIsDragHover(false);
     } else {
@@ -52,11 +78,17 @@ function BoardColumn({
     }
   }
 
-  function handleDrop() {
+  function handleDrop(event: React.DragEvent<HTMLDivElement>) {
+    const column = getColumnFromDraggedItem(event.dataTransfer);
+    const id = getIdFromDraggedItem(event.dataTransfer) ?? "";
+    console.log(column);
+    console.log("test" + id);
+
     if (draggedColumn === title) {
       setIsDragHover(false);
     } else {
       // call function to move task to this column
+      onUpdateTaskStatus(String(id), title);
     }
   }
 

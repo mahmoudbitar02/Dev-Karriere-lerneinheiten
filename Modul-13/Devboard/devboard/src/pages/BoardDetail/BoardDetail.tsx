@@ -33,6 +33,10 @@ function BoardDetail() {
     dispatchBoard({ type: "DELETE_TASK", data: task });
   }
 
+  function handleUpdateTaskStatus(id: string, newColumn: "ToDo" | "Progress" | "Done") {
+    dispatchBoard({ type: "UPDATE_TASK_STATUS", data: { id, newColumn } });
+  }
+
   function handleEditTask(task: Task) {
     setIsEditTaskDialogOpen(true);
     setEditTask(task);

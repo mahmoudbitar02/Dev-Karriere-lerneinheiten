@@ -9,6 +9,17 @@ type BoardDetailAction =
   | {
       type: "ADD_TASK" | "DELETE_TASK" | "UPDATE_TASK";
       data: Task;
+    }
+  | {
+      type: "UPDATE_TASK_STATUS";
+      data: { id: string; newColumn: "ToDo" | "Progress" | "Done" };
+    }
+  | {
+      type: "UPDATE_TASK_STATUS";
+      data: {
+        id: String;
+        newColumn: "ToDo" | "Progress" | "Done";
+      };
     };
 
 export function useBoardDetailReducer(prevState: Board, action: BoardDetailAction) {
@@ -37,6 +48,28 @@ export function useBoardDetailReducer(prevState: Board, action: BoardDetailActio
         } else {
           return task;
         }
+      });
+      newState.tasks = updatedTasks;
+      break;
+    }
+    case "UPDATE_TASK_STATUS": {
+      newState = { ...prevState };
+      const updatedTasks = prevState.tasks.map((task) => {
+        if (task.id === action.data.id) {
+          task.column = action.data.newColumn;
+        }
+        return task;
+      });
+      newState.tasks = updatedTasks;
+      break;
+    }
+    case "UPDATE_TASK_STATUS": {
+      newState = { ...prevState };
+      const updatedTasks = prevState.tasks.map((task) => {
+        if (task.id === action.data.id) {
+          task.column = action.data.newColumn;
+        }
+        return task;
       });
       newState.tasks = updatedTasks;
       break;

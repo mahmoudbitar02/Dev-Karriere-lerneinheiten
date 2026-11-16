@@ -20,7 +20,9 @@ function TaskCard({
       size="sm"
       draggable={true}
       onDragStart={(e) => {
-        e.dataTransfer.setData("column", task.column);
+        e.dataTransfer.setData(`column-${task.column}`, "");
+        e.dataTransfer.setData(`id-${task.id}`, "");
+
         setDraggedColumn(task.column);
       }}
       onClick={() => {
