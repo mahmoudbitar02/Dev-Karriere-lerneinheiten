@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardAction, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Task } from "@/types/board.type";
-import { Trash2 } from "lucide-react";
+import { Calendar, CircleUser, Trash2 } from "lucide-react";
 
 function TaskCard({
   task,
@@ -31,9 +31,21 @@ function TaskCard({
     >
       <CardHeader>
         <CardTitle>{task.title}</CardTitle>
-        <CardDescription>
-          {task.description}
-          {task.deadLine ? new Date(task.deadLine).toLocaleDateString("de-DE") : ""}
+        <CardDescription className="flex flex-col">
+          {task.description && <span>{task.description}</span>}
+          {task.assignedTo && (
+            <span className="flex items-center gap-1">
+              <CircleUser className="size-3" />
+              {task.assignedTo}
+            </span>
+          )}
+
+          {task.deadLine && (
+            <span className="flex items-center gap-1">
+              <Calendar className="size-3" />
+              {new Date(task.deadLine).toLocaleDateString("de-DE")}
+            </span>
+          )}
         </CardDescription>
         <CardAction>
           <Button

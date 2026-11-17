@@ -104,7 +104,7 @@ function TaskDialog({
 
           <DialogClose
             render={
-              <Button onClick={handleSubmitUpdate} className="mt-4">
+              <Button onClick={handleSubmitUpdate} disabled={taskTitle === ""} className="mt-4">
                 Speichern
               </Button>
             }

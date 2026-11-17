@@ -121,7 +121,9 @@ function BoardColumn({
       onDragLeave={() => setIsDragHover(false)}
     >
       <div className="flex items-center justify-between border-b border-black p-4">
-        <h3 className="font-bold">{title}</h3>
+        <h3 className="font-bold">
+          {title} <span className="font-normal ml-2 text-sm">{tasks.length}</span>
+        </h3>
 
         <Button variant={"ghost"} size={"icon-lg"} onClick={() => setIsTaskDialogOpen(true)}>
           <Plus />
@@ -217,6 +219,7 @@ function BoardColumn({
           Hier ablegen
         </div>
         <div className="flex flex-col gap-2 ">
+          {tasks.length === 0 && <p className="text-center text-sm">Keine Tasks</p>}
           {tasks.map((task) => {
             return <TaskCard task={task} onDeleteTask={onDeleteTask} setDraggedColumn={setDraggedColumn} handleEditTask={handleEditTask} />;
           })}
