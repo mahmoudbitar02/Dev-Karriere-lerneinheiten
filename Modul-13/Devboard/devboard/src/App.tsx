@@ -3,6 +3,7 @@ import Profile from "./pages/Profile/Profile";
 import BoardDetail from "./pages/BoardDetail/BoardDetail";
 import BoardOverview from "./pages/BoardOverview/BoardOverview";
 import Layout from "./components/layout/Layout";
+import { UserNameProvider } from "./context/UserNameProvider";
 
 function App() {
   const router = createBrowserRouter([
@@ -25,9 +26,9 @@ function App() {
     },
   ]);
   return (
-    <>
+    <UserNameProvider>
       <RouterProvider router={router}></RouterProvider>
-    </>
+    </UserNameProvider>
   );
 }
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -9,6 +9,7 @@ import type { Task } from "@/types/board.type";
 import { Button } from "@/components/ui/button";
 import { ChevronDownIcon } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
+import { UserNameContext } from "@/context/UserNameContext";
 
 function TaskDialog({
   open,
@@ -25,9 +26,10 @@ function TaskDialog({
   description: string;
   task: Task;
 }) {
+  const context = useContext(UserNameContext);
   const [taskTitle, setTaskTitle] = useState<string>(task.title);
   const [taskDescription, setTaskDescription] = useState<string>(task.description ?? "");
-  const [selectedPerson, setSelectedPerson] = useState<string>("");
+  const [selectedPerson, setSelectedPerson] = useState<string>(task.assignedTo ?? " ");
 
   const [date, setDate] = useState<Date | undefined>(task.deadLine ? new Date(task.deadLine) : undefined);
 
@@ -36,6 +38,7 @@ function TaskDialog({
       ...task,
       title: taskTitle,
       description: taskDescription,
+      assignedTo: selectedPerson,
       deadLine: date?.toISOString(),
     };
     onSubmitUpdate(updatedTask);
@@ -64,9 +67,8 @@ function TaskDialog({
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectItem value="hi">hi</SelectItem>
-                <SelectItem value="test">test</SelectItem>
-                <SelectItem value="halo">halo</SelectItem>
+                <SelectItem value=" ">Keine Zuweisung</SelectItem>
+                <SelectItem value={context?.userName ?? "undefined"}>{context?.userName ?? "undefined"}</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>

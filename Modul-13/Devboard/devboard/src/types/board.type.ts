@@ -8,6 +8,7 @@ export interface Task {
   id: string;
   title: string;
   column: "ToDo" | "Progress" | "Done";
+  assignedTo?: string;
   description?: string;
   deadLine?: string;
 }
