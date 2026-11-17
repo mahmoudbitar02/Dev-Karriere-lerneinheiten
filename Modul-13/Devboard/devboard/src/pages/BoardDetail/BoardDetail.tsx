@@ -108,6 +108,7 @@ function BoardDetail() {
           draggedColumn={draggedColumn}
           setDraggedColumn={setDraggedColumn}
           handleEditTask={handleEditTask}
+          onUpdateTaskStatus={handleUpdateTaskStatus}
         />
         <BoardColumn
           onDeleteTask={handleDeleteTask}
@@ -117,6 +118,7 @@ function BoardDetail() {
           draggedColumn={draggedColumn}
           setDraggedColumn={setDraggedColumn}
           handleEditTask={handleEditTask}
+          onUpdateTaskStatus={handleUpdateTaskStatus}
         />
         <BoardColumn
           onDeleteTask={handleDeleteTask}
@@ -126,6 +128,7 @@ function BoardDetail() {
           draggedColumn={draggedColumn}
           setDraggedColumn={setDraggedColumn}
           handleEditTask={handleEditTask}
+          onUpdateTaskStatus={handleUpdateTaskStatus}
         />
       </div>
     </div>

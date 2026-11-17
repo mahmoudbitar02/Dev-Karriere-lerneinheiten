@@ -68,8 +68,7 @@ function BoardColumn({
 
   function handleDragHover(event: React.DragEvent<HTMLDivElement>) {
     event.preventDefault();
-    const column = getColumnFromDraggedItem(event.dataTransfer);
-    console.log(column);
+    // const column = getColumnFromDraggedItem(event.dataTransfer);
 
     if (draggedColumn === title) {
       setIsDragHover(false);
@@ -89,6 +88,7 @@ function BoardColumn({
     } else {
       // call function to move task to this column
       onUpdateTaskStatus(String(id), title);
+      setIsDragHover(false);
     }
   }
 
