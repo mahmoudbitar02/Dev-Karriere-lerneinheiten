@@ -78,6 +78,7 @@ function App() {
             <th>Created At</th>
             <th>Name</th>
             <th>Age</th>
+            <th>category</th>
           </tr>
         </thead>
 
