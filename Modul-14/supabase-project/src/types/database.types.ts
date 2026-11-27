@@ -14,24 +14,65 @@ export type Database = {
   }
   public: {
     Tables: {
-      "test-demo": {
+      products: {
         Row: {
-          age: number | null
+          category: string
           created_at: string
           id: number
           name: string
+          price: number
         }
         Insert: {
-          age?: number | null
+          category: string
           created_at?: string
           id?: number
           name: string
+          price: number
         }
         Update: {
-          age?: number | null
+          category?: string
           created_at?: string
           id?: number
           name?: string
+          price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "products_category_fkey"
+            columns: ["category"]
+            isOneToOne: false
+            referencedRelation: "test-demo"
+            referencedColumns: ["category"]
+          },
+        ]
+      }
+      "test-demo": {
+        Row: {
+          age: number | null
+          category: string | null
+          created_at: string
+          id: number
+          name: string
+          TestArray: Json[] | null
+          TestObject: Json | null
+        }
+        Insert: {
+          age?: number | null
+          category?: string | null
+          created_at?: string
+          id?: number
+          name: string
+          TestArray?: Json[] | null
+          TestObject?: Json | null
+        }
+        Update: {
+          age?: number | null
+          category?: string | null
+          created_at?: string
+          id?: number
+          name?: string
+          TestArray?: Json[] | null
+          TestObject?: Json | null
         }
         Relationships: []
       }
